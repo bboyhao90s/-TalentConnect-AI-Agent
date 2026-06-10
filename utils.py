@@ -137,73 +137,123 @@ def read_input(label: str, key: str, height: int = 220) -> str:
 
 
 # ---------------------------------------------------------------------------
-# Record store (session state + JSON export/import)
+# Data store: candidates, jobs, generated outputs (session + JSON backup)
 # ---------------------------------------------------------------------------
 
-RECORD_TYPES = ["Coaching note", "Candidate profile", "JD analysis", "Outreach", "Fitment analysis"]
+OUTPUT_TYPES = [
+    "Candidate profile", "Coaching notes", "WhatsApp follow-up", "JD analysis",
+    "Match report", "Outreach", "Fitment analysis", "Submission email", "Interview prep",
+]
 
 
-def init_records() -> None:
-    if "records" not in st.session_state:
-        st.session_state.records = []
+def _now() -> str:
+    return datetime.now().strftime("%Y-%m-%d %H:%M")
 
 
-def save_record(record_type: str, title: str, content: str) -> None:
-    init_records()
-    st.session_state.records.append(
+def _new_id(prefix: str) -> str:
+    return f"{prefix}-{datetime.now().strftime('%Y%m%d%H%M%S%f')}"
+
+
+def init_store() -> None:
+    st.session_state.setdefault("candidates", [])
+    st.session_state.setdefault("jobs", [])
+    st.session_state.setdefault("outputs", [])
+
+
+def add_candidate(name: str, resume: str = "", salary: str = "", notice: str = "") -> dict:
+    init_store()
+    candidate = {
+        "id": _new_id("cand"), "name": name.strip(), "resume": resume,
+        "salary": salary, "notice": notice, "profile": "", "coaching_notes": "",
+        "created": _now(),
+    }
+    st.session_state.candidates.append(candidate)
+    return candidate
+
+
+def get_candidate(cid: str) -> dict | None:
+    init_store()
+    return next((c for c in st.session_state.candidates if c["id"] == cid), None)
+
+
+def add_job(title: str, employer: str = "", jd: str = "") -> dict:
+    init_store()
+    job = {
+        "id": _new_id("job"), "title": title.strip(), "employer": employer.strip(),
+        "jd": jd, "analysis": "", "created": _now(),
+    }
+    st.session_state.jobs.append(job)
+    return job
+
+
+def get_job(jid: str) -> dict | None:
+    init_store()
+    return next((j for j in st.session_state.jobs if j["id"] == jid), None)
+
+
+def add_output(output_type: str, content: str, candidate_id: str | None = None,
+               job_id: str | None = None, title: str = "") -> dict:
+    """Auto-record every generated artefact, linked to candidate and/or job."""
+    init_store()
+    record = {
+        "id": _new_id("out"), "type": output_type, "title": title or output_type,
+        "content": content, "candidate_id": candidate_id, "job_id": job_id,
+        "created": _now(),
+    }
+    st.session_state.outputs.append(record)
+    return record
+
+
+def outputs_for(candidate_id: str | None = None, job_id: str | None = None,
+                output_type: str | None = None) -> list[dict]:
+    init_store()
+    results = st.session_state.outputs
+    if candidate_id:
+        results = [o for o in results if o.get("candidate_id") == candidate_id]
+    if job_id:
+        results = [o for o in results if o.get("job_id") == job_id]
+    if output_type:
+        results = [o for o in results if o.get("type") == output_type]
+    return results
+
+
+def delete_output(output_id: str) -> None:
+    init_store()
+    st.session_state.outputs = [o for o in st.session_state.outputs if o["id"] != output_id]
+
+
+def delete_candidate(cid: str) -> None:
+    init_store()
+    st.session_state.candidates = [c for c in st.session_state.candidates if c["id"] != cid]
+    st.session_state.outputs = [o for o in st.session_state.outputs if o.get("candidate_id") != cid]
+
+
+def delete_job(jid: str) -> None:
+    init_store()
+    st.session_state.jobs = [j for j in st.session_state.jobs if j["id"] != jid]
+    st.session_state.outputs = [o for o in st.session_state.outputs if o.get("job_id") != jid]
+
+
+def export_store() -> str:
+    init_store()
+    return json.dumps(
         {
-            "id": datetime.now().strftime("%Y%m%d-%H%M%S-") + str(len(st.session_state.records)),
-            "type": record_type,
-            "title": title.strip() or f"Untitled {record_type.lower()}",
-            "content": content,
-            "created": datetime.now().strftime("%Y-%m-%d %H:%M"),
-        }
+            "candidates": st.session_state.candidates,
+            "jobs": st.session_state.jobs,
+            "outputs": st.session_state.outputs,
+        },
+        ensure_ascii=False, indent=2,
     )
 
 
-def delete_record(record_id: str) -> None:
-    init_records()
-    st.session_state.records = [r for r in st.session_state.records if r["id"] != record_id]
-
-
-def export_records() -> str:
-    init_records()
-    return json.dumps(st.session_state.records, ensure_ascii=False, indent=2)
-
-
-def import_records(json_text: str) -> int:
-    init_records()
+def import_store(json_text: str) -> dict:
+    init_store()
     data = json.loads(json_text)
-    if not isinstance(data, list):
-        raise ValueError("Expected a JSON list of records.")
-    existing = {r["id"] for r in st.session_state.records}
-    added = 0
-    for record in data:
-        if isinstance(record, dict) and record.get("id") and record["id"] not in existing:
-            st.session_state.records.append(record)
-            added += 1
-    return added
-
-
-# ---------------------------------------------------------------------------
-# Shared UI helpers
-# ---------------------------------------------------------------------------
-
-def result_block(result_key: str, record_type: str, default_title: str) -> None:
-    """Show a generated result with download + save-to-records controls."""
-    content = st.session_state.get(result_key)
-    if not content:
-        return
-    st.markdown("---")
-    st.markdown(content)
-    st.download_button(
-        "Download as text file",
-        data=content,
-        file_name=f"{record_type.lower().replace(' ', '_')}.txt",
-        key=f"{result_key}_dl",
-    )
-    with st.expander("Save to records"):
-        title = st.text_input("Record title", value=default_title, key=f"{result_key}_title")
-        if st.button("Save", key=f"{result_key}_save"):
-            save_record(record_type, title, content)
-            st.success("Saved. View it in the Records page.")
+    counts = {}
+    for key in ("candidates", "jobs", "outputs"):
+        items = data.get(key, [])
+        existing = {x["id"] for x in st.session_state[key]}
+        added = [x for x in items if isinstance(x, dict) and x.get("id") and x["id"] not in existing]
+        st.session_state[key].extend(added)
+        counts[key] = len(added)
+    return counts

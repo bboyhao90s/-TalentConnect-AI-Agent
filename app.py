@@ -2,9 +2,9 @@
 TalentConnect AI Agent
 Connecting Talent, Opportunities and Outcomes through AI.
 
-One Streamlit app covering the full talent-specialist journey:
-transcript → coaching notes → candidate profile → JD analysis & outreach
-→ fitment analysis & interview prep → saved records.
+Connected pipeline: data entered once flows to every module.
+1 Candidate Profile · 2 Coaching Notes & Follow-up · 3 Jobs, Matching & Outreach
+4 Fitment & Submission · 5 Interview Prep · 6 Dashboard
 """
 
 import streamlit as st
@@ -12,13 +12,77 @@ import streamlit as st
 import prompts
 import utils
 
-st.set_page_config(
-    page_title="TalentConnect AI Agent",
-    page_icon="🤝",
-    layout="wide",
-)
+st.set_page_config(page_title="TalentConnect AI Agent", page_icon="🤝", layout="wide")
+utils.init_store()
 
-utils.init_records()
+NEW = "➕ Add new…"
+
+
+# ---------------------------------------------------------------------------
+# Shared helpers
+# ---------------------------------------------------------------------------
+
+def ai_generate(system_prompt: str, user_content: str) -> str | None:
+    try:
+        with st.spinner("TalentConnect AI is working…"):
+            return utils.run_ai(system_prompt, user_content)
+    except RuntimeError as exc:
+        st.error(str(exc))
+        return None
+
+
+def candidate_selector(key: str, allow_new: bool = True):
+    """Dropdown of saved candidates. Returns a candidate dict or None."""
+    candidates = st.session_state.candidates
+    options = ([NEW] if allow_new else []) + [c["id"] for c in candidates]
+    if not options:
+        st.info("No candidates yet — add one on page 1 · Candidate Profile.")
+        return None
+    labels = {c["id"]: f"{c['name']}  ·  added {c['created']}" for c in candidates}
+    choice = st.selectbox(
+        "Candidate", options, key=f"{key}_cand",
+        format_func=lambda x: labels.get(x, x),
+    )
+    return None if choice == NEW else utils.get_candidate(choice)
+
+
+def job_selector(key: str, allow_new: bool = True):
+    """Dropdown of saved jobs. Returns a job dict or None."""
+    jobs = st.session_state.jobs
+    options = ([NEW] if allow_new else []) + [j["id"] for j in jobs]
+    if not options:
+        st.info("No jobs yet — add one on page 3 · Jobs, Matching & Outreach.")
+        return None
+    labels = {j["id"]: f"{j['title']} — {j['employer'] or 'employer N/A'}" for j in jobs}
+    choice = st.selectbox(
+        "Job / role", options, key=f"{key}_job",
+        format_func=lambda x: labels.get(x, x),
+    )
+    return None if choice == NEW else utils.get_job(choice)
+
+
+def show_output(content: str, filename: str, key: str) -> None:
+    st.markdown("---")
+    st.markdown(content)
+    st.download_button("Download as text file", data=content,
+                       file_name=filename, key=f"{key}_dl")
+
+
+def candidate_context(candidate: dict) -> str:
+    """Best available description of a candidate for prompting."""
+    parts = [f"Candidate name: {candidate['name']}"]
+    if candidate.get("salary"):
+        parts.append(f"Expected salary: {candidate['salary']}")
+    if candidate.get("notice"):
+        parts.append(f"Notice period: {candidate['notice']}")
+    if candidate.get("profile"):
+        parts.append(f"\n=== CANDIDATE PROFILE ===\n{candidate['profile']}")
+    if candidate.get("resume"):
+        parts.append(f"\n=== RÉSUMÉ ===\n{candidate['resume']}")
+    if candidate.get("coaching_notes"):
+        parts.append(f"\n=== COACHING NOTES ===\n{candidate['coaching_notes']}")
+    return "\n".join(parts)
+
 
 # ---------------------------------------------------------------------------
 # Sidebar
@@ -31,11 +95,12 @@ with st.sidebar:
     page = st.radio(
         "Workflow",
         [
-            "1 · Coaching Notes & Follow-up",
-            "2 · Candidate Profile",
-            "3 · JD Analysis & Outreach",
-            "4 · Fitment & Interview Prep",
-            "5 · Records",
+            "1 · Candidate Profile",
+            "2 · Coaching Notes & Follow-up",
+            "3 · Jobs, Matching & Outreach",
+            "4 · Fitment & Submission",
+            "5 · Interview Prep",
+            "6 · Dashboard",
         ],
     )
 
@@ -43,252 +108,403 @@ with st.sidebar:
     if utils.get_api_key():
         st.success(f"API key loaded · model: {utils.get_model()}")
     else:
-        st.error(
-            "No API key configured. Add OPENAI_API_KEY in "
-            "Manage app → Settings → Secrets, then reboot the app."
-        )
-    st.caption(f"Saved records this session: {len(st.session_state.records)}")
+        st.error("No API key configured. Add OPENAI_API_KEY in "
+                 "Manage app → Settings → Secrets, then reboot the app.")
     st.caption(
-        "Records live in the current session. Use the Records page to "
-        "export a backup file before closing the app."
+        f"📇 {len(st.session_state.candidates)} candidates · "
+        f"💼 {len(st.session_state.jobs)} jobs · "
+        f"🗂️ {len(st.session_state.outputs)} records"
     )
+    st.caption("Data lives in this session — export a backup on the Dashboard.")
 
 
-def generate(button_label: str, system_prompt: str, user_content: str,
-             result_key: str, missing_msg: str) -> None:
-    """Shared generate-button behaviour for every page."""
-    if st.button(button_label, type="primary", key=f"{result_key}_btn"):
-        if not user_content.strip():
-            st.warning(missing_msg)
-            return
-        try:
-            with st.spinner("TalentConnect AI is working…"):
-                st.session_state[result_key] = utils.run_ai(system_prompt, user_content)
-        except RuntimeError as exc:
-            st.error(str(exc))
-
-
-# ---------------------------------------------------------------------------
-# 1 · Coaching Notes & Follow-up
-# ---------------------------------------------------------------------------
+# ===========================================================================
+# 1 · CANDIDATE PROFILE
+# ===========================================================================
 
 if page.startswith("1"):
-    st.header("Coaching transcript → notes & WhatsApp follow-up")
-    st.write(
-        "Upload or paste a coaching session transcript. Generate structured "
-        "coaching notes, then a WhatsApp follow-up in your style."
-    )
+    st.header("1 · Candidate Profile")
+    st.write("Add a candidate once — every other module can then select them "
+             "from a dropdown. Generate their employer-ready profile here.")
 
-    transcript = utils.read_input("the coaching transcript", "transcript", height=260)
-    candidate_name = st.text_input("Candidate name (optional, used in record titles)")
+    selected = candidate_selector("p1")
+
+    if selected is None:
+        st.subheader("Add a new candidate")
+        name = st.text_input("Candidate name *")
+        col1, col2 = st.columns(2)
+        with col1:
+            salary = st.text_input("Expected salary", placeholder="e.g. $3,000 - $3,500")
+        with col2:
+            notice = st.text_input("Notice period", placeholder="e.g. Immediate / 1 month")
+        resume = utils.read_input("the résumé / CV", "p1_resume")
+        if st.button("Save candidate", type="primary"):
+            if not name.strip():
+                st.warning("Please enter the candidate's name.")
+            else:
+                utils.add_candidate(name, resume, salary, notice)
+                st.success(f"Saved {name}. Select them in the dropdown above to continue.")
+                st.rerun()
+    else:
+        st.subheader(selected["name"])
+        col1, col2 = st.columns(2)
+        col1.metric("Expected salary", selected.get("salary") or "N/A")
+        col2.metric("Notice period", selected.get("notice") or "N/A")
+
+        with st.expander("View / update résumé", expanded=not selected.get("resume")):
+            new_resume = utils.read_input("an updated résumé / CV", "p1_update")
+            if new_resume.strip() and st.button("Replace stored résumé"):
+                selected["resume"] = new_resume
+                st.success("Résumé updated.")
+            if selected.get("resume"):
+                st.text_area("Stored résumé", selected["resume"], height=180, disabled=True)
+
+        if selected.get("coaching_notes"):
+            st.caption("✅ Coaching notes on file — they will enrich the profile.")
+
+        if st.button("Generate candidate profile", type="primary"):
+            source = candidate_context(selected)
+            if not selected.get("resume") and not selected.get("coaching_notes"):
+                st.warning("Add a résumé (above) or coaching notes (page 2) first.")
+            else:
+                result = ai_generate(prompts.CANDIDATE_PROFILE, source)
+                if result:
+                    selected["profile"] = result
+                    utils.add_output("Candidate profile", result, candidate_id=selected["id"],
+                                     title=f"Profile — {selected['name']}")
+        if selected.get("profile"):
+            show_output(selected["profile"], f"profile_{selected['name']}.txt", "p1_out")
+
+
+# ===========================================================================
+# 2 · COACHING NOTES & FOLLOW-UP
+# ===========================================================================
+
+elif page.startswith("2"):
+    st.header("2 · Coaching Notes & WhatsApp Follow-up")
+    st.write("Paste a session transcript. Notes are saved to the candidate's "
+             "record and reused by the profile and fitment modules.")
+
+    selected = candidate_selector("p2")
+    if selected is None and st.session_state.candidates:
+        st.caption("Or add the candidate quickly by name:")
+    if selected is None:
+        quick_name = st.text_input("New candidate name *", key="p2_name")
+
+    transcript = utils.read_input("the coaching transcript", "p2_tr", height=240)
 
     col1, col2 = st.columns(2)
     with col1:
         st.subheader("Coaching notes")
-        generate(
-            "Generate coaching notes",
-            prompts.COACHING_NOTES,
-            transcript,
-            "result_notes",
-            "Please upload or paste a transcript first.",
-        )
-        utils.result_block(
-            "result_notes", "Coaching note",
-            f"Coaching notes — {candidate_name or 'candidate'}",
-        )
+        if st.button("Generate coaching notes", type="primary"):
+            if not transcript.strip():
+                st.warning("Please provide the transcript first.")
+            elif selected is None and not (st.session_state.get("p2_name") or "").strip():
+                st.warning("Select a candidate or enter a name first.")
+            else:
+                result = ai_generate(prompts.COACHING_NOTES, transcript)
+                if result:
+                    if selected is None:
+                        selected = utils.add_candidate(st.session_state["p2_name"])
+                    selected["coaching_notes"] = result
+                    utils.add_output("Coaching notes", result, candidate_id=selected["id"],
+                                     title=f"Coaching notes — {selected['name']}")
+                    st.session_state["p2_notes_out"] = result
+        if st.session_state.get("p2_notes_out"):
+            show_output(st.session_state["p2_notes_out"], "coaching_notes.txt", "p2_n")
 
     with col2:
         st.subheader("WhatsApp follow-up")
-        generate(
-            "Generate WhatsApp follow-up",
-            prompts.WHATSAPP_FOLLOWUP,
-            transcript,
-            "result_whatsapp",
-            "Please upload or paste a transcript first.",
-        )
-        utils.result_block(
-            "result_whatsapp", "Outreach",
-            f"WhatsApp follow-up — {candidate_name or 'candidate'}",
-        )
+        if st.button("Generate WhatsApp follow-up", type="primary"):
+            if not transcript.strip():
+                st.warning("Please provide the transcript first.")
+            else:
+                result = ai_generate(prompts.WHATSAPP_FOLLOWUP, transcript)
+                if result:
+                    utils.add_output(
+                        "WhatsApp follow-up", result,
+                        candidate_id=selected["id"] if selected else None,
+                        title=f"WhatsApp — {selected['name'] if selected else 'candidate'}",
+                    )
+                    st.session_state["p2_wa_out"] = result
+        if st.session_state.get("p2_wa_out"):
+            show_output(st.session_state["p2_wa_out"], "whatsapp_followup.txt", "p2_w")
 
-# ---------------------------------------------------------------------------
-# 2 · Candidate Profile
-# ---------------------------------------------------------------------------
 
-elif page.startswith("2"):
-    st.header("Résumé + coaching notes → candidate profile")
-    st.write(
-        "Combine the candidate's résumé with approved coaching notes to produce "
-        "an employer-ready profile and honest internal positioning notes."
-    )
-
-    resume = utils.read_input("the résumé / CV", "resume")
-    notes = utils.read_input("approved coaching notes (optional)", "profile_notes", height=160)
-    candidate_name = st.text_input("Candidate name (optional)")
-
-    combined = ""
-    if resume.strip():
-        combined = f"=== RÉSUMÉ ===\n{resume}"
-        if notes.strip():
-            combined += f"\n\n=== APPROVED COACHING NOTES ===\n{notes}"
-
-    generate(
-        "Generate candidate profile",
-        prompts.CANDIDATE_PROFILE,
-        combined,
-        "result_profile",
-        "Please provide the résumé first (coaching notes are optional).",
-    )
-    utils.result_block(
-        "result_profile", "Candidate profile",
-        f"Profile — {candidate_name or 'candidate'}",
-    )
-
-# ---------------------------------------------------------------------------
-# 3 · JD Analysis & Outreach
-# ---------------------------------------------------------------------------
+# ===========================================================================
+# 3 · JOBS, MATCHING & OUTREACH
+# ===========================================================================
 
 elif page.startswith("3"):
-    st.header("Employer JD → hiring analysis & outreach")
-    st.write(
-        "Analyse a job description, then draft employer outreach — with or "
-        "without candidate profiles attached."
-    )
+    st.header("3 · Jobs, Candidate Matching & Outreach")
+    st.write("Save a job once, check which of your candidates fit it, then "
+             "draft outreach attaching the best profiles.")
 
-    jd = utils.read_input("the job description", "jd", height=240)
-    employer = st.text_input("Employer / hiring manager name (optional)")
+    job = job_selector("p3")
 
-    tab_analysis, tab_outreach = st.tabs(["JD analysis", "Employer outreach"])
+    if job is None:
+        st.subheader("Add a new job")
+        col1, col2 = st.columns(2)
+        with col1:
+            title = st.text_input("Job title *", placeholder="e.g. IT Support Engineer")
+        with col2:
+            employer = st.text_input("Employer / hiring manager")
+        jd = utils.read_input("the job description", "p3_jd", height=220)
+        if st.button("Save job", type="primary"):
+            if not title.strip() or not jd.strip():
+                st.warning("Please provide at least the job title and JD.")
+            else:
+                utils.add_job(title, employer, jd)
+                st.success(f"Saved {title}. Select it in the dropdown above to continue.")
+                st.rerun()
+    else:
+        st.subheader(f"{job['title']} — {job['employer'] or 'employer N/A'}")
+        tab_match, tab_outreach, tab_jd = st.tabs(
+            ["🎯 Match my candidates", "✉️ Outreach", "📋 JD analysis"])
 
-    with tab_analysis:
-        generate(
-            "Analyse this JD",
-            prompts.JD_ANALYSIS,
-            jd,
-            "result_jd",
-            "Please upload or paste the job description first.",
-        )
-        utils.result_block(
-            "result_jd", "JD analysis",
-            f"JD analysis — {employer or 'employer'}",
-        )
+        with tab_match:
+            pool = [c for c in st.session_state.candidates
+                    if c.get("profile") or c.get("resume") or c.get("coaching_notes")]
+            st.caption(f"{len(pool)} candidate(s) with enough data to match.")
+            if st.button("Run candidate matching", type="primary",
+                         disabled=not pool):
+                pool_text = "\n\n---\n\n".join(
+                    candidate_context(c)[:3000] for c in pool)
+                content = (f"=== JOB DESCRIPTION: {job['title']} ===\n{job['jd']}"
+                           f"\n\n=== CANDIDATE POOL ===\n\n{pool_text}")
+                result = ai_generate(prompts.CANDIDATE_MATCHING, content)
+                if result:
+                    utils.add_output("Match report", result, job_id=job["id"],
+                                     title=f"Match report — {job['title']}")
+                    st.session_state["p3_match_out"] = result
+            if st.session_state.get("p3_match_out"):
+                show_output(st.session_state["p3_match_out"], "match_report.txt", "p3_m")
 
-    with tab_outreach:
-        profiles = st.text_area(
-            "Candidate profile summaries to attach (optional — leave blank for "
-            "exploratory outreach without profiles)",
-            height=160,
-            placeholder="Paste one or more profile summaries from page 2, or leave blank.",
-        )
-        outreach_input = ""
-        if jd.strip():
-            outreach_input = f"=== JOB DESCRIPTION ===\n{jd}"
-            if profiles.strip():
-                outreach_input += f"\n\n=== CANDIDATE PROFILES ===\n{profiles}"
-            if employer.strip():
-                outreach_input += f"\n\n=== EMPLOYER CONTACT ===\n{employer}"
+        with tab_outreach:
+            chosen = st.multiselect(
+                "Attach candidate profiles (leave empty for exploratory outreach)",
+                [c["id"] for c in st.session_state.candidates],
+                format_func=lambda x: utils.get_candidate(x)["name"],
+            )
+            if st.button("Draft employer outreach", type="primary"):
+                content = f"=== JOB DESCRIPTION: {job['title']} ===\n{job['jd']}"
+                if job["employer"]:
+                    content += f"\n\n=== EMPLOYER CONTACT ===\n{job['employer']}"
+                if chosen:
+                    profiles = "\n\n---\n\n".join(
+                        candidate_context(utils.get_candidate(cid))[:2500] for cid in chosen)
+                    content += f"\n\n=== CANDIDATE PROFILES ===\n{profiles}"
+                result = ai_generate(prompts.EMPLOYER_OUTREACH, content)
+                if result:
+                    utils.add_output("Outreach", result, job_id=job["id"],
+                                     title=f"Outreach — {job['title']}")
+                    st.session_state["p3_out_out"] = result
+            if st.session_state.get("p3_out_out"):
+                show_output(st.session_state["p3_out_out"], "outreach.txt", "p3_o")
 
-        generate(
-            "Draft employer outreach",
-            prompts.EMPLOYER_OUTREACH,
-            outreach_input,
-            "result_outreach",
-            "Please provide the job description first.",
-        )
-        utils.result_block(
-            "result_outreach", "Outreach",
-            f"Outreach — {employer or 'employer'}",
-        )
+        with tab_jd:
+            if st.button("Analyse this JD", type="primary"):
+                result = ai_generate(prompts.JD_ANALYSIS, job["jd"])
+                if result:
+                    job["analysis"] = result
+                    utils.add_output("JD analysis", result, job_id=job["id"],
+                                     title=f"JD analysis — {job['title']}")
+            if job.get("analysis"):
+                show_output(job["analysis"], "jd_analysis.txt", "p3_j")
 
-# ---------------------------------------------------------------------------
-# 4 · Fitment & Interview Prep
-# ---------------------------------------------------------------------------
+
+# ===========================================================================
+# 4 · FITMENT & SUBMISSION
+# ===========================================================================
 
 elif page.startswith("4"):
-    st.header("Candidate + JD → fitment, emails & interview prep")
-    st.write(
-        "Run a candid fitment analysis between one candidate and one role. "
-        "Produces score, gaps, recommendation, interview prep, submission "
-        "email and candidate WhatsApp update."
-    )
+    st.header("4 · Fitment Analysis & Profile Submission")
+    st.write("Official fitment format: 4-row table (Experience, Transferable "
+             "Skills, Technical Skills, Qualifications) + fit summary + "
+             "upskilling note — then the submission email.")
 
     col1, col2 = st.columns(2)
     with col1:
-        candidate_doc = utils.read_input("the candidate résumé / profile", "fit_candidate")
+        candidate = candidate_selector("p4", allow_new=False)
     with col2:
-        jd_doc = utils.read_input("the job description", "fit_jd")
+        job = job_selector("p4", allow_new=False)
 
-    extras = st.text_input(
-        "Known constraints (optional): expected salary, notice period, location…",
-        placeholder="e.g. expects S$4,500, 1 month notice, prefers hybrid",
-    )
-    candidate_name = st.text_input("Candidate name (optional)", key="fit_name")
-
-    fit_input = ""
-    if candidate_doc.strip() and jd_doc.strip():
-        fit_input = (
-            f"=== CANDIDATE ===\n{candidate_doc}\n\n"
-            f"=== JOB DESCRIPTION ===\n{jd_doc}"
-        )
-        if extras.strip():
-            fit_input += f"\n\n=== KNOWN CONSTRAINTS ===\n{extras}"
-
-    generate(
-        "Run fitment analysis",
-        prompts.FITMENT_ANALYSIS,
-        fit_input,
-        "result_fitment",
-        "Please provide both the candidate document and the job description.",
-    )
-    utils.result_block(
-        "result_fitment", "Fitment analysis",
-        f"Fitment — {candidate_name or 'candidate'}",
+    course = st.text_input(
+        "Upskilling course / domain",
+        placeholder="e.g. SCTP Professional Diploma in Data Science",
     )
 
-# ---------------------------------------------------------------------------
-# 5 · Records
-# ---------------------------------------------------------------------------
+    if candidate and job:
+        col1, col2 = st.columns(2)
+        with col1:
+            st.subheader("Fitment analysis")
+            if st.button("Generate fitment analysis", type="primary"):
+                content = (
+                    f"Job Title: {job['title']}\n"
+                    f"Upskilling course/domain: {course or 'N/A'}\n\n"
+                    f"=== JOB DESCRIPTION ===\n{job['jd']}\n\n"
+                    f"=== CANDIDATE EXPERIENCE ===\n{candidate_context(candidate)}"
+                )
+                result = ai_generate(prompts.FITMENT_ANALYSIS, content)
+                if result:
+                    utils.add_output("Fitment analysis", result,
+                                     candidate_id=candidate["id"], job_id=job["id"],
+                                     title=f"Fitment — {candidate['name']} × {job['title']}")
+                    st.session_state["p4_fit_out"] = result
+            if st.session_state.get("p4_fit_out"):
+                show_output(st.session_state["p4_fit_out"], "fitment_analysis.txt", "p4_f")
+
+        with col2:
+            st.subheader("Submission email")
+            fitments = utils.outputs_for(candidate["id"], job["id"], "Fitment analysis")
+            if not fitments:
+                st.caption("Tip: generate the fitment analysis first — the email will use it.")
+            if st.button("Generate submission email", type="primary"):
+                content = (
+                    f"Job Title: {job['title']} at {job['employer'] or 'the employer'}\n\n"
+                    f"=== CANDIDATE ===\n{candidate_context(candidate)[:3000]}"
+                )
+                if fitments:
+                    content += f"\n\n=== FITMENT ANALYSIS ===\n{fitments[-1]['content']}"
+                result = ai_generate(prompts.SUBMISSION_EMAIL, content)
+                if result:
+                    utils.add_output("Submission email", result,
+                                     candidate_id=candidate["id"], job_id=job["id"],
+                                     title=f"Submission — {candidate['name']} × {job['title']}")
+                    st.session_state["p4_sub_out"] = result
+            if st.session_state.get("p4_sub_out"):
+                show_output(st.session_state["p4_sub_out"], "submission_email.txt", "p4_s")
+
+
+# ===========================================================================
+# 5 · INTERVIEW PREP
+# ===========================================================================
+
+elif page.startswith("5"):
+    st.header("5 · Interview Preparation")
+    st.write("A role-specific prep guide grounded in the candidate's real "
+             "background — likely questions, honest gap handling, and what "
+             "to ask the employer.")
+
+    col1, col2 = st.columns(2)
+    with col1:
+        candidate = candidate_selector("p5", allow_new=False)
+    with col2:
+        job = job_selector("p5", allow_new=False)
+
+    if candidate and job:
+        if st.button("Generate interview prep guide", type="primary"):
+            content = (
+                f"Job Title: {job['title']}\n\n"
+                f"=== JOB DESCRIPTION ===\n{job['jd']}\n\n"
+                f"=== CANDIDATE BACKGROUND ===\n{candidate_context(candidate)}"
+            )
+            result = ai_generate(prompts.INTERVIEW_PREP, content)
+            if result:
+                utils.add_output("Interview prep", result,
+                                 candidate_id=candidate["id"], job_id=job["id"],
+                                 title=f"Interview prep — {candidate['name']} × {job['title']}")
+                st.session_state["p5_out"] = result
+        if st.session_state.get("p5_out"):
+            show_output(st.session_state["p5_out"], "interview_prep.txt", "p5_o")
+
+
+# ===========================================================================
+# 6 · DASHBOARD
+# ===========================================================================
 
 else:
-    st.header("Saved records")
-    st.write(
-        "Records from this session. Streamlit Cloud storage is temporary, so "
-        "export a backup file to keep records permanently, and import it in a "
-        "future session to continue."
-    )
+    st.header("6 · Dashboard")
 
-    col1, col2 = st.columns(2)
-    with col1:
-        st.download_button(
-            "⬇️ Export all records (JSON backup)",
-            data=utils.export_records(),
-            file_name="talentconnect_records.json",
-            mime="application/json",
-            disabled=not st.session_state.records,
-        )
-    with col2:
-        backup = st.file_uploader("Import a backup file", type=["json"], key="import_file")
-        if backup is not None and st.button("Import records"):
-            try:
-                added = utils.import_records(backup.read().decode("utf-8"))
-                st.success(f"Imported {added} record(s).")
-            except Exception as exc:
-                st.error(f"Could not import: {exc}")
+    col1, col2, col3 = st.columns(3)
+    col1.metric("Candidates", len(st.session_state.candidates))
+    col2.metric("Jobs", len(st.session_state.jobs))
+    col3.metric("Generated records", len(st.session_state.outputs))
 
-    st.markdown("---")
-
-    if not st.session_state.records:
-        st.info("No records yet. Generate something on pages 1-4 and choose 'Save to records'.")
+    # Pipeline matrix: which artefacts exist per candidate
+    st.subheader("Candidate pipeline")
+    if not st.session_state.candidates:
+        st.info("No candidates yet. Start on page 1 · Candidate Profile.")
     else:
-        type_filter = st.multiselect(
-            "Filter by type", utils.RECORD_TYPES, default=utils.RECORD_TYPES
-        )
-        shown = [r for r in st.session_state.records if r["type"] in type_filter]
-        st.caption(f"Showing {len(shown)} of {len(st.session_state.records)} record(s)")
+        stages = ["Coaching notes", "Candidate profile", "Fitment analysis",
+                  "Submission email", "Interview prep"]
+        rows = []
+        for c in st.session_state.candidates:
+            row = {"Candidate": c["name"],
+                   "Salary": c.get("salary") or "—",
+                   "Notice": c.get("notice") or "—"}
+            for s in stages:
+                done = bool(utils.outputs_for(candidate_id=c["id"], output_type=s))
+                if s == "Coaching notes":
+                    done = done or bool(c.get("coaching_notes"))
+                if s == "Candidate profile":
+                    done = done or bool(c.get("profile"))
+                row[s] = "✅" if done else "—"
+            rows.append(row)
+        st.dataframe(rows, use_container_width=True)
 
+    st.subheader("Jobs")
+    if st.session_state.jobs:
+        st.dataframe(
+            [{"Job title": j["title"], "Employer": j["employer"] or "—",
+              "Added": j["created"],
+              "Match report": "✅" if utils.outputs_for(job_id=j["id"], output_type="Match report") else "—",
+              "Outreach": "✅" if utils.outputs_for(job_id=j["id"], output_type="Outreach") else "—"}
+             for j in st.session_state.jobs],
+            use_container_width=True,
+        )
+    else:
+        st.info("No jobs yet. Add one on page 3.")
+
+    st.subheader("All generated records")
+    if st.session_state.outputs:
+        type_filter = st.multiselect("Filter by type", utils.OUTPUT_TYPES,
+                                     default=utils.OUTPUT_TYPES)
+        shown = [o for o in st.session_state.outputs if o["type"] in type_filter]
         for record in reversed(shown):
             with st.expander(f"{record['type']} · {record['title']} · {record['created']}"):
                 st.markdown(record["content"])
                 if st.button("🗑️ Delete this record", key=f"del_{record['id']}"):
-                    utils.delete_record(record["id"])
+                    utils.delete_output(record["id"])
+                    st.rerun()
+    else:
+        st.info("Nothing generated yet.")
+
+    st.subheader("Backup & restore")
+    st.caption("Streamlit Cloud storage is temporary — export before closing, "
+               "import to continue in a future session.")
+    col1, col2 = st.columns(2)
+    with col1:
+        st.download_button("⬇️ Export everything (JSON backup)",
+                           data=utils.export_store(),
+                           file_name="talentconnect_backup.json",
+                           mime="application/json")
+    with col2:
+        backup = st.file_uploader("Import a backup file", type=["json"], key="imp")
+        if backup is not None and st.button("Import"):
+            try:
+                counts = utils.import_store(backup.read().decode("utf-8"))
+                st.success(f"Imported: {counts['candidates']} candidates, "
+                           f"{counts['jobs']} jobs, {counts['outputs']} records.")
+                st.rerun()
+            except Exception as exc:
+                st.error(f"Could not import: {exc}")
+
+    with st.expander("⚠️ Delete a candidate or job (removes their linked records)"):
+        col1, col2 = st.columns(2)
+        with col1:
+            if st.session_state.candidates:
+                cid = st.selectbox("Candidate to delete",
+                                   [c["id"] for c in st.session_state.candidates],
+                                   format_func=lambda x: utils.get_candidate(x)["name"])
+                if st.button("Delete candidate"):
+                    utils.delete_candidate(cid)
+                    st.rerun()
+        with col2:
+            if st.session_state.jobs:
+                jid = st.selectbox("Job to delete",
+                                   [j["id"] for j in st.session_state.jobs],
+                                   format_func=lambda x: utils.get_job(x)["title"])
+                if st.button("Delete job"):
+                    utils.delete_job(jid)
                     st.rerun()
