@@ -1,0 +1,30 @@
+Coaching Session Transcript (Sample)
+Date: 8 June 2026 | Mode: Zoom
+
+Coach: Thanks for joining today. How has the job search been going since our last session?
+
+Candidate: Honestly, a bit slow. I applied to about 12 data analyst roles on MyCareersFuture but only got one reply, and it was a rejection. I'm starting to wonder if my resume is the problem.
+
+Coach: Let's look at that. You completed the SCTP Data Analytics programme in March, and before that you were in retail operations for 9 years, correct?
+
+Candidate: Yes, last role was Assistant Operations Manager at a supermarket chain. I was retrenched in November when they restructured.
+
+Coach: In the programme, which tools did you get strongest in?
+
+Candidate: SQL and Power BI for sure. My capstone project analysed sales data for a mock retailer — I built a dashboard tracking inventory turnover and promotion effectiveness. Python I can do basics, pandas mainly, but I wouldn't call myself confident yet.
+
+Coach: That capstone is actually very relevant — retail domain plus analytics. Is it on your resume?
+
+Candidate: Only one line. I didn't think it counted since it wasn't a real job.
+
+Coach: It counts. Employers hiring career switchers look for applied evidence. What about salary expectations?
+
+Candidate: I was earning $4,800 before. I know I may need to come down for an entry analyst role. I can accept $3,800, minimum $3,500. I can start immediately since I'm not working.
+
+Candidate: One more thing — I get very nervous in interviews. In the one phone screen I had, I went blank when they asked me to describe a difficult stakeholder situation.
+
+Coach: We'll work on that. You have 9 years of real stakeholder stories from retail — we just need to structure them. Let's agree on actions: I'll review your resume by Friday and you'll expand the capstone section with the dashboard outcomes. You'll draft 3 STAR stories from your retail experience before our next session. And I'll shortlist 5 suitable junior data analyst openings, including from our hiring partners.
+
+Candidate: Okay, that sounds good. Thank you.
+
+Coach: Great. Same time next Tuesday.
