@@ -281,10 +281,11 @@ elif page.startswith("3"):
                 show_output(st.session_state["p3_match_out"], "match_report.txt", "p3_m")
 
         with tab_outreach:
+            pool_labels = {c["id"]: c["name"] for c in st.session_state.candidates}
             chosen = st.multiselect(
                 "Attach candidate profiles (leave empty for exploratory outreach)",
-                [c["id"] for c in st.session_state.candidates],
-                format_func=lambda x: utils.get_candidate(x)["name"],
+                list(pool_labels),
+                format_func=lambda x: pool_labels.get(x, x),
             )
             if st.button("Draft employer outreach", type="primary"):
                 content = f"=== JOB DESCRIPTION: {job['title']} ===\n{job['jd']}"
@@ -458,15 +459,53 @@ else:
 
     st.subheader("All generated records")
     if st.session_state.outputs:
-        type_filter = st.multiselect("Filter by type", utils.OUTPUT_TYPES,
-                                     default=utils.OUTPUT_TYPES)
-        shown = [o for o in st.session_state.outputs if o["type"] in type_filter]
+        fcol1, fcol2 = st.columns(2)
+        with fcol1:
+            module_filter = st.selectbox(
+                "1️⃣ Filter by module",
+                ["All modules"] + utils.OUTPUT_TYPES,
+            )
+        with fcol2:
+            cand_ids = [c["id"] for c in st.session_state.candidates]
+            cand_labels = {c["id"]: c["name"] for c in st.session_state.candidates}
+            candidate_filter = st.selectbox(
+                "2️⃣ Filter by candidate",
+                ["All candidates"] + cand_ids + ["(Not linked to a candidate)"],
+                format_func=lambda x: cand_labels.get(x, x),
+            )
+
+        shown = st.session_state.outputs
+        if module_filter != "All modules":
+            shown = [o for o in shown if o["type"] == module_filter]
+        if candidate_filter == "(Not linked to a candidate)":
+            shown = [o for o in shown if not o.get("candidate_id")]
+        elif candidate_filter != "All candidates":
+            shown = [o for o in shown if o.get("candidate_id") == candidate_filter]
+
+        st.caption(f"Showing {len(shown)} of {len(st.session_state.outputs)} record(s)")
+        if not shown:
+            st.info("No records match these filters.")
+        job_labels = {j["id"]: j["title"] for j in st.session_state.jobs}
         for record in reversed(shown):
-            with st.expander(f"{record['type']} · {record['title']} · {record['created']}"):
+            who = cand_labels.get(record.get("candidate_id"), "")
+            role = job_labels.get(record.get("job_id"), "")
+            tag = " · ".join(x for x in (who, role) if x)
+            header = f"{record['type']} · {record['title']} · {record['created']}"
+            if tag:
+                header += f"  ({tag})"
+            with st.expander(header):
                 st.markdown(record["content"])
-                if st.button("🗑️ Delete this record", key=f"del_{record['id']}"):
-                    utils.delete_output(record["id"])
-                    st.rerun()
+                bcol1, bcol2 = st.columns(2)
+                with bcol1:
+                    st.download_button(
+                        "⬇️ Download", data=record["content"],
+                        file_name=f"{record['type'].lower().replace(' ', '_')}.txt",
+                        key=f"dl_{record['id']}",
+                    )
+                with bcol2:
+                    if st.button("🗑️ Delete this record", key=f"del_{record['id']}"):
+                        utils.delete_output(record["id"])
+                        st.rerun()
     else:
         st.info("Nothing generated yet.")
 
@@ -494,17 +533,17 @@ else:
         col1, col2 = st.columns(2)
         with col1:
             if st.session_state.candidates:
-                cid = st.selectbox("Candidate to delete",
-                                   [c["id"] for c in st.session_state.candidates],
-                                   format_func=lambda x: utils.get_candidate(x)["name"])
+                dc_labels = {c["id"]: c["name"] for c in st.session_state.candidates}
+                cid = st.selectbox("Candidate to delete", list(dc_labels),
+                                   format_func=lambda x: dc_labels.get(x, x))
                 if st.button("Delete candidate"):
                     utils.delete_candidate(cid)
                     st.rerun()
         with col2:
             if st.session_state.jobs:
-                jid = st.selectbox("Job to delete",
-                                   [j["id"] for j in st.session_state.jobs],
-                                   format_func=lambda x: utils.get_job(x)["title"])
+                dj_labels = {j["id"]: j["title"] for j in st.session_state.jobs}
+                jid = st.selectbox("Job to delete", list(dj_labels),
+                                   format_func=lambda x: dj_labels.get(x, x))
                 if st.button("Delete job"):
                     utils.delete_job(jid)
                     st.rerun()
