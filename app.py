@@ -320,9 +320,9 @@ elif page.startswith("3"):
 
 elif page.startswith("4"):
     st.header("4 · Fitment Analysis & Profile Submission")
-    st.write("Official fitment format: 4-row table (Experience, Transferable "
-             "Skills, Technical Skills, Qualifications) + fit summary + "
-             "upskilling note — then the submission email.")
+    st.write("Profile submission: the formal shortlist email to the client. "
+             "Fitment analysis: the 3-column JD-to-skills mapping with "
+             "first-person pitch lines, prepared before the interview.")
 
     col1, col2 = st.columns(2)
     with col1:
@@ -356,11 +356,11 @@ elif page.startswith("4"):
                 show_output(st.session_state["p4_fit_out"], "fitment_analysis.txt", "p4_f")
 
         with col2:
-            st.subheader("Submission email")
+            st.subheader("Profile submission")
             fitments = utils.outputs_for(candidate["id"], job["id"], "Fitment analysis")
             if not fitments:
-                st.caption("Tip: generate the fitment analysis first — the email will use it.")
-            if st.button("Generate submission email", type="primary"):
+                st.caption("Tip: if a fitment analysis exists for this pair, the email will use it as evidence.")
+            if st.button("Generate profile submission", type="primary"):
                 content = (
                     f"Job Title: {job['title']} at {job['employer'] or 'the employer'}\n\n"
                     f"=== CANDIDATE ===\n{candidate_context(candidate)[:3000]}"
@@ -369,12 +369,12 @@ elif page.startswith("4"):
                     content += f"\n\n=== FITMENT ANALYSIS ===\n{fitments[-1]['content']}"
                 result = ai_generate(prompts.SUBMISSION_EMAIL, content)
                 if result:
-                    utils.add_output("Submission email", result,
+                    utils.add_output("Profile submission", result,
                                      candidate_id=candidate["id"], job_id=job["id"],
-                                     title=f"Submission — {candidate['name']} × {job['title']}")
+                                     title=f"Profile submission — {candidate['name']} × {job['title']}")
                     st.session_state["p4_sub_out"] = result
             if st.session_state.get("p4_sub_out"):
-                show_output(st.session_state["p4_sub_out"], "submission_email.txt", "p4_s")
+                show_output(st.session_state["p4_sub_out"], "profile_submission.txt", "p4_s")
 
 
 # ===========================================================================
@@ -428,7 +428,7 @@ else:
         st.info("No candidates yet. Start on page 1 · Candidate Profile.")
     else:
         stages = ["Coaching notes", "Candidate profile", "Fitment analysis",
-                  "Submission email", "Interview prep"]
+                  "Profile submission", "Interview prep"]
         rows = []
         for c in st.session_state.candidates:
             row = {"Candidate": c["name"],

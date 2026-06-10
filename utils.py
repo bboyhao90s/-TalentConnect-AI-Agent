@@ -142,7 +142,7 @@ def read_input(label: str, key: str, height: int = 220) -> str:
 
 OUTPUT_TYPES = [
     "Candidate profile", "Coaching notes", "WhatsApp follow-up", "JD analysis",
-    "Match report", "Outreach", "Fitment analysis", "Submission email", "Interview prep",
+    "Match report", "Outreach", "Fitment analysis", "Profile submission", "Interview prep",
 ]
 
 
