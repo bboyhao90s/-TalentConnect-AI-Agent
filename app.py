@@ -17,25 +17,66 @@ utils.init_store()
 
 st.markdown("""
 <style>
+/* Force the light TalentConnect look in BOTH light and dark browser themes */
+.stApp { background: #f1f5f9 !important; }
+[data-testid="stSidebar"] { background: #ffffff !important; border-right: 1px solid #e2e8f0; }
+[data-testid="stSidebar"] * { color: #0f172a; }
+.stApp h1, .stApp h2, .stApp h3, .stApp label,
+.stApp .stMarkdown p, .stApp .stMarkdown li, .stApp .stMarkdown td, .stApp .stMarkdown th,
+.stApp .stRadio label p, .stApp [data-testid="stWidgetLabel"] p { color: #0f172a; }
+.stApp [data-testid="stCaptionContainer"] * { color: #475569 !important; }
+.stApp .stMarkdown table { background: #ffffff; }
+.stApp .stMarkdown th, .stApp .stMarkdown td { border: 1px solid #e2e8f0; }
+
+/* Inputs & dropdowns */
+.stApp input, .stApp textarea,
+.stApp [data-baseweb="select"] > div,
+.stApp [data-testid="stFileUploaderDropzone"] {
+    background: #ffffff !important; color: #0f172a !important;
+    border-color: #cbd5e1 !important;
+}
+.stApp [data-testid="stFileUploaderDropzone"] * { color: #475569; }
+[data-baseweb="popover"] > div, [data-baseweb="popover"] ul { background: #ffffff !important; }
+[data-baseweb="popover"] li, [data-baseweb="popover"] li * { color: #0f172a !important; }
+.stApp [data-baseweb="tag"] { background: #dbeafe !important; }
+.stApp [data-baseweb="tag"] * { color: #1e3a8a !important; }
+
+/* Cards */
 [data-testid="stMetric"] {
     background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px;
     padding: 16px 18px; box-shadow: 0 1px 3px rgba(15,23,42,.06);
 }
+[data-testid="stMetric"] * { color: #0f172a !important; }
 div[data-testid="stExpander"] {
     background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px;
 }
+div[data-testid="stExpander"] summary, div[data-testid="stExpander"] summary * { color: #0f172a !important; }
+
+/* Tabs */
+.stApp .stTabs [data-baseweb="tab"] { color: #334155; }
+.stApp .stTabs [aria-selected="true"] { color: #1d4ed8; }
+
+/* Buttons */
 div.stButton > button[kind="primary"] {
-    background: #1d4ed8; border: none; border-radius: 8px; font-weight: 600;
+    background: #1d4ed8 !important; color: #ffffff !important;
+    border: none; border-radius: 8px; font-weight: 600;
 }
-div.stButton > button[kind="primary"]:hover { background: #1e40af; }
-[data-testid="stSidebar"] { background: #ffffff; border-right: 1px solid #e2e8f0; }
-h1, h2, h3 { color: #0f172a; }
+div.stButton > button[kind="primary"]:hover { background: #1e40af !important; }
+div.stButton > button[kind="secondary"] {
+    background: #ffffff !important; color: #0f172a !important;
+    border: 1px solid #cbd5e1 !important; border-radius: 8px;
+}
+[data-testid="stDownloadButton"] button {
+    background: #ffffff !important; color: #1d4ed8 !important;
+    border: 1px solid #93c5fd !important; border-radius: 8px; font-weight: 600;
+}
+[data-testid="stHeader"] { background: rgba(241,245,249,.8); }
 </style>
 <div style="background: linear-gradient(90deg, #1e3a8a 0%, #1d4ed8 100%);
-            color: #ffffff; padding: 22px 28px; border-radius: 14px;
+            padding: 22px 28px; border-radius: 14px;
             margin-bottom: 20px; box-shadow: 0 2px 8px rgba(30,58,138,.25);">
-  <div style="font-size: 1.7rem; font-weight: 700;">🤝 TalentConnect AI Agent</div>
-  <div style="opacity: .88; margin-top: 4px; font-size: .95rem;">
+  <div style="font-size: 1.7rem; font-weight: 700; color: #ffffff;">🤝 TalentConnect AI Agent</div>
+  <div style="margin-top: 4px; font-size: .95rem; color: #dbeafe;">
     Career coaching • Employer engagement • Talent connection • Résumé database • Human-led decisions
   </div>
   <span style="display: inline-block; margin-top: 12px; background: #ffffff; color: #1e3a8a;
