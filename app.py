@@ -64,8 +64,19 @@ def job_selector(key: str, allow_new: bool = True):
 def show_output(content: str, filename: str, key: str) -> None:
     st.markdown("---")
     st.markdown(content)
-    st.download_button("Download as text file", data=content,
-                       file_name=filename, key=f"{key}_dl")
+    base = filename.rsplit(".", 1)[0]
+    dcol1, dcol2 = st.columns(2)
+    with dcol1:
+        st.download_button(
+            "⬇️ Download Word (.docx)",
+            data=utils.markdown_to_docx_bytes(content),
+            file_name=f"{base}.docx",
+            mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+            key=f"{key}_docx",
+        )
+    with dcol2:
+        st.download_button("Download .txt", data=content,
+                           file_name=filename, key=f"{key}_dl")
 
 
 def candidate_context(candidate: dict) -> str:
@@ -383,9 +394,9 @@ elif page.startswith("4"):
 
 elif page.startswith("5"):
     st.header("5 · Interview Preparation")
-    st.write("A role-specific prep guide grounded in the candidate's real "
-             "background — likely questions, honest gap handling, and what "
-             "to ask the employer.")
+    st.write("The pre-interview pack: the Interview Preparation Guide and the "
+             "Fitment Analysis (3-column JD-to-skills mapping with pitch "
+             "lines). Generate both, download as Word, send to the candidate.")
 
     col1, col2 = st.columns(2)
     with col1:
@@ -394,20 +405,37 @@ elif page.startswith("5"):
         job = job_selector("p5", allow_new=False)
 
     if candidate and job:
-        if st.button("Generate interview prep guide", type="primary"):
-            content = (
-                f"Job Title: {job['title']}\n\n"
-                f"=== JOB DESCRIPTION ===\n{job['jd']}\n\n"
-                f"=== CANDIDATE BACKGROUND ===\n{candidate_context(candidate)}"
-            )
-            result = ai_generate(prompts.INTERVIEW_PREP, content)
-            if result:
-                utils.add_output("Interview prep", result,
-                                 candidate_id=candidate["id"], job_id=job["id"],
-                                 title=f"Interview prep — {candidate['name']} × {job['title']}")
-                st.session_state["p5_out"] = result
-        if st.session_state.get("p5_out"):
-            show_output(st.session_state["p5_out"], "interview_prep.txt", "p5_o")
+        base_content = (
+            f"Job Title: {job['title']}\n"
+            f"Company: {job['employer'] or 'N/A'}\n\n"
+            f"=== JOB DESCRIPTION ===\n{job['jd']}\n\n"
+            f"=== CANDIDATE BACKGROUND ===\n{candidate_context(candidate)}"
+        )
+        col1, col2 = st.columns(2)
+        with col1:
+            st.subheader("📘 Interview Preparation Guide")
+            if st.button("Generate prep guide", type="primary"):
+                result = ai_generate(prompts.INTERVIEW_PREP, base_content)
+                if result:
+                    utils.add_output("Interview prep", result,
+                                     candidate_id=candidate["id"], job_id=job["id"],
+                                     title=f"Interview prep — {candidate['name']} × {job['title']}")
+                    st.session_state["p5_out"] = result
+            if st.session_state.get("p5_out"):
+                show_output(st.session_state["p5_out"],
+                            f"Interview_Preparation_Guide_{candidate['name']}.txt", "p5_o")
+        with col2:
+            st.subheader("📊 Fitment Analysis")
+            if st.button("Generate fitment analysis", type="primary", key="p5_fit_btn"):
+                result = ai_generate(prompts.FITMENT_ANALYSIS, base_content)
+                if result:
+                    utils.add_output("Fitment analysis", result,
+                                     candidate_id=candidate["id"], job_id=job["id"],
+                                     title=f"Fitment — {candidate['name']} × {job['title']}")
+                    st.session_state["p5_fit_out"] = result
+            if st.session_state.get("p5_fit_out"):
+                show_output(st.session_state["p5_fit_out"],
+                            f"Fitment_Analysis_{candidate['name']}.txt", "p5_f")
 
 
 # ===========================================================================
@@ -498,8 +526,10 @@ else:
                 bcol1, bcol2 = st.columns(2)
                 with bcol1:
                     st.download_button(
-                        "⬇️ Download", data=record["content"],
-                        file_name=f"{record['type'].lower().replace(' ', '_')}.txt",
+                        "⬇️ Word (.docx)",
+                        data=utils.markdown_to_docx_bytes(record["content"]),
+                        file_name=f"{record['type'].replace(' ', '_')}.docx",
+                        mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
                         key=f"dl_{record['id']}",
                     )
                 with bcol2:

@@ -257,3 +257,97 @@ def import_store(json_text: str) -> dict:
         st.session_state[key].extend(added)
         counts[key] = len(added)
     return counts
+
+
+# ---------------------------------------------------------------------------
+# Word (.docx) export of generated markdown documents
+# ---------------------------------------------------------------------------
+
+def markdown_to_docx_bytes(md_text: str) -> bytes:
+    """Convert generated markdown to a .docx file. Prefers pandoc (installed
+    on Streamlit Cloud via packages.txt); falls back to a python-docx
+    converter that handles headings, bullets, bold and tables."""
+    try:
+        return _pandoc_docx(md_text)
+    except Exception:
+        return _pydocx_docx(md_text)
+
+
+def _pandoc_docx(md_text: str) -> bytes:
+    import subprocess
+    import tempfile
+
+    with tempfile.TemporaryDirectory() as tmp:
+        src = os.path.join(tmp, "doc.md")
+        out = os.path.join(tmp, "doc.docx")
+        with open(src, "w", encoding="utf-8") as fh:
+            fh.write(md_text)
+        subprocess.run(["pandoc", src, "-f", "markdown", "-t", "docx", "-o", out],
+                       check=True, timeout=60, capture_output=True)
+        with open(out, "rb") as fh:
+            return fh.read()
+
+
+def _strip_md(text: str) -> str:
+    text = text.replace("**", "").replace("__", "")
+    if text.startswith("*") and text.endswith("*") and len(text) > 2:
+        text = text[1:-1]
+    return text.strip()
+
+
+def _pydocx_docx(md_text: str) -> bytes:
+    import docx
+    from docx.shared import Pt
+
+    document = docx.Document()
+    lines = md_text.splitlines()
+    i = 0
+    while i < len(lines):
+        line = lines[i].rstrip()
+        stripped = line.strip()
+        if not stripped:
+            i += 1
+            continue
+        # Tables: a header row followed by a |---| separator
+        if (stripped.startswith("|") and i + 1 < len(lines)
+                and set(lines[i + 1].strip()) <= set("|-: ")
+                and "-" in lines[i + 1]):
+            rows = []
+            header = [_strip_md(c) for c in stripped.strip("|").split("|")]
+            rows.append(header)
+            i += 2
+            while i < len(lines) and lines[i].strip().startswith("|"):
+                rows.append([_strip_md(c) for c in lines[i].strip().strip("|").split("|")])
+                i += 1
+            ncols = max(len(r) for r in rows)
+            table = document.add_table(rows=len(rows), cols=ncols)
+            table.style = "Table Grid"
+            for r, row in enumerate(rows):
+                for c in range(ncols):
+                    cell_text = row[c] if c < len(row) else ""
+                    cell = table.cell(r, c)
+                    cell.text = cell_text
+                    if r == 0:
+                        for paragraph in cell.paragraphs:
+                            for run in paragraph.runs:
+                                run.bold = True
+            continue
+        if stripped.startswith("#"):
+            level = min(len(stripped) - len(stripped.lstrip("#")), 4)
+            document.add_heading(_strip_md(stripped.lstrip("#").strip()), level=level)
+        elif stripped.startswith(("- ", "* ", "• ")):
+            document.add_paragraph(_strip_md(stripped[2:]), style="List Bullet")
+        elif stripped[:2].isdigit() or (stripped[0].isdigit() and stripped[1] in ".)"):
+            document.add_paragraph(_strip_md(stripped.split(" ", 1)[-1]), style="List Number")
+        elif stripped == "---":
+            pass
+        else:
+            paragraph = document.add_paragraph()
+            # Bold whole-line **Label:** value patterns simply by stripping markers
+            run = paragraph.add_run(_strip_md(stripped))
+            run.font.size = Pt(11)
+        i += 1
+
+    buffer = io.BytesIO()
+    document.save(buffer)
+    return buffer.getvalue()
