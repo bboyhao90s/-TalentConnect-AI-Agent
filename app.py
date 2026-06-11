@@ -715,3 +715,7 @@ else:
                 if st.button("Delete job"):
                     utils.delete_job(jid)
                     st.rerun()
+
+
+# Auto-save the store after every interaction so records survive refreshes
+utils.persist()

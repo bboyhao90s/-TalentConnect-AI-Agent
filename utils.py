@@ -154,10 +154,39 @@ def _new_id(prefix: str) -> str:
     return f"{prefix}-{datetime.now().strftime('%Y%m%d%H%M%S%f')}"
 
 
+STORE_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                          "talentconnect_data.json")
+
+
 def init_store() -> None:
+    if st.session_state.get("_store_loaded"):
+        return
     st.session_state.setdefault("candidates", [])
     st.session_state.setdefault("jobs", [])
     st.session_state.setdefault("outputs", [])
+    # Auto-load persisted data so records survive page refreshes
+    if os.path.exists(STORE_FILE):
+        try:
+            with open(STORE_FILE, encoding="utf-8") as fh:
+                data = json.load(fh)
+            st.session_state.candidates = data.get("candidates", [])
+            st.session_state.jobs = data.get("jobs", [])
+            st.session_state.outputs = data.get("outputs", [])
+        except Exception:
+            pass  # corrupted/missing file: start clean rather than crash
+    st.session_state["_store_loaded"] = True
+
+
+def persist() -> None:
+    """Write the store to disk. Called at the end of every app run, so any
+    change made during the run is saved automatically."""
+    try:
+        if not st.session_state.get("_store_loaded"):
+            return
+        with open(STORE_FILE, "w", encoding="utf-8") as fh:
+            fh.write(export_store())
+    except Exception:
+        pass
 
 
 def add_candidate(name: str, resume: str = "", salary: str = "", notice: str = "") -> dict:
