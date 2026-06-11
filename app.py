@@ -15,7 +15,46 @@ import utils
 st.set_page_config(page_title="TalentConnect AI Agent", page_icon="🤝", layout="wide")
 utils.init_store()
 
+st.markdown("""
+<style>
+[data-testid="stMetric"] {
+    background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px;
+    padding: 16px 18px; box-shadow: 0 1px 3px rgba(15,23,42,.06);
+}
+div[data-testid="stExpander"] {
+    background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px;
+}
+div.stButton > button[kind="primary"] {
+    background: #1d4ed8; border: none; border-radius: 8px; font-weight: 600;
+}
+div.stButton > button[kind="primary"]:hover { background: #1e40af; }
+[data-testid="stSidebar"] { background: #ffffff; border-right: 1px solid #e2e8f0; }
+h1, h2, h3 { color: #0f172a; }
+</style>
+<div style="background: linear-gradient(90deg, #1e3a8a 0%, #1d4ed8 100%);
+            color: #ffffff; padding: 22px 28px; border-radius: 14px;
+            margin-bottom: 20px; box-shadow: 0 2px 8px rgba(30,58,138,.25);">
+  <div style="font-size: 1.7rem; font-weight: 700;">🤝 TalentConnect AI Agent</div>
+  <div style="opacity: .88; margin-top: 4px; font-size: .95rem;">
+    Career coaching • Employer engagement • Talent connection • Résumé database • Human-led decisions
+  </div>
+  <span style="display: inline-block; margin-top: 12px; background: #ffffff; color: #1e3a8a;
+               font-weight: 600; font-size: .8rem; padding: 5px 14px; border-radius: 999px;">
+    AI assists. Talent Specialist approves.
+  </span>
+</div>
+""", unsafe_allow_html=True)
+
 NEW = "➕ Add new…"
+
+COURSES = [
+    "Professional Diploma in Data Science",
+    "Professional Diploma in Digital Innovation",
+    "Advance Certificate Infrastructure Support",
+    "Professional Diploma in Cloud Administration",
+    "Professional Diploma in Digital Marketing",
+    "Professional Diploma in Web Development",
+]
 
 
 # ---------------------------------------------------------------------------
@@ -331,61 +370,119 @@ elif page.startswith("3"):
 
 elif page.startswith("4"):
     st.header("4 · Fitment Analysis & Profile Submission")
-    st.write("Profile submission: the formal shortlist email to the client. "
-             "Fitment analysis: the 3-column JD-to-skills mapping with "
-             "first-person pitch lines, prepared before the interview.")
+    st.write("Select one or several candidates and one or several roles. "
+             "Profile submission: one shortlist email per role covering all "
+             "selected candidates (1️⃣ 2️⃣ 3️⃣). Fitment analysis: one document "
+             "per candidate-role pair.")
+
+    cand_labels = {c["id"]: c["name"] for c in st.session_state.candidates}
+    job_labels = {j["id"]: f"{j['title']} — {j['employer'] or 'employer N/A'}"
+                  for j in st.session_state.jobs}
 
     col1, col2 = st.columns(2)
     with col1:
-        candidate = candidate_selector("p4", allow_new=False)
+        chosen_cands = st.multiselect(
+            "Candidates", list(cand_labels),
+            format_func=lambda x: cand_labels.get(x, x), key="p4_cands")
     with col2:
-        job = job_selector("p4", allow_new=False)
+        chosen_jobs = st.multiselect(
+            "Jobs / roles", list(job_labels),
+            format_func=lambda x: job_labels.get(x, x), key="p4_jobs")
 
-    course = st.text_input(
-        "Upskilling course / domain",
-        placeholder="e.g. SCTP Professional Diploma in Data Science",
-    )
+    courses = st.multiselect(
+        "Upskilling course(s) completed (pick all that apply)",
+        COURSES, key="p4_courses")
+    other_course = st.text_input("Other course (optional)",
+                                 placeholder="Type any course not in the list")
+    course_text = ", ".join(courses + ([other_course] if other_course.strip() else [])) or "N/A"
 
-    if candidate and job:
+    if not st.session_state.candidates or not st.session_state.jobs:
+        st.info("Add at least one candidate (page 1) and one job (page 3) first.")
+    elif chosen_cands and chosen_jobs:
+        n_pairs = len(chosen_cands) * len(chosen_jobs)
         col1, col2 = st.columns(2)
+
         with col1:
-            st.subheader("Fitment analysis")
-            if st.button("Generate fitment analysis", type="primary"):
-                content = (
-                    f"Job Title: {job['title']}\n"
-                    f"Upskilling course/domain: {course or 'N/A'}\n\n"
-                    f"=== JOB DESCRIPTION ===\n{job['jd']}\n\n"
-                    f"=== CANDIDATE EXPERIENCE ===\n{candidate_context(candidate)}"
-                )
-                result = ai_generate(prompts.FITMENT_ANALYSIS, content)
-                if result:
-                    utils.add_output("Fitment analysis", result,
-                                     candidate_id=candidate["id"], job_id=job["id"],
-                                     title=f"Fitment — {candidate['name']} × {job['title']}")
-                    st.session_state["p4_fit_out"] = result
-            if st.session_state.get("p4_fit_out"):
-                show_output(st.session_state["p4_fit_out"], "fitment_analysis.txt", "p4_f")
+            st.subheader("📊 Fitment analysis")
+            st.caption(f"Will generate {n_pairs} document(s) — one per candidate × role.")
+            if st.button("Generate fitment analyses", type="primary"):
+                results = []
+                progress = st.progress(0.0)
+                done = 0
+                for jid in chosen_jobs:
+                    job = utils.get_job(jid)
+                    for cid in chosen_cands:
+                        candidate = utils.get_candidate(cid)
+                        content = (
+                            f"Job Title: {job['title']}\n"
+                            f"Company: {job['employer'] or 'N/A'}\n"
+                            f"Upskilling course(s): {course_text}\n"
+                            "(Apply only the course(s) consistent with this candidate's background.)\n\n"
+                            f"=== JOB DESCRIPTION ===\n{job['jd']}\n\n"
+                            f"=== CANDIDATE EXPERIENCE ===\n{candidate_context(candidate)}"
+                        )
+                        result = ai_generate(prompts.FITMENT_ANALYSIS, content)
+                        done += 1
+                        progress.progress(done / n_pairs)
+                        if result:
+                            title = f"Fitment — {candidate['name']} × {job['title']}"
+                            utils.add_output("Fitment analysis", result,
+                                             candidate_id=cid, job_id=jid, title=title)
+                            results.append((title, result))
+                st.session_state["p4_fit_outs"] = results
+            for idx, (title, content) in enumerate(st.session_state.get("p4_fit_outs", [])):
+                with st.expander(f"📄 {title}", expanded=len(st.session_state["p4_fit_outs"]) == 1):
+                    st.markdown(content)
+                    st.download_button(
+                        "⬇️ Download Word (.docx)",
+                        data=utils.markdown_to_docx_bytes(content),
+                        file_name=f"Fitment_Analysis_{title.split('—')[1].strip().replace(' ', '_')}.docx",
+                        mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                        key=f"p4_fit_dl_{idx}")
 
         with col2:
-            st.subheader("Profile submission")
-            fitments = utils.outputs_for(candidate["id"], job["id"], "Fitment analysis")
-            if not fitments:
-                st.caption("Tip: if a fitment analysis exists for this pair, the email will use it as evidence.")
-            if st.button("Generate profile submission", type="primary"):
-                content = (
-                    f"Job Title: {job['title']} at {job['employer'] or 'the employer'}\n\n"
-                    f"=== CANDIDATE ===\n{candidate_context(candidate)[:3000]}"
-                )
-                if fitments:
-                    content += f"\n\n=== FITMENT ANALYSIS ===\n{fitments[-1]['content']}"
-                result = ai_generate(prompts.SUBMISSION_EMAIL, content)
-                if result:
-                    utils.add_output("Profile submission", result,
-                                     candidate_id=candidate["id"], job_id=job["id"],
-                                     title=f"Profile submission — {candidate['name']} × {job['title']}")
-                    st.session_state["p4_sub_out"] = result
-            if st.session_state.get("p4_sub_out"):
-                show_output(st.session_state["p4_sub_out"], "profile_submission.txt", "p4_s")
+            st.subheader("✉️ Profile submission")
+            st.caption(f"Will generate {len(chosen_jobs)} email(s) — each covering "
+                       f"all {len(chosen_cands)} selected candidate(s).")
+            if st.button("Generate profile submissions", type="primary"):
+                results = []
+                progress = st.progress(0.0)
+                for done, jid in enumerate(chosen_jobs, start=1):
+                    job = utils.get_job(jid)
+                    blocks = []
+                    for cid in chosen_cands:
+                        candidate = utils.get_candidate(cid)
+                        block = candidate_context(candidate)[:2500]
+                        fitments = utils.outputs_for(cid, jid, "Fitment analysis")
+                        if fitments:
+                            block += f"\n--- Fitment analysis ---\n{fitments[-1]['content'][:1500]}"
+                        blocks.append(block)
+                    content = (
+                        f"Job Title: {job['title']} at {job['employer'] or 'the employer'}\n"
+                        f"Number of candidates to include: {len(chosen_cands)}\n\n"
+                        "=== CANDIDATES ===\n\n" + "\n\n=====\n\n".join(blocks)
+                    )
+                    result = ai_generate(prompts.SUBMISSION_EMAIL, content)
+                    progress.progress(done / len(chosen_jobs))
+                    if result:
+                        names = ", ".join(cand_labels[c] for c in chosen_cands)
+                        title = f"Profile submission — {names} × {job['title']}"
+                        for cid in chosen_cands:
+                            utils.add_output("Profile submission", result,
+                                             candidate_id=cid, job_id=jid, title=title)
+                        results.append((title, result))
+                st.session_state["p4_sub_outs"] = results
+            for idx, (title, content) in enumerate(st.session_state.get("p4_sub_outs", [])):
+                with st.expander(f"📄 {title}", expanded=len(st.session_state["p4_sub_outs"]) == 1):
+                    st.markdown(content)
+                    st.download_button(
+                        "⬇️ Download Word (.docx)",
+                        data=utils.markdown_to_docx_bytes(content),
+                        file_name="Profile_Submission.docx",
+                        mime="application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+                        key=f"p4_sub_dl_{idx}")
+    else:
+        st.info("Select at least one candidate and one job above.")
 
 
 # ===========================================================================

@@ -303,7 +303,7 @@ template structure and tone:
 
 ---
 
-**Subject:** [e.g. "Shortlisted Candidate — {Job Title}"]
+**Subject:** [e.g. "Shortlisted Candidate(s) — {Job Title}"]
 
 Hi [Contact first name, or "HR Team" if not provided],
 
@@ -311,24 +311,25 @@ I'm sharing [N] shortlisted candidate[s] for the [Job Title] position for your c
 
 1️⃣ [Candidate Full Name]
 
-[Paragraph 1 — profile overview: "{First name} is an experienced {function} professional with
-over {X} years of experience supporting {domain areas}, within {type of environment}. {He/She}
-has hands-on exposure to {systems, tools, processes}, making {him/her} familiar with {relevant
-environment type}."]
-
-[Paragraph 2 — track record: "In {his/her} previous roles with {actual employers}, {he/she}
-supported {concrete processes and responsibilities}. {He/She} worked closely with {stakeholder
-types} while {key activities} using {tools}."]
-
-[Paragraph 3 — fit mapping: "{His/Her} familiarity with {key matching skills} makes {him/her}
-potentially suitable for the {Job Title} role, particularly in supporting {specific duties from
-the JD}."]
+[ONE single flowing paragraph (4-6 sentences) briefing the candidate. Start directly with a
+professional descriptor — do NOT repeat the name (it is already in the header line). Cover, in
+natural flowing prose: (a) who they are professionally and their experience areas, e.g. "IT
+support professional with prior experience in system administration, L1 support, and enterprise
+IT support environments"; (b) concrete hands-on exposure — actual systems, tools, processes and
+real employers from their background; (c) close with the suitability link, e.g. "…making her
+suitable for {role type} requiring {key duties from the JD}." For career switchers, weave in
+their training programme and transferable strengths from their previous field in the same
+single paragraph.]
 
 Expected Salary: [$X,XXX] | Notice Period: [e.g. Immediate / 1 month]
 
-Please find [his/her] profile attached for your review.
+[If multiple candidates: repeat the numbered block (2️⃣, 3️⃣ …) — header line, ONE paragraph,
+salary/notice line — for each candidate.]
 
-Do let me know if you'd like to proceed with an interview, and I'll coordinate accordingly.
+Please find [his/her/their] profile[s] attached for your review.
+
+Do let me know if you'd like to proceed with [an interview / interviews], and I'll coordinate
+accordingly.
 
 Looking forward to your feedback.
 
@@ -338,16 +339,25 @@ Talent Specialist | Lithan Academy
 
 ---
 
-[If multiple candidates: repeat the numbered block (2️⃣, 3️⃣ …) with all three paragraphs and the
-salary/notice line for each candidate.]
-
 Rules:
-- Use the candidate's REAL name, employers, years and skills from the supplied profile — this
-  is a formal submission, not anonymous outreach.
-- Every claim must be grounded in the candidate's actual background. Use measured phrasing like
-  "potentially suitable" — never overclaim.
-- Paragraph 3 must map the candidate's skills to the JD's ACTUAL duties.
-- If expected salary or notice period is not provided, write "Available upon request" rather
-  than inventing figures.
-- Keep the same polite Singapore business register as the template. No bullet lists, no extra
-  sections."""
+- STRICTLY one paragraph per candidate between the name header and the salary line. Never two
+  or three paragraphs, never bullet points.
+- EACH candidate's paragraph must be built from THEIR OWN distinct background — do not reuse
+  the same structure, opening or phrasing across candidates in the same email. Adapt the angle:
+  * Experienced professional → lead with their experience areas and real employers, then
+    hands-on systems/tools, then suitability ("…making her suitable for…").
+  * Career switcher → lead with the transition and motivation ("Motivated IT infrastructure
+    enthusiast currently transitioning into the IT industry…"), then training programme and
+    practical/lab exposure, then transferable strengths from their previous field
+    ("…making him a trainable junior candidate for…").
+  * Fresh graduate / recent trainee → lead with the programme and capstone/practical projects,
+    then tools learned, then aptitude and suitability.
+- Use the candidate's REAL employers, systems, tools, years and training from the supplied
+  profile — this is a formal submission. Never fabricate.
+- The paragraph must end by mapping the candidate to the JD's actual duties, with measured
+  phrasing calibrated to their background (an experienced hire is "suitable", a switcher is
+  "trainable" — do not overclaim).
+- If expected salary or notice period is not provided, write "Available upon request".
+- Match grammar to candidate count: "candidate/candidates", "profile/profiles",
+  "an interview/interviews", his/her/their.
+- Keep the polite Singapore business register. No extra sections."""
