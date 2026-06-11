@@ -12,7 +12,8 @@ import streamlit as st
 import prompts
 import utils
 
-st.set_page_config(page_title="TalentConnect AI Agent", page_icon="🤝", layout="wide")
+st.set_page_config(page_title="TalentConnect AI Agent", page_icon="🤝", layout="wide",
+                   initial_sidebar_state="expanded")
 utils.init_store()
 
 st.markdown("""
@@ -70,7 +71,18 @@ div.stButton > button[kind="secondary"] {
     background: #ffffff !important; color: #1d4ed8 !important;
     border: 1px solid #93c5fd !important; border-radius: 8px; font-weight: 600;
 }
-[data-testid="stHeader"] { background: rgba(241,245,249,.8); }
+[data-testid="stHeader"] { background: rgba(241,245,249,.9); }
+[data-testid="stHeader"] button, [data-testid="stHeader"] a { color: #1d4ed8 !important; }
+[data-testid="stHeader"] svg { color: #1d4ed8 !important; fill: #1d4ed8 !important; }
+[data-testid="stSidebarCollapsedControl"], [data-testid="collapsedControl"] {
+    background: #1d4ed8 !important; border-radius: 8px;
+}
+[data-testid="stSidebarCollapsedControl"] *, [data-testid="collapsedControl"] * {
+    color: #ffffff !important; fill: #ffffff !important;
+}
+[data-testid="stSidebar"] [data-testid="stBaseButton-headerNoPadding"] svg {
+    color: #0f172a !important; fill: #0f172a !important;
+}
 </style>
 <div style="background: linear-gradient(90deg, #1e3a8a 0%, #1d4ed8 100%);
             padding: 22px 28px; border-radius: 14px;
