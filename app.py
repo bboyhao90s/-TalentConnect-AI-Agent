@@ -14,6 +14,12 @@ import utils
 
 st.set_page_config(page_title="TalentConnect AI Agent", page_icon="🤝", layout="wide",
                    initial_sidebar_state="expanded")
+
+# Password gate — blocks the whole app until the team password is entered.
+# If APP_PASSWORD is not set in secrets, the gate is off (app stays open).
+if not utils.check_password():
+    st.stop()
+
 utils.init_store()
 
 st.markdown("""
@@ -213,12 +219,26 @@ with st.sidebar:
     else:
         st.error("No API key configured. Add OPENAI_API_KEY in "
                  "Manage app → Settings → Secrets, then reboot the app.")
+    import candidate_db as _cdb
     st.caption(
-        f"📇 {len(st.session_state.candidates)} candidates · "
+        f"📇 {len(st.session_state.candidates)} my candidates · "
         f"💼 {len(st.session_state.jobs)} jobs · "
         f"🗂️ {len(st.session_state.outputs)} records"
     )
-    st.caption("Data lives in this session — export a backup on the Dashboard.")
+    st.caption(f"🗂️ {len(_cdb.CANDIDATE_DB)} candidates in the pre-loaded database "
+               "(page 1 · Candidate Database tab).")
+    st.caption("Records are saved automatically and survive refreshes. "
+               "Export a backup on the Dashboard before a reboot or redeploy.")
+
+    if utils._configured_password():
+        st.markdown("---")
+        if st.session_state.get("_authed") and st.button("🔒 Log out"):
+            st.session_state["_authed"] = False
+            st.rerun()
+    else:
+        st.markdown("---")
+        st.warning("No password set — the app is open. Add APP_PASSWORD in "
+                   "Settings → Secrets before putting real candidate data online.")
 
 
 # ===========================================================================
@@ -227,61 +247,133 @@ with st.sidebar:
 
 if page.startswith("1"):
     st.header("1 · Candidate Profile")
-    st.write("Add a candidate once — every other module can then select them "
-             "from a dropdown. Generate their employer-ready profile here.")
 
-    selected = candidate_selector("p1")
+    tab_mine, tab_db = st.tabs(["👤 My candidates", "🗂️ Candidate Database"])
 
-    if selected is None:
-        st.subheader("Add a new candidate")
-        name = st.text_input("Candidate name *")
-        col1, col2 = st.columns(2)
-        with col1:
-            salary = st.text_input("Expected salary", placeholder="e.g. $3,000 - $3,500")
-        with col2:
-            notice = st.text_input("Notice period", placeholder="e.g. Immediate / 1 month")
-        resume = utils.read_input("the résumé / CV", "p1_resume")
-        if st.button("Save candidate", type="primary"):
-            if not name.strip():
-                st.warning("Please enter the candidate's name.")
-            else:
-                utils.add_candidate(name, resume, salary, notice)
-                st.success(f"Saved {name}. Select them in the dropdown above to continue.")
-                st.rerun()
-    else:
-        st.subheader(selected["name"])
-        col1, col2 = st.columns(2)
-        col1.metric("Expected salary", selected.get("salary") or "N/A")
-        col2.metric("Notice period", selected.get("notice") or "N/A")
+    # -- Candidate Database: pre-loaded, classified pool (browse & import) -----
+    with tab_db:
+        import candidate_db
+        db = candidate_db.CANDIDATE_DB
+        st.write(f"{len(db)} classified candidates. Filter to find fits, then "
+                 "**Add to my candidates** to use them in matching, fitment and outreach.")
 
-        with st.expander("View / update résumé", expanded=not selected.get("resume")):
-            new_resume = utils.read_input("an updated résumé / CV", "p1_update")
-            if new_resume.strip() and st.button("Replace stored résumé"):
-                selected["resume"] = new_resume
-                st.success("Résumé updated.")
-            if selected.get("resume"):
-                st.text_area("Stored résumé", selected["resume"], height=180, disabled=True)
+        fc1, fc2, fc3, fc4 = st.columns([1, 1, 1, 2])
+        specialists = ["All"] + sorted({c["specialist"] for c in db})
+        courses = ["All"] + sorted({c["course_code"] for c in db})
+        cohorts = ["All"] + sorted({c["cohort"] for c in db})
+        with fc1:
+            f_spec = st.selectbox("Talent Specialist", specialists, key="db_spec")
+        with fc2:
+            f_course = st.selectbox("Course", courses, key="db_course")
+        with fc3:
+            f_cohort = st.selectbox("Cohort", cohorts, key="db_cohort")
+        with fc4:
+            f_search = st.text_input("Search name / skill / role", key="db_search",
+                                     placeholder="e.g. finance, data analyst, Sarah")
 
-        if selected.get("coaching_notes"):
-            st.caption("✅ Coaching notes on file — they will enrich the profile.")
+        def _match(c):
+            if f_spec != "All" and c["specialist"] != f_spec:
+                return False
+            if f_course != "All" and c["course_code"] != f_course:
+                return False
+            if f_cohort != "All" and c["cohort"] != f_cohort:
+                return False
+            if f_search.strip():
+                q = f_search.lower()
+                hay = " ".join([
+                    c["full_name"], c["industry_background"], c["skill_marriage"],
+                    " ".join(c["skills"]), " ".join(c["recommended_roles"]),
+                    c["seniority"], c["prior_experience_summary"],
+                ]).lower()
+                if q not in hay:
+                    return False
+            return True
 
-        if st.button("Generate candidate profile", type="primary"):
-            source = candidate_context(selected)
-            if not selected.get("resume") and not selected.get("coaching_notes"):
-                st.warning("Add a résumé (above) or coaching notes (page 2) first.")
-            else:
-                result = ai_generate(prompts.CANDIDATE_PROFILE, source)
-                if result:
-                    selected["profile"] = result
-                    utils.add_output("Candidate profile", result, candidate_id=selected["id"],
-                                     title=f"Profile — {selected['name']}")
-        if selected.get("profile"):
-            show_output(selected["profile"], f"profile_{selected['name']}.txt", "p1_out")
+        results = [c for c in db if _match(c)]
+        st.caption(f"Showing {len(results)} of {len(db)} candidates.")
+
+        imported_names = {c["name"].strip().lower() for c in st.session_state.candidates}
+        for c in results:
+            already = c["full_name"].strip().lower() in imported_names
+            label = (f"{c['full_name']}  ·  {c['specialist']} · {c['course_code']} · "
+                     f"{c['seniority']}" + ("  ✅ added" if already else ""))
+            with st.expander(label):
+                st.markdown(f"**Course:** {c['course_name']} ({c['course_code']}) · "
+                            f"**Cohort:** {c['cohort']} · **Specialist:** {c['specialist']}")
+                if c.get("email"):
+                    st.markdown(f"**Email:** {c['email']}")
+                st.markdown(f"**Experience:** {c['years_experience']} · "
+                            f"**Background:** {c['industry_background']}")
+                st.markdown(f"**Summary:** {c['prior_experience_summary']}")
+                st.markdown(f"**Skills:** {', '.join(c['skills'])}")
+                st.markdown(f"**Skill Marriage:** {c['skill_marriage']}")
+                st.markdown(f"**Recommended roles:** {', '.join(c['recommended_roles'])}")
+                st.markdown(f"**Seniority:** {c['seniority']} — {c['seniority_note']}")
+                if already:
+                    st.success("Already in your candidates — available in every module.")
+                elif st.button("➕ Add to my candidates", key=f"imp_{c['full_name']}"):
+                    utils.import_db_candidate(c)
+                    st.success(f"Added {c['full_name']}. Now available in matching, "
+                               "fitment, interview prep and outreach.")
+                    st.rerun()
+
+    # -- My candidates: the original add / generate-profile flow --------------
+    with tab_mine:
+        st.write("Add a candidate once — every other module can then select them "
+                 "from a dropdown. Generate their employer-ready profile here.")
+
+        selected = candidate_selector("p1")
+
+        if selected is None:
+            st.subheader("Add a new candidate")
+            name = st.text_input("Candidate name *")
+            col1, col2 = st.columns(2)
+            with col1:
+                salary = st.text_input("Expected salary", placeholder="e.g. $3,000 - $3,500")
+            with col2:
+                notice = st.text_input("Notice period", placeholder="e.g. Immediate / 1 month")
+            resume = utils.read_input("the résumé / CV", "p1_resume")
+            if st.button("Save candidate", type="primary"):
+                if not name.strip():
+                    st.warning("Please enter the candidate's name.")
+                else:
+                    utils.add_candidate(name, resume, salary, notice)
+                    st.success(f"Saved {name}. Select them in the dropdown above to continue.")
+                    st.rerun()
+        else:
+            st.subheader(selected["name"])
+            col1, col2 = st.columns(2)
+            col1.metric("Expected salary", selected.get("salary") or "N/A")
+            col2.metric("Notice period", selected.get("notice") or "N/A")
+
+            with st.expander("View / update résumé", expanded=not selected.get("resume")):
+                new_resume = utils.read_input("an updated résumé / CV", "p1_update")
+                if new_resume.strip() and st.button("Replace stored résumé"):
+                    selected["resume"] = new_resume
+                    st.success("Résumé updated.")
+                if selected.get("resume"):
+                    st.text_area("Stored résumé", selected["resume"], height=180, disabled=True)
+
+            if selected.get("coaching_notes"):
+                st.caption("✅ Coaching notes on file — they will enrich the profile.")
+
+            if st.button("Generate candidate profile", type="primary"):
+                source = candidate_context(selected)
+                if not selected.get("resume") and not selected.get("coaching_notes"):
+                    st.warning("Add a résumé (above) or coaching notes (page 2) first.")
+                else:
+                    result = ai_generate(prompts.CANDIDATE_PROFILE, source)
+                    if result:
+                        selected["profile"] = result
+                        utils.add_output("Candidate profile", result, candidate_id=selected["id"],
+                                         title=f"Profile — {selected['name']}")
+            if selected.get("profile"):
+                show_output(selected["profile"], f"profile_{selected['name']}.txt", "p1_out")
 
 
-# ===========================================================================
-# 2 · COACHING NOTES & FOLLOW-UP
-# ===========================================================================
+    # ===========================================================================
+    # 2 · COACHING NOTES & FOLLOW-UP
+    # ===========================================================================
 
 elif page.startswith("2"):
     st.header("2 · Coaching Notes & WhatsApp Follow-up")
@@ -366,15 +458,44 @@ elif page.startswith("3"):
             ["🎯 Match my candidates", "✉️ Outreach", "📋 JD analysis"])
 
         with tab_match:
-            pool = [c for c in st.session_state.candidates
-                    if c.get("profile") or c.get("resume") or c.get("coaching_notes")]
-            st.caption(f"{len(pool)} candidate(s) with enough data to match.")
-            if st.button("Run candidate matching", type="primary",
-                         disabled=not pool):
-                pool_text = "\n\n---\n\n".join(
-                    candidate_context(c)[:3000] for c in pool)
+            import candidate_db
+            scope = st.radio(
+                "Match against",
+                ["My candidates", "Full candidate database", "Database (filtered)"],
+                horizontal=True, key="p3_scope",
+                help="Match this job against the people you've added, or the whole "
+                     "pre-loaded 0626 database.",
+            )
+
+            if scope == "My candidates":
+                pool = [{"name": c["name"], "text": candidate_context(c)}
+                        for c in st.session_state.candidates
+                        if c.get("profile") or c.get("resume") or c.get("coaching_notes")]
+            else:
+                db = candidate_db.CANDIDATE_DB
+                if scope == "Database (filtered)":
+                    dc1, dc2, dc3 = st.columns(3)
+                    with dc1:
+                        m_spec = st.selectbox("Specialist",
+                            ["All"] + sorted({c["specialist"] for c in db}), key="p3_spec")
+                    with dc2:
+                        m_course = st.selectbox("Course",
+                            ["All"] + sorted({c["course_code"] for c in db}), key="p3_course")
+                    with dc3:
+                        m_cohort = st.selectbox("Cohort",
+                            ["All"] + sorted({c["cohort"] for c in db}), key="p3_cohort")
+                    db = [c for c in db
+                          if (m_spec == "All" or c["specialist"] == m_spec)
+                          and (m_course == "All" or c["course_code"] == m_course)
+                          and (m_cohort == "All" or c["cohort"] == m_cohort)]
+                pool = [{"name": c["full_name"],
+                         "text": utils.db_candidate_as_resume(c)} for c in db]
+
+            st.caption(f"{len(pool)} candidate(s) in scope to match.")
+            if st.button("Run candidate matching", type="primary", disabled=not pool):
+                pool_text = "\n\n---\n\n".join(p["text"][:3000] for p in pool)
                 content = (f"=== JOB DESCRIPTION: {job['title']} ===\n{job['jd']}"
-                           f"\n\n=== CANDIDATE POOL ===\n\n{pool_text}")
+                           f"\n\n=== CANDIDATE POOL ({len(pool)} candidates) ===\n\n{pool_text}")
                 result = ai_generate(prompts.CANDIDATE_MATCHING, content)
                 if result:
                     utils.add_output("Match report", result, job_id=job["id"],

@@ -34,6 +34,47 @@ def get_model() -> str:
     return model or os.environ.get("OPENAI_MODEL") or "gpt-4o-mini"
 
 
+def _configured_password() -> str | None:
+    """The app password, read from secrets or environment. If none is set,
+    the gate is disabled (app is open) — so nothing breaks before setup."""
+    try:
+        pw = st.secrets.get("APP_PASSWORD", None)
+    except Exception:
+        pw = None
+    return pw or os.environ.get("APP_PASSWORD")
+
+
+def check_password() -> bool:
+    """Simple shared-password gate. Returns True if access is granted.
+
+    Behaviour:
+      - If no APP_PASSWORD is configured, the gate is OFF (returns True) so the
+        app still runs during setup / local testing.
+      - Otherwise the user must enter the password once per session.
+    This protects the candidate database from being read by anyone with just the
+    public link. It is a shared team password, not per-user accounts.
+    """
+    password = _configured_password()
+    if not password:
+        return True  # gate not configured yet — app open
+
+    if st.session_state.get("_authed"):
+        return True
+
+    st.markdown("## 🔒 TalentConnect AI Agent")
+    st.caption("This tool contains candidate information. Please enter the team "
+               "password to continue.")
+    entered = st.text_input("Password", type="password", key="_pw_input")
+    if st.button("Enter", type="primary"):
+        if entered == password:
+            st.session_state["_authed"] = True
+            st.rerun()
+        else:
+            st.error("Incorrect password. Please try again.")
+    st.caption("Access is limited to the Lithan Talent Management team.")
+    return False
+
+
 def run_ai(system_prompt: str, user_content: str, temperature: float = 0.4) -> str:
     """Call the OpenAI chat completions API and return the text response.
 
@@ -178,11 +219,11 @@ def init_store() -> None:
 
 
 def persist() -> None:
-    """Write the store to disk. Called at the end of every app run, so any
-    change made during the run is saved automatically."""
+    """Write the store to disk after every app run, so any change made
+    during the run is saved automatically and survives page refreshes."""
+    if not st.session_state.get("_store_loaded"):
+        return
     try:
-        if not st.session_state.get("_store_loaded"):
-            return
         with open(STORE_FILE, "w", encoding="utf-8") as fh:
             fh.write(export_store())
     except Exception:
@@ -203,6 +244,52 @@ def add_candidate(name: str, resume: str = "", salary: str = "", notice: str = "
 def get_candidate(cid: str) -> dict | None:
     init_store()
     return next((c for c in st.session_state.candidates if c["id"] == cid), None)
+
+
+def db_candidate_as_resume(rec: dict) -> str:
+    """Render a bundled database record as résumé-style text the AI modules
+    (matching, profile, fitment) can consume, so a pre-loaded candidate works
+    exactly like a manually added one."""
+    lines = [
+        f"Name: {rec.get('full_name','')}",
+        f"Talent Specialist: {rec.get('specialist','')}  |  "
+        f"Course: {rec.get('course_code','')} ({rec.get('course_name','')})  |  "
+        f"Cohort: {rec.get('cohort','')}",
+        f"Experience: {rec.get('years_experience','')}",
+        f"Industry background: {rec.get('industry_background','')}",
+        "",
+        f"Summary: {rec.get('prior_experience_summary','')}",
+        "",
+        f"Skills: {', '.join(rec.get('skills', []))}",
+        "",
+        f"Skill Marriage (unique value): {rec.get('skill_marriage','')}",
+        f"Recommended roles: {', '.join(rec.get('recommended_roles', []))}",
+        f"Seniority: {rec.get('seniority','')} — {rec.get('seniority_note','')}",
+    ]
+    return "\n".join(lines)
+
+
+def import_db_candidate(rec: dict) -> dict:
+    """Copy a bundled database record into the user's working candidate list
+    so it flows through coaching, matching, fitment and outreach. Returns the
+    existing record if this person was already imported (matched by name)."""
+    init_store()
+    existing = next((c for c in st.session_state.candidates
+                     if c["name"].strip().lower() == rec["full_name"].strip().lower()), None)
+    if existing:
+        return existing
+    candidate = {
+        "id": _new_id("cand"), "name": rec["full_name"].strip(),
+        "resume": db_candidate_as_resume(rec),
+        "salary": "", "notice": "",
+        "profile": "", "coaching_notes": "",
+        "email": rec.get("email", ""),
+        "source": "database", "specialist": rec.get("specialist", ""),
+        "course_code": rec.get("course_code", ""), "cohort": rec.get("cohort", ""),
+        "created": _now(),
+    }
+    st.session_state.candidates.append(candidate)
+    return candidate
 
 
 def add_job(title: str, employer: str = "", jd: str = "") -> dict:

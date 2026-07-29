@@ -2,15 +2,18 @@
 
 *Connecting Talent, Opportunities and Outcomes through AI.*
 
-One Streamlit app covering the full talent-specialist journey:
+A connected talent-specialist pipeline — enter data once, use it everywhere:
 
-1. Coaching transcript → coaching notes + WhatsApp follow-up
-2. Résumé + coaching notes → candidate profile & employer positioning
-3. Employer JD → hiring analysis + outreach (with or without profiles)
-4. Candidate + JD → fitment score, gaps, recommendation, interview prep, submission email
-5. Saved records with export/import backup
+1. **Candidate Profile** — add candidates (name, salary, notice, résumé), generate employer-ready profiles
+2. **Coaching Notes & Follow-up** — transcript → notes in the official template + WhatsApp follow-up
+3. **Jobs, Matching & Outreach** — save JDs, rank your candidate pool with a weighted scoring index, draft WSG/SSG outreach
+4. **Fitment & Submission** — official fitment format (Experience / Transferable Skills / Technical Skills / Qualifications table + fit summary + upskilling note) and submission email
+5. **Interview Prep** — role-specific prep guide grounded in the candidate's real background
+6. **Dashboard** — candidate pipeline matrix, all records, backup export/import
 
-Supports PDF, DOCX and TXT uploads, in English and Chinese.
+Everything generated is auto-recorded and linked to its candidate and job.
+Supports PDF, DOCX and TXT uploads, English and Chinese.
+All templates live in `prompts.py` — edit that one file to change any output format.
 
 ## Deploy to Streamlit Community Cloud (public URL)
 
@@ -58,3 +61,43 @@ streamlit run app.py
 - The API key never appears in the browser or on GitHub; it lives only in Streamlit's Secrets.
 - Streamlit Cloud storage is temporary: use **Records → Export** to back up, **Import** to restore.
 - `OPENAI_MODEL` can be changed in Secrets (e.g. `gpt-4.1-mini`) without touching the code.
+
+## Candidate Database (pre-loaded pool)
+
+The app ships with a bundled database of classified 0626-cohort candidates
+(`candidate_db.py`). Each record is classified using the Skill Marriage method:
+prior experience x new course skills -> unique value, recommended roles and
+seniority. Only full name and email are stored as identifiers (PDPA-safe).
+
+- **Browse:** Page 1 -> "Candidate Database" tab. Filter by Talent Specialist,
+  Course and Cohort, or search by name / skill / role.
+- **Use a candidate:** click "Add to my candidates" to copy them into your
+  working set — they then flow through coaching, matching, fitment, interview
+  prep and outreach like any added candidate.
+- **Match a JD against the pool:** Page 3 -> "Match my candidates" tab ->
+  choose "Full candidate database" or "Database (filtered)" as the match scope,
+  paste/select a JD, and run matching to get a ranked shortlist.
+
+To grow the database monthly, append new classified records to `CANDIDATE_DB`
+in `candidate_db.py` (a future upload workflow can automate this).
+
+**Privacy note:** the database holds real candidate names. Do not deploy it on a
+public URL without access control (a login/password gate). Keep to sample data
+on any public demo.
+
+## Team login (password gate)
+
+The app can be protected by a shared team password so only people with the
+password can open it — required before putting real candidate names online.
+
+**To turn it on:** in Streamlit Cloud → Manage app → Settings → Secrets, add:
+
+    APP_PASSWORD = "your-strong-team-password"
+
+Then reboot. Everyone opening the app must enter this password once per session.
+A "Log out" button appears in the sidebar.
+
+**If APP_PASSWORD is not set, the app stays open** (no login) and shows a warning
+reminding you to set one before going live with real data. This shared-password
+gate is proportionate protection for a team tool; it is not per-user accounts.
+
