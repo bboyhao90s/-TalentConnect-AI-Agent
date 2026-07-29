@@ -95,6 +95,7 @@ def run_ai(system_prompt: str, user_content: str, temperature: float = 0.4) -> s
         response = client.chat.completions.create(
             model=get_model(),
             temperature=temperature,
+            max_tokens=8000,  # allow long outputs (e.g. a 50-candidate match report)
             messages=[
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": user_content},

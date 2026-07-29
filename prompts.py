@@ -267,7 +267,17 @@ Produce:
 
 **Scoring Index** — reproduce the rubric table above first, so the reader knows the basis.
 
-Then for EACH candidate, in ranked order (best fit first):
+WHICH CANDIDATES TO INCLUDE:
+- Score EVERY candidate in the pool internally, then INCLUDE in the report every candidate
+  with a Fit Score of 5.0/10 or higher, ranked best fit first.
+- Show up to a maximum of 50 candidates. If more than 50 score 5.0+, show the top 50 by
+  Fit Score and note how many additional candidates also scored 5.0+ (e.g. "12 more
+  candidates also scored 5.0+ — narrow the filters to see them").
+- Do NOT stop early or trim to a handful. If 20 candidates score 5.0+, show all 20.
+- Candidates scoring below 5.0 are excluded from the detailed list. After the list, add one
+  line stating how many candidates scored below 5.0 and were therefore excluded.
+
+Then for EACH included candidate, in ranked order (best fit first):
 
 **#[rank] — [Candidate name] — Fit Score: X.X/10**
 
