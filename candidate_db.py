@@ -21,6 +21,25 @@ COURSES = {
     "ACIS": "Infrastructure Support",
 }
 
+# Domain families (primary domain knowledge, independent of course)
+DOMAINS = [
+ "Banking & Wealth",
+ "EHS & Safety",
+ "Education & Training",
+ "Engineering & Manufacturing",
+ "Finance & Accounting",
+ "General Management",
+ "HR & Talent",
+ "IT & Infrastructure",
+ "Marketing & Creative",
+ "Operations & Admin",
+ "Project Management",
+ "Public Sector & Social",
+ "Real Estate",
+ "Sales & Business Development",
+ "Supply Chain & Procurement"
+]
+
 CANDIDATE_DB = [
  {
   "specialist": "Jim",
@@ -49,7 +68,8 @@ CANDIDATE_DB = [
    "CX / eCommerce Solutions Consultant"
   ],
   "seniority": "Senior IC / Team-Lead potential",
-  "seniority_note": "Genuinely senior with MBA, presales leadership and MarTech depth — one of the stronger profiles for a strategy/consulting-level marketing role."
+  "seniority_note": "Genuinely senior with MBA, presales leadership and MarTech depth — one of the stronger profiles for a strategy/consulting-level marketing role.",
+  "domain": "IT & Infrastructure"
  },
  {
   "specialist": "Jim",
@@ -78,7 +98,8 @@ CANDIDATE_DB = [
    "Digital Marketing Administrator"
   ],
   "seniority": "Individual Contributor",
-  "seniority_note": "Long tenure is administrative rather than marketing-lead; position as a dependable marketing-ops IC entering the field."
+  "seniority_note": "Long tenure is administrative rather than marketing-lead; position as a dependable marketing-ops IC entering the field.",
+  "domain": "Operations & Admin"
  },
  {
   "specialist": "Jim",
@@ -106,7 +127,8 @@ CANDIDATE_DB = [
    "Content & Campaign Executive"
   ],
   "seniority": "Individual Contributor",
-  "seniority_note": "Self-employed marketing experience is practical but informal; entry-to-mid marketing roles fit well."
+  "seniority_note": "Self-employed marketing experience is practical but informal; entry-to-mid marketing roles fit well.",
+  "domain": "Real Estate"
  },
  {
   "specialist": "Jim",
@@ -133,7 +155,8 @@ CANDIDATE_DB = [
    "Sales & Marketing Coordinator"
   ],
   "seniority": "Individual Contributor",
-  "seniority_note": "Sales-strong; marketing is new, so entry-to-mid marketing roles fit best."
+  "seniority_note": "Sales-strong; marketing is new, so entry-to-mid marketing roles fit best.",
+  "domain": "Sales & Business Development"
  },
  {
   "specialist": "Jim",
@@ -161,7 +184,8 @@ CANDIDATE_DB = [
    "Digital Marketing Executive (B2B Finance)"
   ],
   "seniority": "Senior IC",
-  "seniority_note": "Very senior in finance; as a marketing pivot, best positioned in data/ops-leaning marketing roles rather than creative/brand."
+  "seniority_note": "Very senior in finance; as a marketing pivot, best positioned in data/ops-leaning marketing roles rather than creative/brand.",
+  "domain": "Finance & Accounting"
  },
  {
   "specialist": "Jim",
@@ -189,7 +213,8 @@ CANDIDATE_DB = [
    "Marketing Operations Executive"
   ],
   "seniority": "Individual Contributor",
-  "seniority_note": "Extensive but admin/sales-based; marketing is new, so entry-level marketing roles in finance suit."
+  "seniority_note": "Extensive but admin/sales-based; marketing is new, so entry-level marketing roles in finance suit.",
+  "domain": "Finance & Accounting"
  },
  {
   "specialist": "Jim",
@@ -217,7 +242,8 @@ CANDIDATE_DB = [
    "Marketing Operations Executive"
   ],
   "seniority": "Individual Contributor",
-  "seniority_note": "Strong ownership mindset but formal marketing depth is new; entry-to-mid marketing roles fit best."
+  "seniority_note": "Strong ownership mindset but formal marketing depth is new; entry-to-mid marketing roles fit best.",
+  "domain": "Operations & Admin"
  },
  {
   "specialist": "Jim",
@@ -244,7 +270,8 @@ CANDIDATE_DB = [
    "Content & Campaign Executive"
   ],
   "seniority": "Individual Contributor",
-  "seniority_note": "Marketing degree plus sales gives a fair marketing foundation; mid-level marketing roles are realistic."
+  "seniority_note": "Marketing degree plus sales gives a fair marketing foundation; mid-level marketing roles are realistic.",
+  "domain": "Sales & Business Development"
  },
  {
   "specialist": "Jim",
@@ -272,7 +299,8 @@ CANDIDATE_DB = [
    "Lead Generation / Demand Gen Executive"
   ],
   "seniority": "Senior IC",
-  "seniority_note": "Senior in sales; digital-marketing execution is new, so pitch at senior-sales-with-marketing rather than marketing-lead."
+  "seniority_note": "Senior in sales; digital-marketing execution is new, so pitch at senior-sales-with-marketing rather than marketing-lead.",
+  "domain": "Sales & Business Development"
  },
  {
   "specialist": "Jim",
@@ -300,7 +328,8 @@ CANDIDATE_DB = [
    "CRM & Marketing Ops Executive"
   ],
   "seniority": "Individual Contributor",
-  "seniority_note": "Domain-strong but marketing is a fresh pivot; entry-level marketing roles in regulated sectors suit best."
+  "seniority_note": "Domain-strong but marketing is a fresh pivot; entry-level marketing roles in regulated sectors suit best.",
+  "domain": "Operations & Admin"
  },
  {
   "specialist": "Jim",
@@ -327,7 +356,8 @@ CANDIDATE_DB = [
    "Digital Marketing Executive (Technical products)"
   ],
   "seniority": "Individual Contributor",
-  "seniority_note": "Solid sales track record; marketing execution is new, so mid-level B2B marketing roles fit."
+  "seniority_note": "Solid sales track record; marketing execution is new, so mid-level B2B marketing roles fit.",
+  "domain": "Sales & Business Development"
  },
  {
   "specialist": "Jim",
@@ -354,7 +384,8 @@ CANDIDATE_DB = [
    "Marketing Operations Executive"
   ],
   "seniority": "Individual Contributor",
-  "seniority_note": "Brief CV; marketing experience is informal/self-driven, so entry-level marketing roles suit best."
+  "seniority_note": "Brief CV; marketing experience is informal/self-driven, so entry-level marketing roles suit best.",
+  "domain": "Real Estate"
  },
  {
   "specialist": "Jim",
@@ -382,7 +413,8 @@ CANDIDATE_DB = [
    "Data Analyst (EHS / Operations)"
   ],
   "seniority": "Individual Contributor",
-  "seniority_note": "Domain is safety/security, not analytical; data science is a significant pivot, so entry-level analyst roles suit."
+  "seniority_note": "Domain is safety/security, not analytical; data science is a significant pivot, so entry-level analyst roles suit.",
+  "domain": "EHS & Safety"
  },
  {
   "specialist": "Jim",
@@ -411,7 +443,8 @@ CANDIDATE_DB = [
    "BI Analyst"
   ],
   "seniority": "Individual Contributor",
-  "seniority_note": "Solid engineering experience; data science is new, so entry-to-mid analyst roles with domain context fit best."
+  "seniority_note": "Solid engineering experience; data science is new, so entry-to-mid analyst roles with domain context fit best.",
+  "domain": "Engineering & Manufacturing"
  },
  {
   "specialist": "Jim",
@@ -438,7 +471,8 @@ CANDIDATE_DB = [
    "Junior Data Analyst (Operations)"
   ],
   "seniority": "Individual Contributor",
-  "seniority_note": "Strong data-handling exposure but analytics is new; entry-to-mid analyst roles with enterprise-systems context fit."
+  "seniority_note": "Strong data-handling exposure but analytics is new; entry-to-mid analyst roles with enterprise-systems context fit.",
+  "domain": "Operations & Admin"
  },
  {
   "specialist": "Jim",
@@ -465,7 +499,8 @@ CANDIDATE_DB = [
    "Business Analyst (HR)"
   ],
   "seniority": "Senior IC",
-  "seniority_note": "Senior HR practitioner; as a data pivot, people-analytics is the natural bridge role at senior-IC level."
+  "seniority_note": "Senior HR practitioner; as a data pivot, people-analytics is the natural bridge role at senior-IC level.",
+  "domain": "HR & Talent"
  },
  {
   "specialist": "Jim",
@@ -494,7 +529,8 @@ CANDIDATE_DB = [
    "Junior Data Scientist"
   ],
   "seniority": "Senior IC",
-  "seniority_note": "Strong existing technical depth (SQL, ETL, BI); genuinely job-ready for mid-senior data roles."
+  "seniority_note": "Strong existing technical depth (SQL, ETL, BI); genuinely job-ready for mid-senior data roles.",
+  "domain": "IT & Infrastructure"
  },
  {
   "specialist": "Jim",
@@ -521,7 +557,8 @@ CANDIDATE_DB = [
    "Business Analyst (HR)"
   ],
   "seniority": "Individual Contributor",
-  "seniority_note": "HR-metrics exposure gives a head start; data science is new, so mid-level people-analytics roles fit."
+  "seniority_note": "HR-metrics exposure gives a head start; data science is new, so mid-level people-analytics roles fit.",
+  "domain": "HR & Talent"
  },
  {
   "specialist": "Jim",
@@ -549,7 +586,8 @@ CANDIDATE_DB = [
    "Process & Performance Analyst"
   ],
   "seniority": "Senior IC / Team-Lead potential",
-  "seniority_note": "Senior in operations management; as a data pivot, pitch analytics roles at senior-IC with an operations-leadership angle."
+  "seniority_note": "Senior in operations management; as a data pivot, pitch analytics roles at senior-IC with an operations-leadership angle.",
+  "domain": "Operations & Admin"
  },
  {
   "specialist": "Jim",
@@ -578,7 +616,8 @@ CANDIDATE_DB = [
    "Analytics Translator / Planning Analyst"
   ],
   "seniority": "Senior IC / Team-Lead potential",
-  "seniority_note": "Strong senior evidence; as a data-science pivot, pitch analytics roles at senior-IC rather than data-lead titles."
+  "seniority_note": "Strong senior evidence; as a data-science pivot, pitch analytics roles at senior-IC rather than data-lead titles.",
+  "domain": "Finance & Accounting"
  },
  {
   "specialist": "Jim",
@@ -606,7 +645,8 @@ CANDIDATE_DB = [
    "Data Product / Delivery Lead"
   ],
   "seniority": "Senior IC / Managerial upside",
-  "seniority_note": "Genuinely senior PM; best positioned leading data/analytics delivery rather than hands-on data-scientist roles."
+  "seniority_note": "Genuinely senior PM; best positioned leading data/analytics delivery rather than hands-on data-scientist roles.",
+  "domain": "Project Management"
  },
  {
   "specialist": "Jim",
@@ -633,7 +673,8 @@ CANDIDATE_DB = [
    "Junior Data Analyst"
   ],
   "seniority": "Entry",
-  "seniority_note": "Technical-operations background with self-taught coding; genuine analytics experience is limited, so entry-level roles fit."
+  "seniority_note": "Technical-operations background with self-taught coding; genuine analytics experience is limited, so entry-level roles fit.",
+  "domain": "Engineering & Manufacturing"
  },
  {
   "specialist": "Jim",
@@ -661,7 +702,8 @@ CANDIDATE_DB = [
    "Digital Transformation Support Executive"
   ],
   "seniority": "Individual Contributor",
-  "seniority_note": "Operations-strong but digital skills are new; entry-to-mid transformation-support roles fit best."
+  "seniority_note": "Operations-strong but digital skills are new; entry-to-mid transformation-support roles fit best.",
+  "domain": "Operations & Admin"
  },
  {
   "specialist": "Jim",
@@ -688,7 +730,8 @@ CANDIDATE_DB = [
    "Client Experience / Digital Product Executive"
   ],
   "seniority": "Individual Contributor",
-  "seniority_note": "Strong wealth-sales record; digital-innovation is new, so mid-level fintech/BA roles fit."
+  "seniority_note": "Strong wealth-sales record; digital-innovation is new, so mid-level fintech/BA roles fit.",
+  "domain": "Banking & Wealth"
  },
  {
   "specialist": "Jim",
@@ -715,7 +758,8 @@ CANDIDATE_DB = [
    "Data Support / Research Analyst"
   ],
   "seniority": "Individual Contributor",
-  "seniority_note": "Varied admin and analytical background; digital-innovation is new, so mid-level roles fit."
+  "seniority_note": "Varied admin and analytical background; digital-innovation is new, so mid-level roles fit.",
+  "domain": "Operations & Admin"
  },
  {
   "specialist": "Jim",
@@ -742,7 +786,8 @@ CANDIDATE_DB = [
    "Business Analyst (People)"
   ],
   "seniority": "Senior IC / Team-Lead potential",
-  "seniority_note": "Led regional TA teams; strong domain, digital-innovation skills fresh — pitch HR-tech/analytics at senior-IC."
+  "seniority_note": "Led regional TA teams; strong domain, digital-innovation skills fresh — pitch HR-tech/analytics at senior-IC.",
+  "domain": "HR & Talent"
  },
  {
   "specialist": "Jim",
@@ -770,7 +815,8 @@ CANDIDATE_DB = [
    "Data Visualisation / BI Analyst"
   ],
   "seniority": "Individual Contributor",
-  "seniority_note": "Prior data-viz training gives an edge; mid-level analytics/transformation roles in supply chain fit."
+  "seniority_note": "Prior data-viz training gives an edge; mid-level analytics/transformation roles in supply chain fit.",
+  "domain": "Supply Chain & Procurement"
  },
  {
   "specialist": "Jim",
@@ -798,7 +844,8 @@ CANDIDATE_DB = [
    "Industry 4.0 / Automation Consultant"
   ],
   "seniority": "Senior IC / Managerial upside",
-  "seniority_note": "Very senior operations leader; best positioned in transformation-lead roles leveraging manufacturing depth."
+  "seniority_note": "Very senior operations leader; best positioned in transformation-lead roles leveraging manufacturing depth.",
+  "domain": "Engineering & Manufacturing"
  },
  {
   "specialist": "Jim",
@@ -825,7 +872,8 @@ CANDIDATE_DB = [
    "Process Automation Executive"
   ],
   "seniority": "Individual Contributor",
-  "seniority_note": "Strong HR-systems exposure; digital-innovation skills are new, so mid-level HR-tech/BA roles fit."
+  "seniority_note": "Strong HR-systems exposure; digital-innovation skills are new, so mid-level HR-tech/BA roles fit.",
+  "domain": "HR & Talent"
  },
  {
   "specialist": "Jim",
@@ -852,7 +900,8 @@ CANDIDATE_DB = [
    "Business Analyst (Sourcing)"
   ],
   "seniority": "Senior IC",
-  "seniority_note": "Senior in procurement/engineering; digital-innovation is new, so pitch transformation/BA roles at senior-IC with domain depth."
+  "seniority_note": "Senior in procurement/engineering; digital-innovation is new, so pitch transformation/BA roles at senior-IC with domain depth.",
+  "domain": "Supply Chain & Procurement"
  },
  {
   "specialist": "Jim",
@@ -880,7 +929,8 @@ CANDIDATE_DB = [
    "Infrastructure Support (Digital Transformation)"
   ],
   "seniority": "Individual Contributor",
-  "seniority_note": "Solid infrastructure IC; digital-innovation/low-code is new, so entry-to-mid transformation-support roles fit."
+  "seniority_note": "Solid infrastructure IC; digital-innovation/low-code is new, so entry-to-mid transformation-support roles fit.",
+  "domain": "IT & Infrastructure"
  },
  {
   "specialist": "Jim",
@@ -908,7 +958,8 @@ CANDIDATE_DB = [
    "Digital Project Manager"
   ],
   "seniority": "Senior IC / Managerial upside",
-  "seniority_note": "Genuinely senior banking leader; best positioned in transformation/consulting roles rather than hands-on tool building."
+  "seniority_note": "Genuinely senior banking leader; best positioned in transformation/consulting roles rather than hands-on tool building.",
+  "domain": "Banking & Wealth"
  },
  {
   "specialist": "Jim",
@@ -936,7 +987,8 @@ CANDIDATE_DB = [
    "Data Product / Delivery Analyst"
   ],
   "seniority": "Senior IC / Team-Lead potential",
-  "seniority_note": "Strong Agile/product and data-translation background; genuinely ready for senior BA/product roles."
+  "seniority_note": "Strong Agile/product and data-translation background; genuinely ready for senior BA/product roles.",
+  "domain": "Project Management"
  },
  {
   "specialist": "Jim",
@@ -963,7 +1015,8 @@ CANDIDATE_DB = [
    "Application Support / Developer"
   ],
   "seniority": "Individual Contributor",
-  "seniority_note": "Real infra depth plus new dev skills; junior-to-mid developer or DevOps roles are a genuine fit."
+  "seniority_note": "Real infra depth plus new dev skills; junior-to-mid developer or DevOps roles are a genuine fit.",
+  "domain": "IT & Infrastructure"
  },
  {
   "specialist": "Jim",
@@ -990,7 +1043,8 @@ CANDIDATE_DB = [
    "Full Stack Developer (Junior)"
   ],
   "seniority": "Individual Contributor",
-  "seniority_note": "Strong hardware engineer; software dev is new, so junior-developer or hardware-software bridge roles fit."
+  "seniority_note": "Strong hardware engineer; software dev is new, so junior-developer or hardware-software bridge roles fit.",
+  "domain": "Engineering & Manufacturing"
  },
  {
   "specialist": "Jim",
@@ -1017,7 +1071,8 @@ CANDIDATE_DB = [
    "Web Content / CMS Developer"
   ],
   "seniority": "Individual Contributor",
-  "seniority_note": "Commerce-strong; dev is new, so junior web-developer roles with an eCommerce angle fit best."
+  "seniority_note": "Commerce-strong; dev is new, so junior web-developer roles with an eCommerce angle fit best.",
+  "domain": "Marketing & Creative"
  },
  {
   "specialist": "Jim",
@@ -1044,7 +1099,8 @@ CANDIDATE_DB = [
    "Application / Solutions Analyst"
   ],
   "seniority": "Senior IC / Managerial upside",
-  "seniority_note": "Very senior in operations; web-dev is a fresh add-on, so leverage it in a technical-leadership/transformation role, not junior developer."
+  "seniority_note": "Very senior in operations; web-dev is a fresh add-on, so leverage it in a technical-leadership/transformation role, not junior developer.",
+  "domain": "Engineering & Manufacturing"
  },
  {
   "specialist": "Jim",
@@ -1071,7 +1127,8 @@ CANDIDATE_DB = [
    "Technical Trainer (IT)"
   ],
   "seniority": "Senior IC",
-  "seniority_note": "Senior engineer with strong discipline; IT infra is new, so pitch mid-level infra/support with an engineering-leadership angle."
+  "seniority_note": "Senior engineer with strong discipline; IT infra is new, so pitch mid-level infra/support with an engineering-leadership angle.",
+  "domain": "Engineering & Manufacturing"
  },
  {
   "specialist": "Jim",
@@ -1098,7 +1155,8 @@ CANDIDATE_DB = [
    "Desktop Support Executive"
   ],
   "seniority": "Entry",
-  "seniority_note": "No prior IT role; infra skills are new, so entry-level support roles with training fit best."
+  "seniority_note": "No prior IT role; infra skills are new, so entry-level support roles with training fit best.",
+  "domain": "Operations & Admin"
  },
  {
   "specialist": "Jim",
@@ -1125,7 +1183,8 @@ CANDIDATE_DB = [
    "IT Support Executive (Junior)"
   ],
   "seniority": "Entry",
-  "seniority_note": "No prior IT role; infra skills are new, so entry-level service-desk/support roles fit best."
+  "seniority_note": "No prior IT role; infra skills are new, so entry-level service-desk/support roles fit best.",
+  "domain": "IT & Infrastructure"
  },
  {
   "specialist": "Jim",
@@ -1152,7 +1211,8 @@ CANDIDATE_DB = [
    "Technical Trainer (IT)"
   ],
   "seniority": "Senior IC",
-  "seniority_note": "Extremely experienced engineer but IT-domain is new; pitch mid-level infra-support leveraging troubleshooting depth."
+  "seniority_note": "Extremely experienced engineer but IT-domain is new; pitch mid-level infra-support leveraging troubleshooting depth.",
+  "domain": "Engineering & Manufacturing"
  },
  {
   "specialist": "Jim",
@@ -1178,7 +1238,8 @@ CANDIDATE_DB = [
    "IT Support Trainee"
   ],
   "seniority": "Entry",
-  "seniority_note": "Significant career change with no IT background; entry-level support roles with training suit best."
+  "seniority_note": "Significant career change with no IT background; entry-level support roles with training suit best.",
+  "domain": "Operations & Admin"
  },
  {
   "specialist": "Jim",
@@ -1205,7 +1266,8 @@ CANDIDATE_DB = [
    "Desktop / Technical Support"
   ],
   "seniority": "Individual Contributor",
-  "seniority_note": "Technical troubleshooting background helps, but IT-domain is new; entry-to-mid support roles fit."
+  "seniority_note": "Technical troubleshooting background helps, but IT-domain is new; entry-to-mid support roles fit.",
+  "domain": "EHS & Safety"
  },
  {
   "specialist": "Preetika",
@@ -1233,7 +1295,8 @@ CANDIDATE_DB = [
    "Marketing Operations Executive"
   ],
   "seniority": "Senior IC",
-  "seniority_note": "Senior in commercial/logistics; marketing is new. Note: CV states a Digital Innovation diploma though filed under DM — confirm course."
+  "seniority_note": "Senior in commercial/logistics; marketing is new. Note: CV states a Digital Innovation diploma though filed under DM — confirm course.",
+  "domain": "Supply Chain & Procurement"
  },
  {
   "specialist": "Preetika",
@@ -1261,7 +1324,8 @@ CANDIDATE_DB = [
    "Business Development & Marketing Executive"
   ],
   "seniority": "Individual Contributor",
-  "seniority_note": "Strong B2B sales; marketing is a fresh pivot, so mid-level B2B marketing roles fit."
+  "seniority_note": "Strong B2B sales; marketing is a fresh pivot, so mid-level B2B marketing roles fit.",
+  "domain": "Sales & Business Development"
  },
  {
   "specialist": "Preetika",
@@ -1288,7 +1352,8 @@ CANDIDATE_DB = [
    "Marketing Coordinator"
   ],
   "seniority": "Individual Contributor",
-  "seniority_note": "Deep service background but marketing is new; entry-to-mid marketing roles in travel/hospitality fit."
+  "seniority_note": "Deep service background but marketing is new; entry-to-mid marketing roles in travel/hospitality fit.",
+  "domain": "Operations & Admin"
  },
  {
   "specialist": "Preetika",
@@ -1315,7 +1380,8 @@ CANDIDATE_DB = [
    "Digital Marketing Coordinator"
   ],
   "seniority": "Individual Contributor",
-  "seniority_note": "Strong ops/service background; marketing is new, so mid-level marketing-ops roles fit."
+  "seniority_note": "Strong ops/service background; marketing is new, so mid-level marketing-ops roles fit.",
+  "domain": "Operations & Admin"
  },
  {
   "specialist": "Preetika",
@@ -1343,7 +1409,8 @@ CANDIDATE_DB = [
    "Business Development & Marketing Executive"
   ],
   "seniority": "Senior IC",
-  "seniority_note": "Entrepreneurial leader with tech background; marketing is new, so pitch at senior-IC with an ops/tech angle."
+  "seniority_note": "Entrepreneurial leader with tech background; marketing is new, so pitch at senior-IC with an ops/tech angle.",
+  "domain": "General Management"
  },
  {
   "specialist": "Preetika",
@@ -1370,7 +1437,8 @@ CANDIDATE_DB = [
    "Marketing & Business Development Executive"
   ],
   "seniority": "Senior IC",
-  "seniority_note": "Senior in complex B2B sales; marketing is new, so pitch at senior-sales-with-marketing level."
+  "seniority_note": "Senior in complex B2B sales; marketing is new, so pitch at senior-sales-with-marketing level.",
+  "domain": "Sales & Business Development"
  },
  {
   "specialist": "Preetika",
@@ -1398,7 +1466,8 @@ CANDIDATE_DB = [
    "Digital Content Art Director"
   ],
   "seniority": "Senior IC / Team-Lead potential",
-  "seniority_note": "Very senior creative; digital-marketing formalises an already strong content foundation — one of the stronger DM profiles for creative/content roles."
+  "seniority_note": "Very senior creative; digital-marketing formalises an already strong content foundation — one of the stronger DM profiles for creative/content roles.",
+  "domain": "Marketing & Creative"
  },
  {
   "specialist": "Preetika",
@@ -1426,7 +1495,8 @@ CANDIDATE_DB = [
    "Social Media & Lead Gen Executive"
   ],
   "seniority": "Individual Contributor",
-  "seniority_note": "Practical self-taught marketing for his own business; entry-to-mid marketing roles fit as he formalises the skills."
+  "seniority_note": "Practical self-taught marketing for his own business; entry-to-mid marketing roles fit as he formalises the skills.",
+  "domain": "IT & Infrastructure"
  },
  {
   "specialist": "Preetika",
@@ -1453,7 +1523,8 @@ CANDIDATE_DB = [
    "Marketing & Sales Support Executive"
   ],
   "seniority": "Entry",
-  "seniority_note": "Brief CV, limited formal marketing; entry-level marketing/BD roles fit best."
+  "seniority_note": "Brief CV, limited formal marketing; entry-level marketing/BD roles fit best.",
+  "domain": "Operations & Admin"
  },
  {
   "specialist": "Preetika",
@@ -1480,7 +1551,8 @@ CANDIDATE_DB = [
    "Performance Marketing Executive"
   ],
   "seniority": "Senior IC",
-  "seniority_note": "Strong sales producer with real digital-targeting experience; mid-to-senior marketing roles in property fit."
+  "seniority_note": "Strong sales producer with real digital-targeting experience; mid-to-senior marketing roles in property fit.",
+  "domain": "Real Estate"
  },
  {
   "specialist": "Preetika",
@@ -1508,7 +1580,8 @@ CANDIDATE_DB = [
    "Marketing Operations Executive"
   ],
   "seniority": "Individual Contributor",
-  "seniority_note": "Directly relevant advertising-ops background; mid-level marketing/campaign roles are a solid fit."
+  "seniority_note": "Directly relevant advertising-ops background; mid-level marketing/campaign roles are a solid fit.",
+  "domain": "Marketing & Creative"
  },
  {
   "specialist": "Preetika",
@@ -1535,7 +1608,8 @@ CANDIDATE_DB = [
    "Marketing Coordinator"
   ],
   "seniority": "Individual Contributor",
-  "seniority_note": "Extensive but older sales experience; marketing is new, so entry-to-mid marketing roles fit."
+  "seniority_note": "Extensive but older sales experience; marketing is new, so entry-to-mid marketing roles fit.",
+  "domain": "Sales & Business Development"
  },
  {
   "specialist": "Preetika",
@@ -1562,7 +1636,8 @@ CANDIDATE_DB = [
    "Business Development & Marketing Executive"
   ],
   "seniority": "Individual Contributor",
-  "seniority_note": "Sales-strong with media exposure; marketing is a fresh pivot, so mid-level marketing roles fit."
+  "seniority_note": "Sales-strong with media exposure; marketing is a fresh pivot, so mid-level marketing roles fit.",
+  "domain": "Sales & Business Development"
  },
  {
   "specialist": "Preetika",
@@ -1589,7 +1664,8 @@ CANDIDATE_DB = [
    "Junior Data Analyst (Finance)"
   ],
   "seniority": "Individual Contributor",
-  "seniority_note": "Solid finance/ERP data background; data science is new, so mid-level finance-analytics roles fit."
+  "seniority_note": "Solid finance/ERP data background; data science is new, so mid-level finance-analytics roles fit.",
+  "domain": "Finance & Accounting"
  },
  {
   "specialist": "Preetika",
@@ -1617,7 +1693,8 @@ CANDIDATE_DB = [
    "Junior Data Analyst"
   ],
   "seniority": "Individual Contributor",
-  "seniority_note": "Sales/ops background; data science is a significant pivot, so entry-to-mid analyst roles fit."
+  "seniority_note": "Sales/ops background; data science is a significant pivot, so entry-to-mid analyst roles fit.",
+  "domain": "Sales & Business Development"
  },
  {
   "specialist": "Preetika",
@@ -1645,7 +1722,8 @@ CANDIDATE_DB = [
    "Data Analyst (Industrial / Energy)"
   ],
   "seniority": "Senior IC",
-  "seniority_note": "Very senior in technical sales; data science is new, so pitch analytics/BA roles at senior-IC with domain depth."
+  "seniority_note": "Very senior in technical sales; data science is new, so pitch analytics/BA roles at senior-IC with domain depth.",
+  "domain": "Sales & Business Development"
  },
  {
   "specialist": "Preetika",
@@ -1673,7 +1751,8 @@ CANDIDATE_DB = [
    "Junior Data Analyst"
   ],
   "seniority": "Individual Contributor",
-  "seniority_note": "Reporting/KPI exposure helps; data science is new, so entry-to-mid analyst roles fit."
+  "seniority_note": "Reporting/KPI exposure helps; data science is new, so entry-to-mid analyst roles fit.",
+  "domain": "Operations & Admin"
  },
  {
   "specialist": "Preetika",
@@ -1701,7 +1780,8 @@ CANDIDATE_DB = [
    "Junior Data Analyst"
   ],
   "seniority": "Individual Contributor",
-  "seniority_note": "Leadership/ops background; data science is a big pivot, so entry-to-mid analyst roles fit."
+  "seniority_note": "Leadership/ops background; data science is a big pivot, so entry-to-mid analyst roles fit.",
+  "domain": "Operations & Admin"
  },
  {
   "specialist": "Preetika",
@@ -1729,7 +1809,8 @@ CANDIDATE_DB = [
    "BI Analyst (Finance)"
   ],
   "seniority": "Senior IC / Team-Lead potential",
-  "seniority_note": "Managerial finance-analysis background; as a data pivot, pitch finance-analytics at senior-IC level."
+  "seniority_note": "Managerial finance-analysis background; as a data pivot, pitch finance-analytics at senior-IC level.",
+  "domain": "Finance & Accounting"
  },
  {
   "specialist": "Preetika",
@@ -1757,7 +1838,8 @@ CANDIDATE_DB = [
    "Data Analyst (Construction / Operations)"
   ],
   "seniority": "Senior IC",
-  "seniority_note": "Senior EHS manager already using safety data; as a data pivot, safety-analytics roles at senior-IC fit well."
+  "seniority_note": "Senior EHS manager already using safety data; as a data pivot, safety-analytics roles at senior-IC fit well.",
+  "domain": "EHS & Safety"
  },
  {
   "specialist": "Preetika",
@@ -1785,7 +1867,8 @@ CANDIDATE_DB = [
    "Junior Data Analyst"
   ],
   "seniority": "Individual Contributor",
-  "seniority_note": "Retail-ops background; data science is new, so entry-to-mid analyst roles fit."
+  "seniority_note": "Retail-ops background; data science is new, so entry-to-mid analyst roles fit.",
+  "domain": "Operations & Admin"
  },
  {
   "specialist": "Preetika",
@@ -1813,7 +1896,8 @@ CANDIDATE_DB = [
    "Digital Transformation Consultant (Sales-facing)"
   ],
   "seniority": "Senior IC",
-  "seniority_note": "Very senior in ICT sales; digital-innovation is new, so pitch solutions/BD or transformation roles at senior-IC."
+  "seniority_note": "Very senior in ICT sales; digital-innovation is new, so pitch solutions/BD or transformation roles at senior-IC.",
+  "domain": "Sales & Business Development"
  },
  {
   "specialist": "Preetika",
@@ -1841,7 +1925,8 @@ CANDIDATE_DB = [
    "Digital Innovation Support Executive"
   ],
   "seniority": "Senior IC",
-  "seniority_note": "Senior in regional sales/ops; digital-innovation is new, so pitch analytics/transformation at senior-IC."
+  "seniority_note": "Senior in regional sales/ops; digital-innovation is new, so pitch analytics/transformation at senior-IC.",
+  "domain": "Sales & Business Development"
  },
  {
   "specialist": "Preetika",
@@ -1868,7 +1953,8 @@ CANDIDATE_DB = [
    "Project Manager (Digital Transformation)"
   ],
   "seniority": "Senior IC / Managerial upside",
-  "seniority_note": "Senior GM/founder; best positioned in transformation-lead or management roles leveraging operations depth."
+  "seniority_note": "Senior GM/founder; best positioned in transformation-lead or management roles leveraging operations depth.",
+  "domain": "General Management"
  },
  {
   "specialist": "Preetika",
@@ -1896,7 +1982,8 @@ CANDIDATE_DB = [
    "Digital Transformation Executive"
   ],
   "seniority": "Individual Contributor",
-  "seniority_note": "Already ran digitalisation projects; mid-level automation/BA roles are a genuine fit."
+  "seniority_note": "Already ran digitalisation projects; mid-level automation/BA roles are a genuine fit.",
+  "domain": "Operations & Admin"
  },
  {
   "specialist": "Preetika",
@@ -1924,7 +2011,8 @@ CANDIDATE_DB = [
    "Business Analyst (Digital Services)"
   ],
   "seniority": "Individual Contributor",
-  "seniority_note": "Varied support/BD background; digital-innovation is new, so mid-level roles fit."
+  "seniority_note": "Varied support/BD background; digital-innovation is new, so mid-level roles fit.",
+  "domain": "Operations & Admin"
  },
  {
   "specialist": "Preetika",
@@ -1952,7 +2040,8 @@ CANDIDATE_DB = [
    "Digital Transformation Analyst"
   ],
   "seniority": "Senior IC",
-  "seniority_note": "Strong project/financial-control background; digital-innovation new, so pitch analytics/BA at senior-IC."
+  "seniority_note": "Strong project/financial-control background; digital-innovation new, so pitch analytics/BA at senior-IC.",
+  "domain": "Finance & Accounting"
  },
  {
   "specialist": "Preetika",
@@ -1980,7 +2069,8 @@ CANDIDATE_DB = [
    "Digital Strategy Consultant"
   ],
   "seniority": "Senior IC / Managerial upside",
-  "seniority_note": "Senior IT and NGO leader; best in transformation/strategy roles rather than hands-on tooling."
+  "seniority_note": "Senior IT and NGO leader; best in transformation/strategy roles rather than hands-on tooling.",
+  "domain": "IT & Infrastructure"
  },
  {
   "specialist": "Preetika",
@@ -2008,7 +2098,8 @@ CANDIDATE_DB = [
    "Finance Digitalisation Executive"
   ],
   "seniority": "Senior IC",
-  "seniority_note": "Senior finance professional; digital-innovation is new, so pitch finance-transformation/BA at senior-IC."
+  "seniority_note": "Senior finance professional; digital-innovation is new, so pitch finance-transformation/BA at senior-IC.",
+  "domain": "Finance & Accounting"
  },
  {
   "specialist": "Preetika",
@@ -2036,7 +2127,8 @@ CANDIDATE_DB = [
    "Digital Transformation Delivery Lead"
   ],
   "seniority": "Senior IC / Managerial upside",
-  "seniority_note": "Senior IT/PM background; genuinely ready for digital-PM or transformation-delivery roles."
+  "seniority_note": "Senior IT/PM background; genuinely ready for digital-PM or transformation-delivery roles.",
+  "domain": "IT & Infrastructure"
  },
  {
   "specialist": "Preetika",
@@ -2063,7 +2155,8 @@ CANDIDATE_DB = [
    "Digital Innovation Support Executive"
   ],
   "seniority": "Individual Contributor",
-  "seniority_note": "Operations-management background with some data work; mid-level analytics/transformation roles fit."
+  "seniority_note": "Operations-management background with some data work; mid-level analytics/transformation roles fit.",
+  "domain": "Operations & Admin"
  },
  {
   "specialist": "Preetika",
@@ -2090,7 +2183,8 @@ CANDIDATE_DB = [
    "Digital Innovation Coordinator"
   ],
   "seniority": "Senior IC / Managerial upside",
-  "seniority_note": "Very senior public-sector/social manager; digital-innovation is new, so pitch programme-transformation at senior level."
+  "seniority_note": "Very senior public-sector/social manager; digital-innovation is new, so pitch programme-transformation at senior level.",
+  "domain": "Public Sector & Social"
  },
  {
   "specialist": "Preetika",
@@ -2118,7 +2212,8 @@ CANDIDATE_DB = [
    "Digital Innovation Coordinator"
   ],
   "seniority": "Senior IC",
-  "seniority_note": "Senior operations/programme leader; digital-innovation is new, so pitch transformation/BA at senior-IC."
+  "seniority_note": "Senior operations/programme leader; digital-innovation is new, so pitch transformation/BA at senior-IC.",
+  "domain": "Operations & Admin"
  },
  {
   "specialist": "Preetika",
@@ -2146,7 +2241,8 @@ CANDIDATE_DB = [
    "Digital Innovation / Customer Engagement Executive"
   ],
   "seniority": "Senior IC",
-  "seniority_note": "Senior sales/marketing manager; digital-innovation is new, so pitch transformation/BA at senior-IC."
+  "seniority_note": "Senior sales/marketing manager; digital-innovation is new, so pitch transformation/BA at senior-IC.",
+  "domain": "Sales & Business Development"
  },
  {
   "specialist": "Preetika",
@@ -2174,7 +2270,8 @@ CANDIDATE_DB = [
    "Application / Systems Developer"
   ],
   "seniority": "Senior IC",
-  "seniority_note": "Strong network/infra credentials; web-dev is new, so junior-to-mid developer or DevOps roles leveraging infra depth fit."
+  "seniority_note": "Strong network/infra credentials; web-dev is new, so junior-to-mid developer or DevOps roles leveraging infra depth fit.",
+  "domain": "IT & Infrastructure"
  },
  {
   "specialist": "Preetika",
@@ -2201,7 +2298,8 @@ CANDIDATE_DB = [
    "Web Content / Application Developer"
   ],
   "seniority": "Entry",
-  "seniority_note": "Career-changer from tutoring with some web-content work; entry-level developer roles fit best."
+  "seniority_note": "Career-changer from tutoring with some web-content work; entry-level developer roles fit best.",
+  "domain": "Education & Training"
  },
  {
   "specialist": "Preetika",
@@ -2229,7 +2327,8 @@ CANDIDATE_DB = [
    "IT Infrastructure Engineer"
   ],
   "seniority": "Individual Contributor",
-  "seniority_note": "Genuine IT-admin and Azure/M365 experience; cloud-admin formalises it, so mid-level cloud-admin roles are a real fit."
+  "seniority_note": "Genuine IT-admin and Azure/M365 experience; cloud-admin formalises it, so mid-level cloud-admin roles are a real fit.",
+  "domain": "IT & Infrastructure"
  },
  {
   "specialist": "Preetika",
@@ -2256,7 +2355,8 @@ CANDIDATE_DB = [
    "IT Support Executive"
   ],
   "seniority": "Entry",
-  "seniority_note": "Tech-retail troubleshooting helps but no formal IT role; entry-level support roles fit best."
+  "seniority_note": "Tech-retail troubleshooting helps but no formal IT role; entry-level support roles fit best.",
+  "domain": "IT & Infrastructure"
  },
  {
   "specialist": "Preetika",
@@ -2283,7 +2383,8 @@ CANDIDATE_DB = [
    "Desktop Support Executive"
   ],
   "seniority": "Individual Contributor",
-  "seniority_note": "Admin/facilities background; IT-domain is new, so entry-to-mid IT-support/coordination roles fit."
+  "seniority_note": "Admin/facilities background; IT-domain is new, so entry-to-mid IT-support/coordination roles fit.",
+  "domain": "Operations & Admin"
  },
  {
   "specialist": "Preetika",
@@ -2310,7 +2411,8 @@ CANDIDATE_DB = [
    "IT Support Executive (Junior)"
   ],
   "seniority": "Entry",
-  "seniority_note": "Career-changer with no prior IT role; entry-level support roles with training fit best."
+  "seniority_note": "Career-changer with no prior IT role; entry-level support roles with training fit best.",
+  "domain": "Operations & Admin"
  },
  {
   "specialist": "Preetika",
@@ -2337,7 +2439,8 @@ CANDIDATE_DB = [
    "Desktop Support Executive"
   ],
   "seniority": "Individual Contributor",
-  "seniority_note": "ICT-sales exposure helps context; hands-on IT is new, so entry-to-mid support roles fit."
+  "seniority_note": "ICT-sales exposure helps context; hands-on IT is new, so entry-to-mid support roles fit.",
+  "domain": "Sales & Business Development"
  },
  {
   "specialist": "Preetika",
@@ -2364,6 +2467,7 @@ CANDIDATE_DB = [
    "IT Infrastructure Support Executive"
   ],
   "seniority": "Individual Contributor",
-  "seniority_note": "Directly relevant data-centre/facilities engineering; infra-support is a natural adjacency, so mid-level DC/infra roles fit well."
+  "seniority_note": "Directly relevant data-centre/facilities engineering; infra-support is a natural adjacency, so mid-level DC/infra roles fit well.",
+  "domain": "Engineering & Manufacturing"
  }
 ]
