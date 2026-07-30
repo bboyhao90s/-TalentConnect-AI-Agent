@@ -106,6 +106,56 @@ def run_ai(system_prompt: str, user_content: str, temperature: float = 0.4) -> s
         raise RuntimeError(f"OpenAI request failed: {exc}") from exc
 
 
+def research_company(company: str, job_title: str = "") -> str:
+    """Use the OpenAI web-search tool to research a company so matching can
+    judge fit against the real employer, not just the JD text. Returns a short
+    factual brief, or an empty string if research is unavailable/fails (the
+    caller then proceeds with JD-only matching)."""
+    api_key = get_api_key()
+    if not api_key or not company.strip():
+        return ""
+    try:
+        from openai import OpenAI
+
+        client = OpenAI(api_key=api_key)
+        prompt = (
+            f"Research the company \"{company}\" (Singapore context if applicable). "
+            f"The role being hired is: {job_title or 'not specified'}.\n\n"
+            "Give a short factual brief (under 200 words) covering: what the company "
+            "does (industry, products/services), its size/stage if known, the sectors "
+            "or clients it serves, and any context that affects what kind of hire would "
+            "fit (e.g. fast-paced startup vs established MNC, technical vs commercial "
+            "focus). If you cannot find reliable information, say so plainly and do not "
+            "invent details."
+        )
+        # Try the web-search-enabled Responses API first
+        try:
+            resp = client.responses.create(
+                model=get_model(),
+                tools=[{"type": "web_search_preview"}],
+                input=prompt,
+            )
+            text = getattr(resp, "output_text", "") or ""
+            if text.strip():
+                return text.strip()
+        except Exception:
+            pass  # fall through to non-search fallback
+        # Fallback: model's own knowledge, clearly caveated
+        resp2 = client.chat.completions.create(
+            model=get_model(), temperature=0.3, max_tokens=400,
+            messages=[
+                {"role": "system", "content": "You provide brief, factual company "
+                 "briefs. If unsure, say so; never invent specifics."},
+                {"role": "user", "content": prompt},
+            ],
+        )
+        out = resp2.choices[0].message.content or ""
+        return (out.strip() + "\n\n(Note: based on general knowledge, not a live web "
+                "lookup.)") if out.strip() else ""
+    except Exception:
+        return ""  # research is best-effort; matching continues without it
+
+
 # ---------------------------------------------------------------------------
 # File reading (PDF / DOCX / TXT)
 # ---------------------------------------------------------------------------
@@ -206,6 +256,7 @@ def init_store() -> None:
     st.session_state.setdefault("candidates", [])
     st.session_state.setdefault("jobs", [])
     st.session_state.setdefault("outputs", [])
+    st.session_state.setdefault("status_overrides", {})
     # Auto-load persisted data so records survive page refreshes
     if os.path.exists(STORE_FILE):
         try:
@@ -214,6 +265,7 @@ def init_store() -> None:
             st.session_state.candidates = data.get("candidates", [])
             st.session_state.jobs = data.get("jobs", [])
             st.session_state.outputs = data.get("outputs", [])
+            st.session_state.status_overrides = data.get("status_overrides", {})
         except Exception:
             pass  # corrupted/missing file: start clean rather than crash
     st.session_state["_store_loaded"] = True
@@ -257,6 +309,7 @@ def db_candidate_as_resume(rec: dict) -> str:
         f"Course: {rec.get('course_code','')} ({rec.get('course_name','')})  |  "
         f"Cohort: {rec.get('cohort','')}",
         f"Experience: {rec.get('years_experience','')}",
+        f"Domain knowledge: {rec.get('domain','')}",
         f"Industry background: {rec.get('industry_background','')}",
         "",
         f"Summary: {rec.get('prior_experience_summary','')}",
@@ -268,6 +321,27 @@ def db_candidate_as_resume(rec: dict) -> str:
         f"Seniority: {rec.get('seniority','')} — {rec.get('seniority_note','')}",
     ]
     return "\n".join(lines)
+
+
+def candidate_status(rec: dict) -> str:
+    """Return a database candidate's current status. In-app changes are stored
+    as overrides in the persistent store (keyed by full name); if none, fall
+    back to the baseline 'status' in candidate_db.py, else 'Active'."""
+    init_store()
+    overrides = st.session_state.setdefault("status_overrides", {})
+    name = rec.get("full_name", "").strip().lower()
+    if name in overrides:
+        return overrides[name]
+    return rec.get("status", "Active")
+
+
+def set_candidate_status(full_name: str, status: str) -> None:
+    """Set a database candidate's status (Active / Placed / Inactive) and
+    persist it. Works even though candidate_db.py itself is read-only."""
+    init_store()
+    overrides = st.session_state.setdefault("status_overrides", {})
+    overrides[full_name.strip().lower()] = status
+    persist()
 
 
 def import_db_candidate(rec: dict) -> dict:
@@ -358,6 +432,7 @@ def export_store() -> str:
             "candidates": st.session_state.candidates,
             "jobs": st.session_state.jobs,
             "outputs": st.session_state.outputs,
+            "status_overrides": st.session_state.get("status_overrides", {}),
         },
         ensure_ascii=False, indent=2,
     )
@@ -373,6 +448,9 @@ def import_store(json_text: str) -> dict:
         added = [x for x in items if isinstance(x, dict) and x.get("id") and x["id"] not in existing]
         st.session_state[key].extend(added)
         counts[key] = len(added)
+    # merge status overrides (import wins for any placed/inactive marks)
+    if isinstance(data.get("status_overrides"), dict):
+        st.session_state.setdefault("status_overrides", {}).update(data["status_overrides"])
     return counts
 
 

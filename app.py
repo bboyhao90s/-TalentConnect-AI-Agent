@@ -257,33 +257,52 @@ if page.startswith("1"):
         st.write(f"{len(db)} classified candidates. Filter to find fits, then "
                  "**Add to my candidates** to use them in matching, fitment and outreach.")
 
-        fc1, fc2, fc3, fc4 = st.columns([1, 1, 1, 2])
-        specialists = ["All"] + sorted({c["specialist"] for c in db})
-        courses = ["All"] + sorted({c["course_code"] for c in db})
-        cohorts = ["All"] + sorted({c["cohort"] for c in db})
+        fc1, fc2, fc3 = st.columns(3)
         with fc1:
-            f_spec = st.selectbox("Talent Specialist", specialists, key="db_spec")
+            f_domain = st.multiselect("Domain knowledge",
+                candidate_db.DOMAINS, key="db_domain",
+                help="Group by what candidates actually did before — their industry/"
+                     "function — independent of which course they took.")
         with fc2:
-            f_course = st.selectbox("Course", courses, key="db_course")
+            f_spec = st.multiselect("Talent Specialist",
+                sorted({c["specialist"] for c in db}), key="db_spec")
         with fc3:
-            f_cohort = st.selectbox("Cohort", cohorts, key="db_cohort")
+            f_course = st.multiselect("Course",
+                sorted({c["course_code"] for c in db}), key="db_course")
+        fc4, fc5 = st.columns([1, 2])
         with fc4:
+            f_cohort = st.multiselect("Cohort",
+                sorted({c["cohort"] for c in db}), key="db_cohort")
+        with fc5:
             f_search = st.text_input("Search name / skill / role", key="db_search",
                                      placeholder="e.g. finance, data analyst, Sarah")
+        gc1, gc2 = st.columns([1, 1])
+        with gc1:
+            f_status = st.multiselect("Status", ["Active", "Placed", "Inactive"],
+                default=["Active"], key="db_status",
+                help="By default shows Active only. Add Placed/Inactive to see them.")
+        with gc2:
+            group_by_domain = st.checkbox("📁 Group by domain knowledge", value=True,
+                                          key="db_group")
+        st.caption("Leave a filter empty to include all. Select one or more to narrow.")
 
         def _match(c):
-            if f_spec != "All" and c["specialist"] != f_spec:
+            if f_status and utils.candidate_status(c) not in f_status:
                 return False
-            if f_course != "All" and c["course_code"] != f_course:
+            if f_domain and c.get("domain") not in f_domain:
                 return False
-            if f_cohort != "All" and c["cohort"] != f_cohort:
+            if f_spec and c["specialist"] not in f_spec:
+                return False
+            if f_course and c["course_code"] not in f_course:
+                return False
+            if f_cohort and c["cohort"] not in f_cohort:
                 return False
             if f_search.strip():
                 q = f_search.lower()
                 hay = " ".join([
                     c["full_name"], c["industry_background"], c["skill_marriage"],
                     " ".join(c["skills"]), " ".join(c["recommended_roles"]),
-                    c["seniority"], c["prior_experience_summary"],
+                    c["seniority"], c["prior_experience_summary"], c.get("domain", ""),
                 ]).lower()
                 if q not in hay:
                     return False
@@ -293,13 +312,19 @@ if page.startswith("1"):
         st.caption(f"Showing {len(results)} of {len(db)} candidates.")
 
         imported_names = {c["name"].strip().lower() for c in st.session_state.candidates}
-        for c in results:
+
+        def _render_candidate(c):
             already = c["full_name"].strip().lower() in imported_names
-            label = (f"{c['full_name']}  ·  {c['specialist']} · {c['course_code']} · "
-                     f"{c['seniority']}" + ("  ✅ added" if already else ""))
+            status = utils.candidate_status(c)
+            status_icon = {"Active": "🟢", "Placed": "✅", "Inactive": "⚪"}.get(status, "🟢")
+            label = (f"{status_icon} {c['full_name']}  ·  {c['specialist']} · "
+                     f"{c['course_code']} · {c['seniority']}"
+                     + (f"  [{status}]" if status != "Active" else "")
+                     + ("  · added" if already else ""))
             with st.expander(label):
-                st.markdown(f"**Course:** {c['course_name']} ({c['course_code']}) · "
-                            f"**Cohort:** {c['cohort']} · **Specialist:** {c['specialist']}")
+                st.markdown(f"**Domain:** {c.get('domain','—')}  ·  "
+                            f"**Course:** {c['course_name']} ({c['course_code']})  ·  "
+                            f"**Cohort:** {c['cohort']}  ·  **Specialist:** {c['specialist']}")
                 if c.get("email"):
                     st.markdown(f"**Email:** {c['email']}")
                 st.markdown(f"**Experience:** {c['years_experience']} · "
@@ -309,6 +334,22 @@ if page.startswith("1"):
                 st.markdown(f"**Skill Marriage:** {c['skill_marriage']}")
                 st.markdown(f"**Recommended roles:** {', '.join(c['recommended_roles'])}")
                 st.markdown(f"**Seniority:** {c['seniority']} — {c['seniority_note']}")
+
+                st.markdown(f"**Status:** {status_icon} {status}")
+                sc1, sc2, sc3 = st.columns(3)
+                with sc1:
+                    if status != "Active" and st.button("🟢 Mark Active",
+                                                         key=f"act_{c['full_name']}"):
+                        utils.set_candidate_status(c["full_name"], "Active"); st.rerun()
+                with sc2:
+                    if status != "Placed" and st.button("✅ Mark Placed",
+                                                         key=f"plc_{c['full_name']}"):
+                        utils.set_candidate_status(c["full_name"], "Placed"); st.rerun()
+                with sc3:
+                    if status != "Inactive" and st.button("⚪ Mark Inactive",
+                                                          key=f"ina_{c['full_name']}"):
+                        utils.set_candidate_status(c["full_name"], "Inactive"); st.rerun()
+
                 if already:
                     st.success("Already in your candidates — available in every module.")
                 elif st.button("➕ Add to my candidates", key=f"imp_{c['full_name']}"):
@@ -316,6 +357,19 @@ if page.startswith("1"):
                     st.success(f"Added {c['full_name']}. Now available in matching, "
                                "fitment, interview prep and outreach.")
                     st.rerun()
+
+        if group_by_domain:
+            # Show candidates grouped under each domain family
+            domains_present = [d for d in candidate_db.DOMAINS
+                               if any(c.get("domain") == d for c in results)]
+            for d in domains_present:
+                group = [c for c in results if c.get("domain") == d]
+                st.markdown(f"### {d}  ·  {len(group)}")
+                for c in group:
+                    _render_candidate(c)
+        else:
+            for c in results:
+                _render_candidate(c)
 
     # -- My candidates: the original add / generate-profile flow --------------
     with tab_mine:
@@ -474,28 +528,74 @@ elif page.startswith("3"):
             else:
                 db = candidate_db.CANDIDATE_DB
                 if scope == "Database (filtered)":
-                    dc1, dc2, dc3 = st.columns(3)
+                    st.caption("Leave a filter empty to include all. "
+                               "Select one or more to narrow.")
+                    dc1, dc2 = st.columns(2)
                     with dc1:
-                        m_spec = st.selectbox("Specialist",
-                            ["All"] + sorted({c["specialist"] for c in db}), key="p3_spec")
+                        m_domain = st.multiselect("Domain knowledge",
+                            candidate_db.DOMAINS, key="p3_domain")
                     with dc2:
-                        m_course = st.selectbox("Course",
-                            ["All"] + sorted({c["course_code"] for c in db}), key="p3_course")
+                        m_spec = st.multiselect("Specialist",
+                            sorted({c["specialist"] for c in db}), key="p3_spec")
+                    dc3, dc4 = st.columns(2)
                     with dc3:
-                        m_cohort = st.selectbox("Cohort",
-                            ["All"] + sorted({c["cohort"] for c in db}), key="p3_cohort")
+                        m_course = st.multiselect("Course",
+                            sorted({c["course_code"] for c in db}), key="p3_course")
+                    with dc4:
+                        m_cohort = st.multiselect("Cohort",
+                            sorted({c["cohort"] for c in db}), key="p3_cohort")
                     db = [c for c in db
-                          if (m_spec == "All" or c["specialist"] == m_spec)
-                          and (m_course == "All" or c["course_code"] == m_course)
-                          and (m_cohort == "All" or c["cohort"] == m_cohort)]
+                          if (not m_domain or c.get("domain") in m_domain)
+                          and (not m_spec or c["specialist"] in m_spec)
+                          and (not m_course or c["course_code"] in m_course)
+                          and (not m_cohort or c["cohort"] in m_cohort)]
                 pool = [{"name": c["full_name"],
-                         "text": utils.db_candidate_as_resume(c)} for c in db]
+                         "text": utils.db_candidate_as_resume(c),
+                         "status": utils.candidate_status(c)} for c in db]
+
+            # Exclude placed candidates from matching by default
+            if scope != "My candidates":
+                include_placed = st.checkbox(
+                    "Include placed / inactive candidates in matching",
+                    value=False, key="p3_incl_placed",
+                    help="By default, candidates marked Placed or Inactive are left "
+                         "out of matching so you only see available people.")
+                if not include_placed:
+                    before = len(pool)
+                    pool = [p for p in pool if p.get("status", "Active") == "Active"]
+                    hidden = before - len(pool)
+                    if hidden:
+                        st.caption(f"{hidden} placed/inactive candidate(s) hidden from matching.")
 
             st.caption(f"{len(pool)} candidate(s) in scope to match.")
+
+            research_on = st.checkbox(
+                "🔎 Research the employer online first (due diligence)",
+                value=bool(job.get("employer")),
+                help="Looks up the company to understand their business, so matching "
+                     "judges fit against the real employer — not just JD keywords. "
+                     "Adds ~10-20 seconds and a small cost.",
+            )
+            if research_on and not job.get("employer"):
+                st.info("Add the employer/company name to this job (JD analysis tab) "
+                        "for the best research results.")
+
             if st.button("Run candidate matching", type="primary", disabled=not pool):
+                brief = ""
+                if research_on and job.get("employer"):
+                    with st.spinner(f"Researching {job['employer']}…"):
+                        brief = utils.research_company(job["employer"], job["title"])
+                    if brief:
+                        with st.expander("🔎 Company brief used for matching"):
+                            st.markdown(brief)
+
                 pool_text = "\n\n---\n\n".join(p["text"][:3000] for p in pool)
-                content = (f"=== JOB DESCRIPTION: {job['title']} ===\n{job['jd']}"
-                           f"\n\n=== CANDIDATE POOL ({len(pool)} candidates) ===\n\n{pool_text}")
+                company_block = (f"=== COMPANY BRIEF: {job['employer']} ===\n{brief}\n\n"
+                                 if brief else "")
+                content = (f"{company_block}=== JOB DESCRIPTION: {job['title']}"
+                           f"{' @ ' + job['employer'] if job.get('employer') else ''} ===\n"
+                           f"{job['jd']}\n\n=== CANDIDATE POOL ({len(pool)} candidates) ==="
+                           f"\n\n{pool_text}")
                 result = ai_generate(prompts.CANDIDATE_MATCHING, content)
                 if result:
                     utils.add_output("Match report", result, job_id=job["id"],
