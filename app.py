@@ -601,15 +601,66 @@ elif page.startswith("3"):
                     utils.add_output("Match report", result, job_id=job["id"],
                                      title=f"Match report — {job['title']}")
                     st.session_state["p3_match_out"] = result
+                    # remember the pool that was matched, so we can offer a checklist
+                    st.session_state["p3_matched_pool"] = [p["name"] for p in pool]
             if st.session_state.get("p3_match_out"):
                 show_output(st.session_state["p3_match_out"], "match_report.txt", "p3_m")
 
+                matched_names = st.session_state.get("p3_matched_pool", [])
+                if matched_names:
+                    st.markdown("---")
+                    st.markdown("**Select candidates to take to Outreach**")
+                    st.caption("Tick the good-fit candidates from the report above, then "
+                               "send them straight to the Outreach tab.")
+                    picked = []
+                    for nm in matched_names:
+                        if st.checkbox(nm, key=f"p3_pick_{nm}"):
+                            picked.append(nm)
+                    if st.button("✅ Add selected to this job + Outreach",
+                                 type="primary", disabled=not picked):
+                        # ensure each picked candidate exists in the working list
+                        ids = []
+                        db_by_name = {c["full_name"]: c for c in candidate_db.CANDIDATE_DB}
+                        for nm in picked:
+                            existing = next((c for c in st.session_state.candidates
+                                             if c["name"].strip().lower() == nm.strip().lower()),
+                                            None)
+                            if existing:
+                                ids.append(existing["id"])
+                            elif nm in db_by_name:
+                                rec = utils.import_db_candidate(db_by_name[nm])
+                                ids.append(rec["id"])
+                        # 1) associate to the job as its shortlist
+                        utils.set_job_shortlist(job["id"], ids)
+                        # 2) carry into outreach, pre-selected
+                        st.session_state["p3_outreach_preselect"] = ids
+                        st.session_state["p3_outreach_seeded"] = False
+                        st.success(f"{len(ids)} candidate(s) added to \"{job['title']}\" "
+                                   "and sent to the Outreach tab.")
+
+                    # show the job's current shortlist, if any
+                    shortlist = utils.job_shortlist_names(job)
+                    if shortlist:
+                        st.markdown(f"**Shortlisted for this job ({len(shortlist)}):** "
+                                    + ", ".join(shortlist))
+
         with tab_outreach:
             pool_labels = {c["id"]: c["name"] for c in st.session_state.candidates}
+            preselect = [cid for cid in st.session_state.get("p3_outreach_preselect", [])
+                         if cid in pool_labels]
+            # Seed the multiselect once from the matching hand-off, so the picked
+            # candidates appear already selected when you open this tab.
+            if preselect and not st.session_state.get("p3_outreach_seeded"):
+                st.session_state["p3_outreach_select"] = preselect
+                st.session_state["p3_outreach_seeded"] = True
+            if preselect:
+                st.caption(f"{len(preselect)} candidate(s) carried over from matching. "
+                           "Adjust the selection if needed.")
             chosen = st.multiselect(
                 "Attach candidate profiles (leave empty for exploratory outreach)",
                 list(pool_labels),
                 format_func=lambda x: pool_labels.get(x, x),
+                key="p3_outreach_select",
             )
             if st.button("Draft employer outreach", type="primary"):
                 content = f"=== JOB DESCRIPTION: {job['title']} ===\n{job['jd']}"
@@ -847,7 +898,7 @@ else:
     if st.session_state.jobs:
         st.dataframe(
             [{"Job title": j["title"], "Employer": j["employer"] or "—",
-              "Added": j["created"],
+              "Shortlisted candidates": ", ".join(utils.job_shortlist_names(j)) or "—",
               "Match report": "✅" if utils.outputs_for(job_id=j["id"], output_type="Match report") else "—",
               "Outreach": "✅" if utils.outputs_for(job_id=j["id"], output_type="Outreach") else "—"}
              for j in st.session_state.jobs],

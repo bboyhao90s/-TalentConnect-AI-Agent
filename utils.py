@@ -382,6 +382,28 @@ def get_job(jid: str) -> dict | None:
     return next((j for j in st.session_state.jobs if j["id"] == jid), None)
 
 
+def set_job_shortlist(job_id: str, candidate_ids: list) -> None:
+    """Associate a set of candidates with a job as its shortlist. Merges with
+    any existing shortlist (no duplicates) and persists."""
+    init_store()
+    job = get_job(job_id)
+    if not job:
+        return
+    current = job.get("shortlist", [])
+    for cid in candidate_ids:
+        if cid not in current:
+            current.append(cid)
+    job["shortlist"] = current
+    persist()
+
+
+def job_shortlist_names(job: dict) -> list:
+    """Return the display names of a job's shortlisted candidates."""
+    init_store()
+    by_id = {c["id"]: c["name"] for c in st.session_state.candidates}
+    return [by_id.get(cid, "(removed)") for cid in job.get("shortlist", [])]
+
+
 def add_output(output_type: str, content: str, candidate_id: str | None = None,
                job_id: str | None = None, title: str = "") -> dict:
     """Auto-record every generated artefact, linked to candidate and/or job."""
