@@ -3522,5 +3522,1867 @@ CANDIDATE_DB = [
   "seniority": "Senior IC",
   "seniority_note": "Strong CA with systems-implementation track record; genuinely ready for finance-transformation/BA roles at senior-IC.",
   "domain": "Finance & Accounting"
+ },
+ {
+  "specialist": "Jim",
+  "course_code": "PDDM",
+  "course_name": "Professional Diploma in Digital Marketing",
+  "cohort": "DM-0726",
+  "full_name": "Jason Chia Hee Peng",
+  "email": "",
+  "years_experience": "25+",
+  "industry_background": "Creative / art direction & brand design (advertising)",
+  "prior_experience_summary": "Long-serving Art Director across multiple agencies (Greative, Flash Communications, Royalworkz), leading creative concept development and campaigns for major brands (Prudential, Shell, Unilever, TikTok).",
+  "skills": [
+   "Art Direction & Creative Concept",
+   "Brand Development",
+   "Campaign Design (Print, Web, Interactive)",
+   "Client & Stakeholder Engagement",
+   "Content Creation",
+   "Digital Marketing (foundational)"
+  ],
+  "skill_marriage": "Combines decades of agency art-direction and brand-campaign experience with new digital-marketing skills — can both create the creative and run the campaigns, ideal for content-led or creative marketing roles.",
+  "recommended_roles": [
+   "Content / Creative Marketing Lead",
+   "Brand & Campaign Marketing Executive",
+   "Social Media & Creative Marketing Executive"
+  ],
+  "seniority": "Senior IC / Team-Lead potential",
+  "seniority_note": "Very senior creative; digital-marketing formalises a strong creative base — pitch content/creative lead, not entry-level.",
+  "domain": "Marketing & Creative"
+ },
+ {
+  "specialist": "Jim",
+  "course_code": "PDDM",
+  "course_name": "Professional Diploma in Digital Marketing",
+  "cohort": "DM-0726",
+  "full_name": "John Lee Sze Hian (Li Shixian)",
+  "email": "shleesx13@gmail.com",
+  "years_experience": "15+",
+  "industry_background": "Real estate sales, coaching & telecom field work",
+  "prior_experience_summary": "Varied career spanning real-estate sales management, bowling coaching/equipment sales, and current telecom field network-testing and customer advisory.",
+  "skills": [
+   "Sales & Customer Advisory",
+   "Real Estate Sales",
+   "Coaching / Training",
+   "Field Assessment",
+   "Customer Service",
+   "Digital Marketing (foundational)"
+  ],
+  "skill_marriage": "Combines sales, coaching and customer-advisory experience with new digital-marketing skills — suited to entry-level marketing, sales-support or customer-engagement roles.",
+  "recommended_roles": [
+   "Digital Marketing Executive (SME)",
+   "Sales & Marketing Support Executive",
+   "Customer Engagement / Marketing Coordinator"
+  ],
+  "seniority": "Individual Contributor",
+  "seniority_note": "Varied non-marketing background; marketing is a fresh pivot, so entry-level roles fit best.",
+  "domain": "Sales & Business Development"
+ },
+ {
+  "specialist": "Jim",
+  "course_code": "PDDM",
+  "course_name": "Professional Diploma in Digital Marketing",
+  "cohort": "DM-0726",
+  "full_name": "Susan Lim",
+  "email": "",
+  "years_experience": "25+",
+  "industry_background": "Risk, compliance & wealth management (private banking)",
+  "prior_experience_summary": "CFA/FRM-qualified senior risk and compliance leader (Head of Risk Asia at Lombard Odier, Director at UBS), implementing risk frameworks, investment suitability and governance in private banking.",
+  "skills": [
+   "Risk Management & Governance",
+   "Compliance (AML, Investment Suitability)",
+   "Financial Analysis",
+   "Regulatory Frameworks",
+   "Stakeholder Communication",
+   "Digital Marketing (foundational)"
+  ],
+  "skill_marriage": "Combines senior risk/compliance and financial expertise with new digital-marketing skills — suited to compliance-aware marketing, financial-services content marketing or marketing roles in regulated wealth/banking settings.",
+  "recommended_roles": [
+   "Marketing Executive (Financial Services / Compliance-aware)",
+   "Content Marketing (Wealth / Banking)",
+   "Marketing & Communications Executive"
+  ],
+  "seniority": "Senior IC / Managerial upside",
+  "seniority_note": "Very senior in risk/compliance; marketing is a significant pivot — best in finance-sector marketing leveraging domain credibility, not creative/entry roles.",
+  "domain": "Banking & Wealth"
+ },
+ {
+  "specialist": "Jim",
+  "course_code": "PDDM",
+  "course_name": "Professional Diploma in Digital Marketing",
+  "cohort": "DM-0726",
+  "full_name": "Nurul Yaqin Binte Tahar",
+  "email": "nurul.tahar@live.com",
+  "years_experience": "10+",
+  "industry_background": "Customer service (health, insurance, banking)",
+  "prior_experience_summary": "10+ years in customer-service and relationship roles across health insurance, hospitality and banking (DBS, Raffles Health Insurance), skilled in CRM, complaint resolution and customer retention.",
+  "skills": [
+   "Customer Service & Retention",
+   "CRM Systems",
+   "Complaint Resolution",
+   "Client Communication",
+   "Time Management",
+   "Digital Marketing (foundational)"
+  ],
+  "skill_marriage": "Combines strong customer-service and CRM experience with new digital-marketing skills — suited to CRM marketing, customer-engagement or marketing-support roles where customer understanding drives retention.",
+  "recommended_roles": [
+   "CRM / Customer Marketing Executive",
+   "Digital Marketing Coordinator",
+   "Customer Engagement Executive"
+  ],
+  "seniority": "Individual Contributor",
+  "seniority_note": "Service/CRM background; marketing is new, so entry-to-mid marketing roles fit.",
+  "domain": "Operations & Admin"
+ },
+ {
+  "specialist": "Jim",
+  "course_code": "PDDM",
+  "course_name": "Professional Diploma in Digital Marketing",
+  "cohort": "DM-0726",
+  "full_name": "Chia Wee Kwang",
+  "email": "m7chia@yahoo.com.sg",
+  "years_experience": "25+",
+  "industry_background": "Technical/industrial sales & operations (machine tools)",
+  "prior_experience_summary": "25+ years in industrial machine-tool sales and operations at Makino and GF Machining, driving revenue growth, market analysis, sales presentations and territory planning.",
+  "skills": [
+   "Technical / Industrial B2B Sales",
+   "Sales Strategy & Prospecting",
+   "Market Analysis",
+   "Customer Relationship Management",
+   "Sales Presentations",
+   "Digital Marketing (foundational)"
+  ],
+  "skill_marriage": "Combines long industrial-sales and market-analysis experience with new digital-marketing skills — suited to B2B/industrial marketing, product-marketing or channel-marketing roles.",
+  "recommended_roles": [
+   "B2B / Industrial Marketing Executive",
+   "Product / Sales Marketing Executive",
+   "Digital Marketing Executive (Technical)"
+  ],
+  "seniority": "Senior IC",
+  "seniority_note": "Senior industrial-sales professional; marketing is new, so pitch B2B/technical marketing at senior-IC.",
+  "domain": "Sales & Business Development"
+ },
+ {
+  "specialist": "Jim",
+  "course_code": "PDDM",
+  "course_name": "Professional Diploma in Digital Marketing",
+  "cohort": "DM-0726",
+  "full_name": "Gerald Chiang Jie Xiong (Zhang Jiexiong)",
+  "email": "Neojxg@gmail.com",
+  "years_experience": "12+",
+  "industry_background": "Financial trading, dealing & sales/marketing analysis",
+  "prior_experience_summary": "Equity/forex dealer and trader across KGI, ANZ and CIMB, more recently doing sales and marketing data analysis at Parkway Shenton, with CRM and pivot-table reporting.",
+  "skills": [
+   "Sales & Marketing Data Analysis",
+   "CRM Systems",
+   "Financial Markets / Trading",
+   "Excel (Pivot Tables)",
+   "Reporting",
+   "Digital Marketing (foundational)"
+  ],
+  "skill_marriage": "Combines financial-trading and sales/marketing-analysis experience with new digital-marketing skills — suited to marketing-analytics, CRM or data-leaning marketing roles.",
+  "recommended_roles": [
+   "Marketing Analytics / CRM Executive",
+   "Digital Marketing Executive (Data-leaning)",
+   "Marketing Operations Executive"
+  ],
+  "seniority": "Individual Contributor",
+  "seniority_note": "Trading/analysis background; marketing is new, so mid-level analytical marketing roles fit.",
+  "domain": "Banking & Wealth"
+ },
+ {
+  "specialist": "Jim",
+  "course_code": "PDDM",
+  "course_name": "Professional Diploma in Digital Marketing",
+  "cohort": "DM-0726",
+  "full_name": "Sabrina Chong Mun Teng",
+  "email": "sabrinacmt@gmail.com",
+  "years_experience": "15+",
+  "industry_background": "Office management & administration (fintech, engineering, oil trading)",
+  "prior_experience_summary": "15+ years as Office Manager / Senior Admin Executive across fintech, engineering consulting and oil trading, managing office operations, vendors, budgets, HR support and regional coordination.",
+  "skills": [
+   "Office & Facilities Management",
+   "Vendor & Budget Management",
+   "Administrative Operations",
+   "HR / Recruitment Support",
+   "Event Coordination",
+   "Digital Marketing (foundational)"
+  ],
+  "skill_marriage": "Combines long office-management and administration experience with new digital-marketing skills — suited to marketing-operations, marketing-admin or event-coordination roles.",
+  "recommended_roles": [
+   "Marketing Operations / Admin Executive",
+   "Event Marketing Coordinator",
+   "Marketing Support Executive"
+  ],
+  "seniority": "Individual Contributor",
+  "seniority_note": "Admin/ops background; marketing is a fresh pivot, so entry-to-mid marketing-ops roles fit.",
+  "domain": "Operations & Admin"
+ },
+ {
+  "specialist": "Jim",
+  "course_code": "PDDM",
+  "course_name": "Professional Diploma in Digital Marketing",
+  "cohort": "DM-0726",
+  "full_name": "Ho Hui Ling (He Huiling)",
+  "email": "mary_ho0921@yahoo.com.sg",
+  "years_experience": "12+",
+  "industry_background": "Venue & event sales (MICE industry)",
+  "prior_experience_summary": "12+ years as Sales Manager at Suntec Convention Centre in MICE venue sales, managing 300+ events annually and ~S$2.5M revenue through business development, account management and contract negotiation.",
+  "skills": [
+   "Event & Venue Sales",
+   "Business Development",
+   "Account Management",
+   "Contract Negotiation",
+   "Client Relationship Management",
+   "Digital Marketing (foundational)"
+  ],
+  "skill_marriage": "Combines strong MICE venue-sales and account-management experience with new digital-marketing skills — suited to event marketing, hospitality/venue marketing or B2B marketing roles.",
+  "recommended_roles": [
+   "Event / MICE Marketing Executive",
+   "B2B / Account-Based Marketing Executive",
+   "Business Development & Marketing Executive"
+  ],
+  "seniority": "Senior IC",
+  "seniority_note": "Senior in event/venue sales; marketing is new, so pitch event/B2B marketing at senior-IC.",
+  "domain": "Sales & Business Development"
+ },
+ {
+  "specialist": "Jim",
+  "course_code": "PDDM",
+  "course_name": "Professional Diploma in Digital Marketing",
+  "cohort": "DM-0726",
+  "full_name": "Ernest Lim Chen Seng (Lim ZhenXing, Ernest)",
+  "email": "",
+  "years_experience": "15+",
+  "industry_background": "Real estate sales & marketing",
+  "prior_experience_summary": "15+ years in real estate as a Senior Marketing Director and top-producer, handling residential resale, commercial and new-launch marketing, client relationships and property investment advisory.",
+  "skills": [
+   "Property Marketing & Sales",
+   "New Launch Campaigns",
+   "Client Relationship Management",
+   "Negotiation",
+   "Market Knowledge",
+   "Digital Marketing (foundational)"
+  ],
+  "skill_marriage": "Combines long real-estate marketing/sales and new-launch campaign experience with formal digital-marketing skills — a natural fit for real-estate, property-tech or lead-generation marketing roles.",
+  "recommended_roles": [
+   "Digital Marketing Executive (Real Estate / PropTech)",
+   "Property Marketing & Lead Gen Executive",
+   "Campaign Marketing Executive"
+  ],
+  "seniority": "Senior IC",
+  "seniority_note": "Senior property-sales/marketing producer; formal marketing skills round it out — mid-to-senior marketing roles fit.",
+  "domain": "Real Estate"
+ },
+ {
+  "specialist": "Jim",
+  "course_code": "PDDM",
+  "course_name": "Professional Diploma in Digital Marketing",
+  "cohort": "DM-0726",
+  "full_name": "Mok Wai Yin (Mo Huixian)",
+  "email": "dieselmok4@hotmail.com",
+  "years_experience": "10+",
+  "industry_background": "F&B & retail multi-store operations",
+  "prior_experience_summary": "10+ years with Starbucks Singapore rising to District Manager, leading multi-store operations, team development, P&L, cost control and customer-experience across stores.",
+  "skills": [
+   "Multi-Store Operations",
+   "Team Leadership & Development",
+   "Sales Growth Strategy",
+   "P&L / Budget Control",
+   "Customer Experience",
+   "Digital Marketing (foundational)"
+  ],
+  "skill_marriage": "Combines multi-store retail/F&B operations leadership with new digital-marketing skills — suited to retail marketing, customer-experience marketing or brand-operations roles.",
+  "recommended_roles": [
+   "Retail / Brand Marketing Executive",
+   "Customer Experience Marketing Executive",
+   "Marketing Operations Executive"
+  ],
+  "seniority": "Senior IC",
+  "seniority_note": "Senior retail-ops manager; marketing is new, so pitch retail/brand marketing at senior-IC.",
+  "domain": "Operations & Admin"
+ },
+ {
+  "specialist": "Jim",
+  "course_code": "PDDS",
+  "course_name": "Professional Diploma in Data Science",
+  "cohort": "DS-0726",
+  "full_name": "Karthiaini D/O Sumangan",
+  "email": "karthiaini84@gmail.com",
+  "years_experience": "7+",
+  "industry_background": "Finance & accounting (general ledger operations)",
+  "prior_experience_summary": "Finance Executive at Evo Outsourcing/UOB handling general-ledger operations, reconciliations, controls, audit support and RPA-improvement projects, with an Accountancy degree.",
+  "skills": [
+   "General Ledger & Finance Operations",
+   "Reconciliation & Controls",
+   "Data Analysis (GL)",
+   "RPA / Process Improvement",
+   "Documentation",
+   "Excel",
+   "Power BI (foundational)"
+  ],
+  "skill_marriage": "Combines finance/GL-operations and process-improvement experience with new data-science skills — suited to finance-analytics or reporting-analyst roles where accounting-data fluency strengthens the analysis.",
+  "recommended_roles": [
+   "Finance Data Analyst",
+   "Reporting / Reconciliation Analyst",
+   "Junior Data Analyst (Finance)"
+  ],
+  "seniority": "Individual Contributor",
+  "seniority_note": "Solid finance background; data science is new, so entry-to-mid finance-analytics roles fit.",
+  "domain": "Finance & Accounting"
+ },
+ {
+  "specialist": "Jim",
+  "course_code": "PDDS",
+  "course_name": "Professional Diploma in Data Science",
+  "cohort": "DS-0726",
+  "full_name": "Low Hwee Min, Gillian (Liu Huimin)",
+  "email": "zgil29@gmail.com",
+  "years_experience": "15+",
+  "industry_background": "Healthcare patient services & operations",
+  "prior_experience_summary": "15+ years in healthcare patient services at SingHealth, leading frontline teams, coordinating operations and analysing patient-service data (Excel VLOOKUP/pivot, KPI dashboards) for process improvement.",
+  "skills": [
+   "Operations Coordination",
+   "Data Analysis & KPI Reporting",
+   "Advanced Excel (VLOOKUP, Pivot)",
+   "Oracle & SAP",
+   "Team Leadership",
+   "Dashboard Reporting",
+   "Data Science (foundational)"
+  ],
+  "skill_marriage": "Combines healthcare operations-coordination and hands-on service-data analysis with new data-science skills — suited to healthcare/operations analytics or reporting-analyst roles.",
+  "recommended_roles": [
+   "Operations / Healthcare Data Analyst",
+   "Reporting / KPI Analyst",
+   "Junior Data Analyst"
+  ],
+  "seniority": "Individual Contributor",
+  "seniority_note": "Operations/data-reporting background; data science is new, so entry-to-mid analyst roles fit.",
+  "domain": "Operations & Admin"
+ },
+ {
+  "specialist": "Jim",
+  "course_code": "PDDS",
+  "course_name": "Professional Diploma in Data Science",
+  "cohort": "DS-0726",
+  "full_name": "Jacqueline Liew Mee Kuah",
+  "email": "jacliew18@gmail.com",
+  "years_experience": "20+",
+  "industry_background": "Procurement & supply chain (multinational)",
+  "prior_experience_summary": "20+ years in procurement, inventory planning and logistics, more recently order management and customer operations at Laerdal, with ERP systems (QAD, Oracle, SAP) and Power BI exposure.",
+  "skills": [
+   "Procurement & Supply Chain",
+   "Order Management & Fulfilment",
+   "Inventory Planning",
+   "ERP (QAD, Oracle, SAP)",
+   "Data Analysis (Excel, Power BI)",
+   "Logistics Coordination"
+  ],
+  "skill_marriage": "Combines long procurement/supply-chain and ERP-data experience with new data-science skills — suited to supply-chain-analytics, procurement-data or operations-analyst roles.",
+  "recommended_roles": [
+   "Supply Chain / Procurement Data Analyst",
+   "Operations / Business Analyst",
+   "Junior Data Analyst"
+  ],
+  "seniority": "Individual Contributor",
+  "seniority_note": "Strong supply-chain background; data science is new, so entry-to-mid analytics roles fit.",
+  "domain": "Supply Chain & Procurement"
+ },
+ {
+  "specialist": "Jim",
+  "course_code": "PDDS",
+  "course_name": "Professional Diploma in Data Science",
+  "cohort": "DS-0726",
+  "full_name": "Soe Win Htut",
+  "email": "swhtut@yahoo.com",
+  "years_experience": "20+",
+  "industry_background": "Mechanical / infrastructure engineering (water, environmental)",
+  "prior_experience_summary": "Engineering Manager with 20+ years delivering infrastructure/water/MEICA engineering projects (PUB), with MSc Mechanical, project lifecycle leadership, and recent GenAI/data-driven decision-support training.",
+  "skills": [
+   "Mechanical / MEICA Engineering",
+   "Project & Construction Management",
+   "Engineering Data Interpretation",
+   "Data-Driven Decision Support",
+   "Cost Optimisation",
+   "Data Science (foundational)"
+  ],
+  "skill_marriage": "Combines senior engineering project-management and engineering-data experience with new data-science skills — suited to engineering-analytics, infrastructure-data or project-analytics roles.",
+  "recommended_roles": [
+   "Data Analyst (Engineering / Infrastructure)",
+   "Project / Operations Analyst",
+   "Business Analyst (Engineering)"
+  ],
+  "seniority": "Senior IC / Managerial upside",
+  "seniority_note": "Very senior engineer/manager; data science is new, so pitch engineering-analytics at senior level with domain depth.",
+  "domain": "Engineering & Manufacturing"
+ },
+ {
+  "specialist": "Jim",
+  "course_code": "PDDS",
+  "course_name": "Professional Diploma in Data Science",
+  "cohort": "DS-0726",
+  "full_name": "Cheng ZhiXian (Zhong ZhiXian)",
+  "email": "zhixian@gmail.com",
+  "years_experience": "8+",
+  "industry_background": "Financial services advisory & sales",
+  "prior_experience_summary": "Financial Services Consultant building client relationships and driving sales, with financial modelling, data analysis, investment strategy and risk-management understanding.",
+  "skills": [
+   "Financial Advisory & Sales",
+   "Financial Modelling",
+   "Data Analysis",
+   "Investment Strategy",
+   "Client Relationship Management",
+   "Data Science (foundational)"
+  ],
+  "skill_marriage": "Combines financial-advisory and financial-modelling experience with new data-science skills — suited to finance-analytics, investment-data or business-analyst roles in financial services.",
+  "recommended_roles": [
+   "Finance / Investment Data Analyst",
+   "Business Analyst (Financial Services)",
+   "Junior Data Analyst"
+  ],
+  "seniority": "Individual Contributor",
+  "seniority_note": "Financial-advisory background; data science is new, so entry-to-mid finance-analytics roles fit.",
+  "domain": "Banking & Wealth"
+ },
+ {
+  "specialist": "Jim",
+  "course_code": "PDDS",
+  "course_name": "Professional Diploma in Data Science",
+  "cohort": "DS-0726",
+  "full_name": "Daphne Gwee",
+  "email": "daphnegwee@yahoo.com.sg",
+  "years_experience": "10+",
+  "industry_background": "Telecom project coordination & operations",
+  "prior_experience_summary": "10+ years at Nokia in project coordination and acceptance, tracking site readiness, documentation, POs and running data analysis to align Master Dashboard and Power BI reports.",
+  "skills": [
+   "Project Coordination",
+   "Data Analysis & Dashboard Alignment",
+   "Power BI",
+   "Documentation & Compliance",
+   "Stakeholder Collaboration",
+   "Data Science (foundational)"
+  ],
+  "skill_marriage": "Combines telecom project-coordination and data/dashboard-reporting experience with new data-science skills — suited to project-analytics, operations-data or reporting-analyst roles.",
+  "recommended_roles": [
+   "Project / Operations Data Analyst",
+   "Reporting / BI Analyst",
+   "Junior Data Analyst"
+  ],
+  "seniority": "Individual Contributor",
+  "seniority_note": "Coordination/reporting background; data science is new, so entry-to-mid analyst roles fit.",
+  "domain": "Operations & Admin"
+ },
+ {
+  "specialist": "Jim",
+  "course_code": "PDDS",
+  "course_name": "Professional Diploma in Data Science",
+  "cohort": "DS-0726",
+  "full_name": "Foong Hak Chung, Brian (Feng Kechong)",
+  "email": "brifoongan@yahoo.com",
+  "years_experience": "20+",
+  "industry_background": "Arts, gallery & creative sector (curation/management)",
+  "prior_experience_summary": "20+ years as gallery director, curator and creative entrepreneur (iPreciation, Art Galleries Association Singapore), managing exhibitions, sales data, collector relations and operations.",
+  "skills": [
+   "Gallery & Arts Management",
+   "Curation & Exhibition Planning",
+   "Sales & Collector Data",
+   "Stakeholder Coordination",
+   "Marketing & Programmes",
+   "Data Science (foundational)"
+  ],
+  "skill_marriage": "Combines arts/gallery management and sales-data experience with new data-science skills — suited to arts-tech, cultural-data or audience-analytics roles bridging creative sector and data.",
+  "recommended_roles": [
+   "Data / Insights Analyst (Arts / Culture)",
+   "Audience / CRM Data Analyst",
+   "Junior Data Analyst"
+  ],
+  "seniority": "Senior IC",
+  "seniority_note": "Senior arts-sector leader; data science is a big pivot, so pitch data/audience-analytics with domain relevance, entry-to-mid.",
+  "domain": "Marketing & Creative"
+ },
+ {
+  "specialist": "Jim",
+  "course_code": "PDDS",
+  "course_name": "Professional Diploma in Data Science",
+  "cohort": "DS-0726",
+  "full_name": "Eyvone Ho Xiao Fen (He Xiaofen)",
+  "email": "hoeyvone@hotmail.com",
+  "years_experience": "10+",
+  "industry_background": "Banking operations & compliance (private banking)",
+  "prior_experience_summary": "Banking professional at UBS in process/quality and front-office integration roles, handling client lifecycle, KYC/AML compliance and process improvement, now building data analytics skills.",
+  "skills": [
+   "Banking Operations",
+   "KYC / AML Compliance",
+   "Process Improvement",
+   "Client Lifecycle Management",
+   "Data Analysis (foundational)",
+   "Business Intelligence (foundational)"
+  ],
+  "skill_marriage": "Combines banking-operations and compliance experience with new data-science skills — suited to banking-analytics, compliance-data or operations-analyst roles in financial services.",
+  "recommended_roles": [
+   "Data Analyst (Banking / Compliance)",
+   "Operations / Process Analyst",
+   "Business Analyst (Financial Services)"
+  ],
+  "seniority": "Individual Contributor",
+  "seniority_note": "Banking-ops/compliance background; data science is new, so entry-to-mid analyst roles fit.",
+  "domain": "Banking & Wealth"
+ },
+ {
+  "specialist": "Jim",
+  "course_code": "PDDS",
+  "course_name": "Professional Diploma in Data Science",
+  "cohort": "DS-0726",
+  "full_name": "Jayapriya Ragin Drann",
+  "email": "priyaragin07@gmail.com",
+  "years_experience": "20+",
+  "industry_background": "Operations & administration (publishing, digital services)",
+  "prior_experience_summary": "20+ years in operations, administration and stakeholder management across publishing and digital services, handling workflows, reporting, CRM (Salesforce), events and team coordination.",
+  "skills": [
+   "Operations & Admin Management",
+   "CRM & Database Management",
+   "Data Analysis & Reporting",
+   "Team Coordination",
+   "Process Improvement",
+   "Salesforce / JIRA",
+   "Data Science (foundational)"
+  ],
+  "skill_marriage": "Combines long operations/administration and CRM-data experience with new data-science skills — suited to operations-analytics, CRM-data or reporting-analyst roles.",
+  "recommended_roles": [
+   "Operations / Business Data Analyst",
+   "CRM / Reporting Analyst",
+   "Junior Data Analyst"
+  ],
+  "seniority": "Individual Contributor",
+  "seniority_note": "Ops/admin background; data science is new, so entry-to-mid analyst roles fit.",
+  "domain": "Operations & Admin"
+ },
+ {
+  "specialist": "Jim",
+  "course_code": "PDDS",
+  "course_name": "Professional Diploma in Data Science",
+  "cohort": "DS-0726",
+  "full_name": "Lin Hanqiang",
+  "email": "hanq@hotmail.sg",
+  "years_experience": "15+",
+  "industry_background": "Workplace safety & health, IT & business (multi-domain)",
+  "prior_experience_summary": "MBA-qualified professional with a varied background spanning naval service, HSE/workplace-safety management, IT administration and data-governance/blockchain certificates.",
+  "skills": [
+   "Workplace Safety & Health",
+   "IT Administration",
+   "Data Governance",
+   "Business Management",
+   "Advanced Excel",
+   "Data Science (foundational)"
+  ],
+  "skill_marriage": "Combines WSH, IT-administration and business/data-governance background with new data-science skills — suited to safety-analytics, governance-data or operations-analyst roles.",
+  "recommended_roles": [
+   "Data / Governance Analyst",
+   "Safety / Operations Analyst",
+   "Junior Data Analyst"
+  ],
+  "seniority": "Individual Contributor",
+  "seniority_note": "Varied WSH/IT/business background; data science is new, so entry-to-mid analyst roles fit.",
+  "domain": "EHS & Safety"
+ },
+ {
+  "specialist": "Jim",
+  "course_code": "PDDS",
+  "course_name": "Professional Diploma in Data Science",
+  "cohort": "DS-0726",
+  "full_name": "Ray Wong Swee Hon",
+  "email": "cosmoray77@gmail.com",
+  "years_experience": "14+",
+  "industry_background": "ICT/telecom account management & sales",
+  "prior_experience_summary": "14+ years in ICT/telecom account management and sales, with corporate account management, client needs analysis and CRM (Salesforce), plus recent admin/operations and level-1 IT support.",
+  "skills": [
+   "ICT Solutions Sales",
+   "Key Account Management",
+   "CRM (Salesforce)",
+   "Client Needs Analysis",
+   "Data Analysis (foundational)",
+   "Excel",
+   "Data Science (foundational)"
+  ],
+  "skill_marriage": "Combines ICT/telecom account-management and sales-data experience with new data-science skills — suited to sales-analytics, commercial-data or business-analyst roles.",
+  "recommended_roles": [
+   "Sales / Commercial Data Analyst",
+   "Business Analyst (ICT)",
+   "Junior Data Analyst"
+  ],
+  "seniority": "Individual Contributor",
+  "seniority_note": "Sales/account-management background; data science is new, so entry-to-mid analyst roles fit.",
+  "domain": "Sales & Business Development"
+ },
+ {
+  "specialist": "Jim",
+  "course_code": "PDDS",
+  "course_name": "Professional Diploma in Data Science",
+  "cohort": "DS-0726",
+  "full_name": "Sugandha Taneja",
+  "email": "dudeja.sugandha@gmail.com",
+  "years_experience": "6+",
+  "industry_background": "Early childhood education & learner-data operations",
+  "prior_experience_summary": "ECDA-registered early-childhood educator running a daily learner-data system (Qoqolo) for 28 students, owning assessments, reporting, ECDA audits, with a Masters in Mathematics and SQL/RDBMS foundations.",
+  "skills": [
+   "Learner Data Management",
+   "Reporting & Documentation",
+   "SQL / RDBMS (foundational)",
+   "Assessment & Analysis",
+   "Compliance / Audit",
+   "Mathematics",
+   "Data Science (foundational)"
+  ],
+  "skill_marriage": "Combines education/learner-data operations and a strong mathematics/SQL foundation with new data-science skills — suited to education-data, reporting-analyst or junior data-analyst roles.",
+  "recommended_roles": [
+   "Data Analyst (Education / Reporting)",
+   "Junior Data Analyst",
+   "Business / Insights Analyst"
+  ],
+  "seniority": "Individual Contributor",
+  "seniority_note": "Maths degree and SQL foundation help; data science is newly formalised, so entry-level analyst roles fit.",
+  "domain": "Education & Training"
+ },
+ {
+  "specialist": "Jim",
+  "course_code": "PDDS",
+  "course_name": "Professional Diploma in Data Science",
+  "cohort": "DS-0726",
+  "full_name": "Sulaiman Bin Ismail",
+  "email": "sulaiman8623@gmail.com",
+  "years_experience": "20+",
+  "industry_background": "Information security & SOC operations (cybersecurity)",
+  "prior_experience_summary": "Information Security Analyst with two decades across security operations, access management and risk governance, now in a global SOC doing threat detection and incident response, with multiple cybersecurity certifications.",
+  "skills": [
+   "Security Operations (SOC)",
+   "Threat Detection & Incident Response",
+   "Risk & Compliance",
+   "Access Management",
+   "Data Analysis (foundational)",
+   "Detection Engineering (learning)",
+   "Data Science (foundational)"
+  ],
+  "skill_marriage": "Combines deep security-operations/SOC experience with new data-science skills — suited to security-analytics, threat-data or SOC-data-analyst roles where cyber domain plus data adds value.",
+  "recommended_roles": [
+   "Security / SOC Data Analyst",
+   "Threat / Risk Analyst",
+   "Data Analyst (Cybersecurity)"
+  ],
+  "seniority": "Senior IC",
+  "seniority_note": "Senior security professional; data science complements a strong cyber base — pitch security-analytics at senior-IC.",
+  "domain": "IT & Infrastructure"
+ },
+ {
+  "specialist": "Jim",
+  "course_code": "PDDS",
+  "course_name": "Professional Diploma in Data Science",
+  "cohort": "DS-0726",
+  "full_name": "Yenmalachintala Anitha",
+  "email": "",
+  "years_experience": "4+",
+  "industry_background": "IT service desk & cloud support",
+  "prior_experience_summary": "IT professional with 4 years in service-desk support for cloud environments at Synapxe, using ServiceNow/JIRA, ITIL processes, ticket automation and incident management, aiming toward system-analyst work.",
+  "skills": [
+   "Cloud Support & Troubleshooting",
+   "IT Service Management (ServiceNow, ITIL)",
+   "Incident & Problem Management",
+   "JIRA / Confluence",
+   "Automation",
+   "Data Analysis (foundational)",
+   "Data Science (foundational)"
+  ],
+  "skill_marriage": "Combines IT service-desk/cloud-support experience with new data-science skills — suited to IT-data, service-analytics or junior data/systems-analyst roles.",
+  "recommended_roles": [
+   "Data / Systems Analyst (IT)",
+   "Service / Operations Data Analyst",
+   "Junior Data Analyst"
+  ],
+  "seniority": "Individual Contributor",
+  "seniority_note": "Early-career IT-support background; data science is new, so entry-level analyst roles fit.",
+  "domain": "IT & Infrastructure"
+ },
+ {
+  "specialist": "Jim",
+  "course_code": "PDDI",
+  "course_name": "Professional Diploma in Digital Innovation",
+  "cohort": "DI-0726",
+  "full_name": "Acacia-Aoki Liang (Long Yu Xin)",
+  "email": "acacia.aoki@gmail.com",
+  "years_experience": "15+",
+  "industry_background": "Operations, business development & facilities (healthcare, pharma)",
+  "prior_experience_summary": "15+ years across facilities management, pharmaceutical sales and healthcare operations, handling client acquisition, contract/vendor management and revenue growth.",
+  "skills": [
+   "Operations & Facilities Management",
+   "Business Development",
+   "Contract & Vendor Negotiation",
+   "Client Relationship Management",
+   "KPI Monitoring",
+   "Digital Innovation Tools (foundational)"
+  ],
+  "skill_marriage": "Combines operations, business-development and facilities experience with new digital-innovation skills — suited to operations-digitalisation, business-analyst or transformation-support roles.",
+  "recommended_roles": [
+   "Operations / Business Analyst",
+   "Digital Transformation Support Executive",
+   "Process Improvement Analyst"
+  ],
+  "seniority": "Senior IC",
+  "seniority_note": "Senior ops/BD background; digital-innovation is new, so pitch analytics/transformation at senior-IC.",
+  "domain": "Operations & Admin"
+ },
+ {
+  "specialist": "Jim",
+  "course_code": "PDDI",
+  "course_name": "Professional Diploma in Digital Innovation",
+  "cohort": "DI-0726",
+  "full_name": "Nuraini Binte Ahmad",
+  "email": "nbertauhid@gmail.com",
+  "years_experience": "15+",
+  "industry_background": "Education, training & AI language annotation",
+  "prior_experience_summary": "Early-childhood/education trainer (Shichida Method) now doing AI language quality review and annotation, evaluating LLM outputs for accuracy, coherence and safety in English and Malay.",
+  "skills": [
+   "Education & Training",
+   "AI Data Annotation / LLM Evaluation",
+   "Linguistic Quality Review",
+   "Analytical Reasoning",
+   "Attention to Detail",
+   "Digital Innovation Tools (foundational)"
+  ],
+  "skill_marriage": "Combines education/training and hands-on AI-annotation/LLM-evaluation experience with new digital-innovation skills — suited to AI-data, content-quality or digital-education roles.",
+  "recommended_roles": [
+   "AI Data / Content Quality Analyst",
+   "Digital Learning / EdTech Executive",
+   "Business Analyst (AI / Content)"
+  ],
+  "seniority": "Individual Contributor",
+  "seniority_note": "Education plus AI-annotation background; digital-innovation is new, so entry-to-mid roles fit.",
+  "domain": "Education & Training"
+ },
+ {
+  "specialist": "Jim",
+  "course_code": "PDDI",
+  "course_name": "Professional Diploma in Digital Innovation",
+  "cohort": "DI-0726",
+  "full_name": "Ryan Lio Ann Haur (Liang Anhao)",
+  "email": "ryan.lio.fwd@gmail.com",
+  "years_experience": "20+",
+  "industry_background": "IoT solutions & manufacturing technology (leadership)",
+  "prior_experience_summary": "20+ years managing manufacturing-IoT solutions and technology consulting, leading cross-functional teams to design and scale IoT platforms for real-time monitoring and data-driven decisions.",
+  "skills": [
+   "IoT Solutions & Architecture",
+   "Manufacturing Technology",
+   "Cross-functional Team Leadership",
+   "Technology Roadmapping",
+   "Vendor / Partner Management",
+   "Digital Innovation Tools",
+   "Data-Driven Decision Making"
+  ],
+  "skill_marriage": "Combines senior IoT/manufacturing-technology leadership with new digital-innovation skills — strong fit for digital-transformation, IoT-solutions or Industry-4.0 innovation roles.",
+  "recommended_roles": [
+   "Digital Transformation / IoT Solutions Lead",
+   "Digital Innovation Manager",
+   "Business Analyst (Manufacturing Tech)"
+  ],
+  "seniority": "Senior IC / Managerial upside",
+  "seniority_note": "Senior IoT/tech leader; digital-innovation complements strongly — pitch transformation/innovation at senior level.",
+  "domain": "IT & Infrastructure"
+ },
+ {
+  "specialist": "Jim",
+  "course_code": "PDDI",
+  "course_name": "Professional Diploma in Digital Innovation",
+  "cohort": "DI-0726",
+  "full_name": "Yoong Siew Tee",
+  "email": "yoongst@gmail.com",
+  "years_experience": "20+",
+  "industry_background": "Quality management & operational excellence (semiconductor)",
+  "prior_experience_summary": "20+ years in quality management at GlobalFoundries, driving systematic improvement, data-driven problem solving (FMEA, DMAIC, SPC) and cross-functional quality programs for high-value accounts.",
+  "skills": [
+   "Quality Management",
+   "Statistical Process Control (SPC)",
+   "Data-Driven Problem Solving (FMEA, DMAIC)",
+   "Process Improvement",
+   "Cross-functional Leadership",
+   "Digital Innovation Tools (foundational)"
+  ],
+  "skill_marriage": "Combines quality-management and data-driven-improvement experience with new digital-innovation skills — suited to quality-analytics, process-digitalisation or operational-excellence transformation roles.",
+  "recommended_roles": [
+   "Quality / Process Data Analyst",
+   "Operational Excellence / Transformation Analyst",
+   "Business Analyst (Manufacturing)"
+  ],
+  "seniority": "Senior IC",
+  "seniority_note": "Senior quality professional with strong data-tools; digital-innovation is new, so pitch quality-analytics/transformation at senior-IC.",
+  "domain": "Engineering & Manufacturing"
+ },
+ {
+  "specialist": "Jim",
+  "course_code": "PDDI",
+  "course_name": "Professional Diploma in Digital Innovation",
+  "cohort": "DI-0726",
+  "full_name": "Boo Boon Chia (Wu Wenzheng)",
+  "email": "ek3bbc@yahoo.com",
+  "years_experience": "28+",
+  "industry_background": "Workplace safety, facility & fire safety management (aerospace)",
+  "prior_experience_summary": "28+ years in WSH, facility and fire-safety management across aerospace maintenance and engineering operations, with risk assessment, safety audits, incident investigation and contractor management.",
+  "skills": [
+   "Workplace Safety & Health (WSH)",
+   "Facility & Fire Safety Management",
+   "Risk Assessment & Audits",
+   "Incident Investigation",
+   "Contractor Management",
+   "Digital Innovation Tools (foundational)"
+  ],
+  "skill_marriage": "Combines long WSH/facility/fire-safety experience with new digital-innovation skills — suited to safety-digitalisation, compliance-tech or facilities-transformation roles.",
+  "recommended_roles": [
+   "Safety / Facilities Digitalisation Analyst",
+   "Compliance / Process Transformation Executive",
+   "Business Analyst (WSH / Facilities)"
+  ],
+  "seniority": "Senior IC",
+  "seniority_note": "Very experienced WSH/facilities professional; digital-innovation is new, so pitch domain-digitalisation at senior-IC.",
+  "domain": "EHS & Safety"
+ },
+ {
+  "specialist": "Jim",
+  "course_code": "PDDI",
+  "course_name": "Professional Diploma in Digital Innovation",
+  "cohort": "DI-0726",
+  "full_name": "Chris Louisa Ng Chay Luang",
+  "email": "clouisa_64@hotmail.com",
+  "years_experience": "27+",
+  "industry_background": "Executive administration & corporate governance (multi-sector)",
+  "prior_experience_summary": "27+ years as Executive Assistant supporting C-suite across finance, healthcare, energy, shipping, IT/AI and education, with executive administration, governance, procurement and event management.",
+  "skills": [
+   "Executive Administration",
+   "Corporate Governance",
+   "Calendar & Travel Management",
+   "Procurement",
+   "Event Management",
+   "Digital Workplace Tools",
+   "Digital Innovation Tools (foundational)"
+  ],
+  "skill_marriage": "Combines long executive-administration and governance experience with new digital-innovation skills — suited to operations-digitalisation, administrative-transformation or business-support-analyst roles.",
+  "recommended_roles": [
+   "Operations / Admin Transformation Executive",
+   "Business Support / Process Analyst",
+   "Digital Workplace Coordinator"
+  ],
+  "seniority": "Senior IC",
+  "seniority_note": "Very experienced EA; digital-innovation is new, so entry-to-mid transformation/ops roles leveraging admin depth fit.",
+  "domain": "Operations & Admin"
+ },
+ {
+  "specialist": "Jim",
+  "course_code": "PDDI",
+  "course_name": "Professional Diploma in Digital Innovation",
+  "cohort": "DI-0726",
+  "full_name": "Michelle Leia",
+  "email": "michsiah@yahoo.com.sg",
+  "years_experience": "15+",
+  "industry_background": "Executive administration (FMCG, banking)",
+  "prior_experience_summary": "Executive Assistant supporting C-suite at Unilever and ANZ, handling calendar/travel/expenses, budget reports, vendor setup, event support and team coordination.",
+  "skills": [
+   "Executive Administration",
+   "Calendar & Travel Management",
+   "Budget Reporting",
+   "Vendor & PO Management",
+   "Event Coordination",
+   "Digital Innovation Tools (foundational)"
+  ],
+  "skill_marriage": "Combines executive-administration and coordination experience with new digital-innovation skills — suited to operations-support, administrative-digitalisation or business-coordination roles.",
+  "recommended_roles": [
+   "Operations / Admin Support Executive",
+   "Business Coordination / Process Executive",
+   "Digital Workplace Coordinator"
+  ],
+  "seniority": "Individual Contributor",
+  "seniority_note": "Strong EA background; digital-innovation is new, so entry-to-mid ops/admin roles fit.",
+  "domain": "Operations & Admin"
+ },
+ {
+  "specialist": "Jim",
+  "course_code": "PDDI",
+  "course_name": "Professional Diploma in Digital Innovation",
+  "cohort": "DI-0726",
+  "full_name": "Nur Eliza Bte Md Yussof",
+  "email": "elyza26isabel@gmail.com",
+  "years_experience": "10+",
+  "industry_background": "HR (L&D), workplace safety & operations",
+  "prior_experience_summary": "10+ years in management across HR learning & development, workplace safety and operations, designing training programs, leading teams, with recent cybersecurity/IT training.",
+  "skills": [
+   "HR / Learning & Development",
+   "Workplace Safety",
+   "Operations Management",
+   "Training Design",
+   "IT / Cybersecurity (foundational)",
+   "Digital Innovation Tools (foundational)"
+  ],
+  "skill_marriage": "Combines HR/L&D, safety and operations-management experience with new digital-innovation and IT skills — suited to HR-tech, learning-technology or operations-transformation roles.",
+  "recommended_roles": [
+   "HR-Tech / Learning Technology Executive",
+   "Operations / Process Transformation Analyst",
+   "Business Analyst (People / Operations)"
+  ],
+  "seniority": "Individual Contributor",
+  "seniority_note": "HR/L&D/ops background; digital-innovation is new, so mid-level HR-tech/transformation roles fit.",
+  "domain": "HR & Talent"
+ },
+ {
+  "specialist": "Jim",
+  "course_code": "PDDI",
+  "course_name": "Professional Diploma in Digital Innovation",
+  "cohort": "DI-0726",
+  "full_name": "Terry Foo Tiang Hong (Fu Xianghong)",
+  "email": "terryfoo@gmail.com",
+  "years_experience": "20+",
+  "industry_background": "Financial sales, business development & talent acquisition (insurance/banking)",
+  "prior_experience_summary": "20+ years in financial sales, business development, channel/partner management and talent acquisition across insurance and banking (AIA, Singlife), building partnerships and driving sales.",
+  "skills": [
+   "Business Development & Channel Management",
+   "Financial Sales",
+   "Talent Acquisition",
+   "Partnership Building",
+   "Training & Coaching",
+   "Digital Innovation Tools (foundational)"
+  ],
+  "skill_marriage": "Combines financial-sales, business-development and partnership experience with new digital-innovation skills — suited to digital-partnership, business-development or transformation roles in financial services.",
+  "recommended_roles": [
+   "Business Development / Partnership Executive (Digital)",
+   "Digital Transformation Analyst (Financial Services)",
+   "Business Analyst (Sales / Partnerships)"
+  ],
+  "seniority": "Senior IC",
+  "seniority_note": "Senior BD/sales professional; digital-innovation is new, so pitch digital-BD/transformation at senior-IC.",
+  "domain": "Sales & Business Development"
+ },
+ {
+  "specialist": "Preetika",
+  "course_code": "PDDM",
+  "course_name": "Professional Diploma in Digital Marketing",
+  "cohort": "DM-0726",
+  "full_name": "Fong Soo San (Susan)",
+  "email": "ssfong@singnet.com.sg",
+  "years_experience": "20+",
+  "industry_background": "Global operations & customer experience (travel, e-commerce)",
+  "prior_experience_summary": "20+ years leading multinational operations and customer-experience teams across travel and e-commerce (Amazon), driving SLA/KPI performance, process optimisation and team leadership of 50+ staff.",
+  "skills": [
+   "Global Operations Management",
+   "Customer Experience",
+   "SLA / KPI Optimisation",
+   "Process Improvement & Automation",
+   "Team Leadership",
+   "Digital Marketing (foundational)"
+  ],
+  "skill_marriage": "Combines large-scale operations and customer-experience leadership with new digital-marketing skills — suited to customer-marketing, marketing-operations or CX-marketing roles.",
+  "recommended_roles": [
+   "Customer / CX Marketing Executive",
+   "Marketing Operations Executive",
+   "Digital Marketing Coordinator"
+  ],
+  "seniority": "Senior IC / Managerial upside",
+  "seniority_note": "Senior operations/CX leader; marketing is new, so pitch CX/marketing-ops at senior level.",
+  "domain": "Operations & Admin"
+ },
+ {
+  "specialist": "Preetika",
+  "course_code": "PDDM",
+  "course_name": "Professional Diploma in Digital Marketing",
+  "cohort": "DM-0726",
+  "full_name": "Koh Teck Leong, Alvin (Xu Delong)",
+  "email": "alvink2503@gmail.com",
+  "years_experience": "15+",
+  "industry_background": "Real estate sales & property consultancy",
+  "prior_experience_summary": "15+ years as a Senior Real Estate Salesperson across residential, commercial and investment property, with client relationship management, market analysis and digital property marketing.",
+  "skills": [
+   "Property Sales & Investment Advisory",
+   "Digital Property Marketing",
+   "Market Analysis",
+   "Client Relationship Management (CRM)",
+   "Lead Generation",
+   "Digital Marketing (foundational)"
+  ],
+  "skill_marriage": "Combines long real-estate sales and digital-property-marketing experience with formal digital-marketing skills — a natural fit for real-estate, property-tech or lead-generation marketing roles.",
+  "recommended_roles": [
+   "Digital Marketing Executive (Real Estate / PropTech)",
+   "Property Marketing & Lead Gen Executive",
+   "Campaign Marketing Executive"
+  ],
+  "seniority": "Individual Contributor",
+  "seniority_note": "Property-sales/marketing background; formal marketing rounds it out — entry-to-mid marketing roles fit.",
+  "domain": "Real Estate"
+ },
+ {
+  "specialist": "Preetika",
+  "course_code": "PDDM",
+  "course_name": "Professional Diploma in Digital Marketing",
+  "cohort": "DM-0726",
+  "full_name": "Lina Suharjo",
+  "email": "Tanlina65@yahoo.com.sg",
+  "years_experience": "9+",
+  "industry_background": "Engineering & project management (oil & gas), education",
+  "prior_experience_summary": "9+ years in engineering and project management at ExxonMobil (cost/schedule engineering, capital projects), more recently a relief teacher integrating digital learning platforms.",
+  "skills": [
+   "Project Management",
+   "Cost & Schedule Engineering",
+   "Cross-functional Team Leadership",
+   "Process Optimisation",
+   "Digital Learning Platforms",
+   "Digital Marketing (foundational)"
+  ],
+  "skill_marriage": "Combines engineering/project-management discipline with new digital-marketing skills — suited to marketing-operations, project-based marketing or analytical marketing roles.",
+  "recommended_roles": [
+   "Marketing Operations / Project Executive",
+   "Digital Marketing Executive (Analytical)",
+   "Marketing Coordinator"
+  ],
+  "seniority": "Individual Contributor",
+  "seniority_note": "Engineering/PM background; marketing is a fresh pivot, so entry-to-mid marketing roles fit.",
+  "domain": "Engineering & Manufacturing"
+ },
+ {
+  "specialist": "Preetika",
+  "course_code": "PDDM",
+  "course_name": "Professional Diploma in Digital Marketing",
+  "cohort": "DM-0726",
+  "full_name": "Norman Wang Ann Quang (Wang Anguan)",
+  "email": "annquang@yahoo.com.sg",
+  "years_experience": "10+",
+  "industry_background": "Accounting, audit & e-commerce entrepreneurship",
+  "prior_experience_summary": "ACCA-qualified accountant and audit supervisor who also founded an e-commerce brand business (Tigerboywong), building an omni-channel presence with SEO, copywriting and graphic-design skills.",
+  "skills": [
+   "Accounting & Audit",
+   "E-commerce & Brand Building",
+   "SEO & Copywriting",
+   "Graphic Design (Canva, Procreate)",
+   "Digital Marketing",
+   "Xero"
+  ],
+  "skill_marriage": "Combines accounting/audit discipline with hands-on e-commerce entrepreneurship and self-taught SEO/design — a strong fit for e-commerce marketing, SME digital marketing or content-marketing roles.",
+  "recommended_roles": [
+   "E-commerce / Digital Marketing Executive",
+   "Content / SEO Marketing Executive",
+   "SME Marketing Executive"
+  ],
+  "seniority": "Individual Contributor",
+  "seniority_note": "Finance plus real e-commerce/marketing experience; mid-level e-commerce/digital marketing roles fit.",
+  "domain": "Marketing & Creative"
+ },
+ {
+  "specialist": "Preetika",
+  "course_code": "PDDM",
+  "course_name": "Professional Diploma in Digital Marketing",
+  "cohort": "DM-0726",
+  "full_name": "Chia Sze Liak, Joshua (Xie Shilie)",
+  "email": "joshua@munich.com",
+  "years_experience": "20+",
+  "industry_background": "Business operations & ownership (automotive, finance, media)",
+  "prior_experience_summary": "20+ years across automotive, finance, media and technology in sales, business development, operations and compliance, including running his own vehicle rental/leasing business for 10+ years.",
+  "skills": [
+   "Operations Management",
+   "Business Development",
+   "Fleet Management",
+   "Stakeholder Management",
+   "Contract Negotiation",
+   "Digital Marketing (foundational)"
+  ],
+  "skill_marriage": "Combines entrepreneurial business-operations and business-development experience with new digital-marketing skills — suited to SME marketing, marketing-operations or business-development marketing roles.",
+  "recommended_roles": [
+   "Digital Marketing Executive (SME)",
+   "Marketing & Business Development Executive",
+   "Marketing Operations Executive"
+  ],
+  "seniority": "Senior IC",
+  "seniority_note": "Entrepreneurial ops/BD leader; marketing is new, so pitch at senior-IC with an ops/BD angle.",
+  "domain": "Operations & Admin"
+ },
+ {
+  "specialist": "Preetika",
+  "course_code": "PDDM",
+  "course_name": "Professional Diploma in Digital Marketing",
+  "cohort": "DM-0726",
+  "full_name": "Chee Li Lin, Gailanne (Xu Lining)",
+  "email": "gailanne75@yahoo.com.sg",
+  "years_experience": "17+",
+  "industry_background": "Real estate sales & marketing",
+  "prior_experience_summary": "17+ years as an Associate Senior Marketing Director at Huttons in Singapore real estate, handling residential/commercial property advisory, client needs assessment and transaction management.",
+  "skills": [
+   "Property Marketing & Advisory",
+   "Client Relationship Management",
+   "Negotiation",
+   "Market Knowledge",
+   "Transaction Management",
+   "Digital Marketing (foundational)"
+  ],
+  "skill_marriage": "Combines long real-estate marketing/advisory experience with formal digital-marketing skills — a natural fit for real-estate, property-tech or client-marketing roles.",
+  "recommended_roles": [
+   "Digital Marketing Executive (Real Estate / PropTech)",
+   "Property Marketing & Lead Gen Executive",
+   "Client / CRM Marketing Executive"
+  ],
+  "seniority": "Senior IC",
+  "seniority_note": "Senior property marketing-director; formal digital marketing rounds it out — mid-to-senior marketing roles fit.",
+  "domain": "Real Estate"
+ },
+ {
+  "specialist": "Preetika",
+  "course_code": "PDDM",
+  "course_name": "Professional Diploma in Digital Marketing",
+  "cohort": "DM-0726",
+  "full_name": "Justin Lim Hock Boon (Lin Xuewen Justin)",
+  "email": "recoze@yahoo.com.sg",
+  "years_experience": "15+",
+  "industry_background": "Operations management & technical customer support",
+  "prior_experience_summary": "Director overseeing cleaning operations across residential/commercial clients, with earlier experience leading a 22-person technical call-centre team for HP across SEA.",
+  "skills": [
+   "Operations Management",
+   "Team Leadership",
+   "Client Servicing",
+   "Business Development",
+   "Technical Support",
+   "Digital Marketing (foundational)"
+  ],
+  "skill_marriage": "Combines operations-management and customer-support-leadership experience with new digital-marketing skills — suited to SME marketing, marketing-operations or customer-marketing roles.",
+  "recommended_roles": [
+   "Digital Marketing Executive (SME)",
+   "Marketing Operations Executive",
+   "Customer / Service Marketing Executive"
+  ],
+  "seniority": "Individual Contributor",
+  "seniority_note": "Ops/support-leadership background; marketing is new, so entry-to-mid marketing roles fit.",
+  "domain": "Operations & Admin"
+ },
+ {
+  "specialist": "Preetika",
+  "course_code": "PDDM",
+  "course_name": "Professional Diploma in Digital Marketing",
+  "cohort": "DM-0726",
+  "full_name": "Steve Lam Wai Ming (Lin Weiming)",
+  "email": "stevecommand77@gmail.com",
+  "years_experience": "20+",
+  "industry_background": "Graphic design, video & visual solutions (creative)",
+  "prior_experience_summary": "20+ years in graphic design and video editing, most recently Visual Solution Developer at Seatrium, producing motion graphics, marketing content, UI/UX prototypes and 3D visuals.",
+  "skills": [
+   "Graphic Design & Imaging",
+   "Video Editing (Premiere, After Effects)",
+   "Motion Graphics / VFX",
+   "UI/UX Prototyping",
+   "3D Modelling",
+   "Digital Marketing (foundational)",
+   "Content Creation"
+  ],
+  "skill_marriage": "Combines deep design/video and visual-solution experience with new digital-marketing skills — can both create rich creative content and run campaigns, ideal for content/creative marketing roles.",
+  "recommended_roles": [
+   "Content / Creative Marketing Executive",
+   "Social Media & Multimedia Marketing Executive",
+   "Digital Marketing Designer"
+  ],
+  "seniority": "Senior IC",
+  "seniority_note": "Very experienced creative; marketing is new, so mid-level content/creative marketing roles fit well.",
+  "domain": "Marketing & Creative"
+ },
+ {
+  "specialist": "Preetika",
+  "course_code": "PDDM",
+  "course_name": "Professional Diploma in Digital Marketing",
+  "cohort": "DM-0726",
+  "full_name": "Ng Yan Hwa, Joanne (Huang Yanhua)",
+  "email": "nyh_joanne@yahoo.com",
+  "years_experience": "10+",
+  "industry_background": "Broadcast media scheduling & presentation (TV)",
+  "prior_experience_summary": "10+ years in broadcast media as scheduler/presentation executive (CNBC, KC Global Media), managing programme schedules, transmission logs, promos and ad placements with scheduling software.",
+  "skills": [
+   "Broadcast Scheduling",
+   "Media Traffic & Ad Placement",
+   "Content Coordination",
+   "Accuracy & Compliance",
+   "Scheduling Software (Landmark, Stratus)",
+   "Digital Marketing (foundational)"
+  ],
+  "skill_marriage": "Combines broadcast-media scheduling and ad-placement experience with new digital-marketing skills — suited to media-planning, campaign-operations or ad-operations marketing roles.",
+  "recommended_roles": [
+   "Media / Campaign Operations Executive",
+   "Ad Operations / Traffic Executive",
+   "Digital Marketing Coordinator"
+  ],
+  "seniority": "Individual Contributor",
+  "seniority_note": "Media-scheduling background; marketing is new, so entry-to-mid media/campaign-ops roles fit.",
+  "domain": "Marketing & Creative"
+ },
+ {
+  "specialist": "Preetika",
+  "course_code": "PDDM",
+  "course_name": "Professional Diploma in Digital Marketing",
+  "cohort": "DM-0726",
+  "full_name": "Amos Pang Jia Siong (Feng Jiaxiong)",
+  "email": "amospang25@yahoo.com.sg",
+  "years_experience": "15+",
+  "industry_background": "Industrial/engineering sales & business development",
+  "prior_experience_summary": "15+ years in engineering and industrial sales across electronics, automation and semiconductor sectors, with client engagement and market development, currently a private-hire driver exploring digital tools.",
+  "skills": [
+   "Industrial / B2B Sales",
+   "Business Development",
+   "Client Relationship Management",
+   "Market Research",
+   "CRM & Sales Reporting",
+   "Digital Marketing (foundational)"
+  ],
+  "skill_marriage": "Combines industrial B2B sales and business-development experience with new digital-marketing skills — suited to B2B/industrial marketing, product-marketing or sales-support marketing roles.",
+  "recommended_roles": [
+   "B2B / Industrial Marketing Executive",
+   "Product / Sales Marketing Executive",
+   "Digital Marketing Executive (Technical)"
+  ],
+  "seniority": "Individual Contributor",
+  "seniority_note": "Industrial-sales background; marketing is a fresh pivot, so entry-to-mid B2B marketing roles fit.",
+  "domain": "Sales & Business Development"
+ },
+ {
+  "specialist": "Preetika",
+  "course_code": "PDDM",
+  "course_name": "Professional Diploma in Digital Marketing",
+  "cohort": "DM-0726",
+  "full_name": "Callie Tan Hui Feng",
+  "email": "callietanhf@yahoo.com.sg",
+  "years_experience": "24+",
+  "industry_background": "Sales, business development & financial advisory",
+  "prior_experience_summary": "24+ years in sales, business development and strategy, starting in financial advisory at AIA, with solution-based selling, roadshows and client relationship management.",
+  "skills": [
+   "Sales & Business Development",
+   "Solution-Based Selling",
+   "Client Relationship Management",
+   "Market Share Growth",
+   "Sales & Marketing Activities",
+   "Digital Marketing (foundational)"
+  ],
+  "skill_marriage": "Combines long sales/business-development experience with new digital-marketing skills — suited to business-development marketing, B2B marketing or sales-support marketing roles.",
+  "recommended_roles": [
+   "Business Development & Marketing Executive",
+   "B2B / Account-Based Marketing Executive",
+   "Digital Marketing Executive"
+  ],
+  "seniority": "Senior IC",
+  "seniority_note": "Very experienced in sales/BD; marketing is new, so pitch business-development marketing at senior-IC.",
+  "domain": "Sales & Business Development"
+ },
+ {
+  "specialist": "Preetika",
+  "course_code": "PDDM",
+  "course_name": "Professional Diploma in Digital Marketing",
+  "cohort": "DM-0726",
+  "full_name": "Tan Poh Suan (Chen Baoshuang)",
+  "email": "baobao_06@yahoo.com.sg",
+  "years_experience": "20+",
+  "industry_background": "Education & training (curriculum, MOE)",
+  "prior_experience_summary": "20+ years in education (MOE) in curriculum planning, training delivery, stakeholder engagement and performance assessment, using digital tools to create learning content.",
+  "skills": [
+   "Curriculum & Training Delivery",
+   "Stakeholder Engagement",
+   "Presentation Development",
+   "Data Tracking & Reporting",
+   "Digital Content Development",
+   "Digital Marketing (foundational)"
+  ],
+  "skill_marriage": "Combines education/training and content-development experience with new digital-marketing skills — suited to content marketing, digital-learning marketing or communications roles.",
+  "recommended_roles": [
+   "Content Marketing / Communications Executive",
+   "Digital Marketing Executive (Education / EdTech)",
+   "Marketing Coordinator"
+  ],
+  "seniority": "Individual Contributor",
+  "seniority_note": "Education/training background; marketing is a fresh pivot, so entry-to-mid content/marketing roles fit.",
+  "domain": "Education & Training"
+ },
+ {
+  "specialist": "Preetika",
+  "course_code": "PDDS",
+  "course_name": "Professional Diploma in Data Science",
+  "cohort": "DS-0726",
+  "full_name": "Krishanth Ram Arvin",
+  "email": "chrsarvin@gmail.com",
+  "years_experience": "15+",
+  "industry_background": "Supply chain & logistics operations",
+  "prior_experience_summary": "15+ years in supply chain, warehousing, inventory and logistics across APAC, leading process-optimisation and warehouse-transformation projects with Lean Green Belt, KPI reporting and demand planning.",
+  "skills": [
+   "Supply Chain Management",
+   "Warehouse & Inventory Operations",
+   "Demand Planning & Forecasting",
+   "KPI Reporting & Analysis",
+   "Lean / Process Improvement",
+   "Data Analysis (foundational)"
+  ],
+  "skill_marriage": "Combines long supply-chain/logistics operations and KPI-analysis experience with new data-science skills — suited to supply-chain-analytics, logistics-data or operations-analyst roles.",
+  "recommended_roles": [
+   "Supply Chain / Logistics Data Analyst",
+   "Operations / Business Analyst",
+   "Junior Data Analyst"
+  ],
+  "seniority": "Senior IC",
+  "seniority_note": "Senior supply-chain professional; data science is new, so pitch supply-chain-analytics at senior-IC.",
+  "domain": "Supply Chain & Procurement"
+ },
+ {
+  "specialist": "Preetika",
+  "course_code": "PDDS",
+  "course_name": "Professional Diploma in Data Science",
+  "cohort": "DS-0726",
+  "full_name": "Nur Rasyidah Binte Muhamad Ismail Marican",
+  "email": "yusyidah2904@gmail.com",
+  "years_experience": "8+",
+  "industry_background": "Payroll & HR operations",
+  "prior_experience_summary": "Senior Payroll Executive managing end-to-end payroll, statutory compliance and reconciliation, preparing and analysing large payroll datasets in Excel with SAP/HRP systems.",
+  "skills": [
+   "Payroll Processing",
+   "Payroll Data Analysis (Excel)",
+   "Statutory Compliance",
+   "Reconciliation",
+   "SAP / HRP Systems",
+   "Data Analysis (foundational)"
+  ],
+  "skill_marriage": "Combines payroll/HR-operations and payroll-data-analysis experience with new data-science skills — suited to HR/payroll analytics, data-quality or reporting-analyst roles.",
+  "recommended_roles": [
+   "HR / Payroll Data Analyst",
+   "Reporting / Data Quality Analyst",
+   "Junior Data Analyst"
+  ],
+  "seniority": "Individual Contributor",
+  "seniority_note": "Payroll-data background; data science is new, so entry-to-mid analyst roles fit.",
+  "domain": "HR & Talent"
+ },
+ {
+  "specialist": "Preetika",
+  "course_code": "PDDS",
+  "course_name": "Professional Diploma in Data Science",
+  "cohort": "DS-0726",
+  "full_name": "Safiyuddin Bin Mohd Nurdin",
+  "email": "sbmn97@yahoo.com",
+  "years_experience": "40+",
+  "industry_background": "Technical, supervisory & training (power electronics, security)",
+  "prior_experience_summary": "40+ years of diverse technical, supervisory and training experience across power electronics, information security/forensics and accounting, now pivoting to data engineering and AI development.",
+  "skills": [
+   "Technical Report Writing & Documentation",
+   "Fault / Data Analysis",
+   "Power Electronics",
+   "Information Security & Forensics",
+   "Curriculum / Training",
+   "Data Engineering (learning)",
+   "Data Science (foundational)"
+  ],
+  "skill_marriage": "Combines decades of technical, documentation and training experience with new data-science skills — suited to data-documentation, technical-data-analyst or data-engineering-support roles.",
+  "recommended_roles": [
+   "Data / Technical Analyst",
+   "Junior Data Engineer",
+   "Data Documentation / Analysis Analyst"
+  ],
+  "seniority": "Senior IC",
+  "seniority_note": "Very experienced technically but data science is a fresh pivot; entry-to-mid data roles fit despite long tenure.",
+  "domain": "Engineering & Manufacturing"
+ },
+ {
+  "specialist": "Preetika",
+  "course_code": "PDDS",
+  "course_name": "Professional Diploma in Data Science",
+  "cohort": "DS-0726",
+  "full_name": "Evanne Sze Toh Min Shi",
+  "email": "Evanne.st@gmail.com",
+  "years_experience": "15+",
+  "industry_background": "Human resources & business partnering (healthcare, MNC)",
+  "prior_experience_summary": "15+ years in HR business partnering, expatriate management and workforce planning across healthcare and MNCs, now transitioning into CX and data analytics with Power BI/Excel and AI workflow automation.",
+  "skills": [
+   "HR Business Partnering",
+   "Workforce Planning",
+   "Stakeholder Engagement",
+   "Data Analytics (Power BI, Excel)",
+   "AI Workflow Automation",
+   "Data Science (foundational)"
+  ],
+  "skill_marriage": "Combines HR-business-partnering and workforce-planning experience with new data-science skills — a strong fit for people-analytics, HR-data or CX-analytics roles.",
+  "recommended_roles": [
+   "People / HR Analytics Analyst",
+   "HR Data / CX Analyst",
+   "Business Analyst (HR)"
+  ],
+  "seniority": "Senior IC",
+  "seniority_note": "Senior HR professional; as a data pivot, people-analytics is the natural bridge at senior-IC.",
+  "domain": "HR & Talent"
+ },
+ {
+  "specialist": "Preetika",
+  "course_code": "PDDS",
+  "course_name": "Professional Diploma in Data Science",
+  "cohort": "DS-0726",
+  "full_name": "Ivan Yeo Kairong (Yang Kairong, Ivan)",
+  "email": "chaoticmagi@gmail.com",
+  "years_experience": "10+",
+  "industry_background": "Customer service & investigations (e-commerce)",
+  "prior_experience_summary": "10+ years in customer service, most recently as an Account Health/Investigation Specialist at Amazon, conducting investigations, appeals and seller guidance, with analytical and problem-solving strengths.",
+  "skills": [
+   "Customer Service",
+   "Investigation & Analysis",
+   "Appeals & Case Resolution",
+   "Analytical Thinking",
+   "Attention to Detail",
+   "Data Analysis (foundational)"
+  ],
+  "skill_marriage": "Combines customer-service and investigation/analysis experience with new data-science skills — suited to operations-analytics, quality-data or junior data-analyst roles.",
+  "recommended_roles": [
+   "Operations / Quality Data Analyst",
+   "Investigation / Insights Analyst",
+   "Junior Data Analyst"
+  ],
+  "seniority": "Individual Contributor",
+  "seniority_note": "Service/investigation background; data science is new, so entry-level analyst roles fit.",
+  "domain": "Operations & Admin"
+ },
+ {
+  "specialist": "Preetika",
+  "course_code": "PDDS",
+  "course_name": "Professional Diploma in Data Science",
+  "cohort": "DS-0726",
+  "full_name": "Tong Shu Hua",
+  "email": "shuhua.tsh@gmail.com",
+  "years_experience": "10+",
+  "industry_background": "Accounting & finance (full-set, reporting)",
+  "prior_experience_summary": "10+ years in accounting/finance across full-set accounts, financial and management reporting, tax, payroll and audit support, with QuickBooks, Xero, AutoCount and SAP.",
+  "skills": [
+   "Full-Set Accounting",
+   "Financial & Management Reporting",
+   "Tax & Payroll Compliance",
+   "Audit Support",
+   "ERP (Xero, SAP, AutoCount)",
+   "Data Analysis (foundational)"
+  ],
+  "skill_marriage": "Combines full-set accounting and financial-reporting experience with new data-science skills — suited to finance-analytics or reporting-analyst roles where accounting-data fluency strengthens analysis.",
+  "recommended_roles": [
+   "Finance Data Analyst",
+   "Reporting / Reconciliation Analyst",
+   "Junior Data Analyst (Finance)"
+  ],
+  "seniority": "Individual Contributor",
+  "seniority_note": "Solid finance background; data science is new, so entry-to-mid finance-analytics roles fit.",
+  "domain": "Finance & Accounting"
+ },
+ {
+  "specialist": "Preetika",
+  "course_code": "PDDS",
+  "course_name": "Professional Diploma in Data Science",
+  "cohort": "DS-0726",
+  "full_name": "Lina Tan Lay Nah",
+  "email": "linat1309@hotmail.com",
+  "years_experience": "20+",
+  "industry_background": "Accounting & finance (group consolidation, SGX)",
+  "prior_experience_summary": "Finance Manager handling group consolidation across eight entities, financial analysis, budgeting/forecasting and SGX reporting, with SAP FICO implementation and process-improvement project experience.",
+  "skills": [
+   "Financial Consolidation & Analysis",
+   "Budgeting & Forecasting",
+   "SAP FICO",
+   "Process Improvement",
+   "Internal Control",
+   "Data Analysis (foundational)"
+  ],
+  "skill_marriage": "Combines senior finance/consolidation and systems-implementation experience with new data-science skills — suited to finance-analytics, reporting or business-analyst roles grounded in real financial data.",
+  "recommended_roles": [
+   "Finance Data / Reporting Analyst",
+   "Business Analyst (Finance)",
+   "BI Analyst (Finance)"
+  ],
+  "seniority": "Senior IC / Managerial upside",
+  "seniority_note": "Senior finance manager; as a data pivot, pitch finance-analytics at senior-IC.",
+  "domain": "Finance & Accounting"
+ },
+ {
+  "specialist": "Preetika",
+  "course_code": "PDDS",
+  "course_name": "Professional Diploma in Data Science",
+  "cohort": "DS-0726",
+  "full_name": "Lim Hwei Ching, Christina (Lin Huiqing)",
+  "email": "limchristina77@gmail.com",
+  "years_experience": "19+",
+  "industry_background": "Procurement & supply chain (healthcare, life sciences)",
+  "prior_experience_summary": "19 years in procurement and supply chain across healthcare and life sciences, in strategic sourcing, tender management, contract administration and supplier management with SAP/Ariba.",
+  "skills": [
+   "Strategic Sourcing & Procurement",
+   "Tender Management (RFP/RFQ)",
+   "Contract & Supplier Management",
+   "Category Management",
+   "SAP & Ariba",
+   "Data Analysis (foundational)"
+  ],
+  "skill_marriage": "Combines long procurement/supply-chain experience with new data-science skills — suited to procurement-analytics, supply-chain-data or spend-analyst roles.",
+  "recommended_roles": [
+   "Procurement / Supply Chain Data Analyst",
+   "Spend / Category Analyst",
+   "Business Analyst (Procurement)"
+  ],
+  "seniority": "Senior IC",
+  "seniority_note": "Senior procurement professional; data science is new, so pitch procurement-analytics at senior-IC.",
+  "domain": "Supply Chain & Procurement"
+ },
+ {
+  "specialist": "Preetika",
+  "course_code": "PDDS",
+  "course_name": "Professional Diploma in Data Science",
+  "cohort": "DS-0726",
+  "full_name": "Lin Rongfeng, Dave (Lin Rongfeng)",
+  "email": "daverflin@gmail.com",
+  "years_experience": "18+",
+  "industry_background": "Internal audit, risk & governance (Big Four, MNC)",
+  "prior_experience_summary": "18+ years leading internal audit, internal control and enterprise risk management across Big Four and MNCs (Burberry, LVMH, Cathay Pacific), an early adopter of data analytics in audit across up to 40 entities.",
+  "skills": [
+   "Internal Audit & Controls",
+   "Enterprise Risk Management",
+   "Governance & Compliance",
+   "Data Analytics in Audit",
+   "AI / Automation in GRC",
+   "Data Analysis (foundational)"
+  ],
+  "skill_marriage": "Combines senior audit/risk/governance leadership and early data-analytics-in-audit experience with new data-science skills — a strong fit for audit-analytics, risk-data or GRC-analytics roles.",
+  "recommended_roles": [
+   "Audit / Risk Data Analyst",
+   "GRC Analytics Analyst",
+   "Business Analyst (Risk / Controls)"
+  ],
+  "seniority": "Senior IC / Managerial upside",
+  "seniority_note": "Senior audit/risk leader with data-analytics exposure; genuinely ready for audit/risk-analytics at senior level.",
+  "domain": "Finance & Accounting"
+ },
+ {
+  "specialist": "Preetika",
+  "course_code": "PDDS",
+  "course_name": "Professional Diploma in Data Science",
+  "cohort": "DS-0726",
+  "full_name": "Manpreet Kaur",
+  "email": "mannukaur2901@gmail.com",
+  "years_experience": "9+",
+  "industry_background": "Operations & administration (corporate, education)",
+  "prior_experience_summary": "~9 years in corporate operations and administration (Shooklin & Bok), managing office operations, procurement, cost tracking (Excel), vendor coordination and business support across corporate and education sectors.",
+  "skills": [
+   "Operations & Admin Management",
+   "Procurement & Vendor Coordination",
+   "Cost Tracking & Reporting (Excel)",
+   "Client Servicing",
+   "Process Coordination",
+   "Data Analysis (foundational)"
+  ],
+  "skill_marriage": "Combines operations/administration and cost-tracking experience with new data-science skills — suited to operations-analytics, reporting or junior data-analyst roles.",
+  "recommended_roles": [
+   "Operations / Business Data Analyst",
+   "Reporting Analyst",
+   "Junior Data Analyst"
+  ],
+  "seniority": "Individual Contributor",
+  "seniority_note": "Ops/admin background; data science is new, so entry-to-mid analyst roles fit.",
+  "domain": "Operations & Admin"
+ },
+ {
+  "specialist": "Preetika",
+  "course_code": "PDDS",
+  "course_name": "Professional Diploma in Data Science",
+  "cohort": "DS-0726",
+  "full_name": "Pong Miew Chin, Kelly",
+  "email": "miewchin@gmail.com",
+  "years_experience": "20+",
+  "industry_background": "Supply chain, logistics & commercial support",
+  "prior_experience_summary": "20 years in supply chain, logistics operations and commercial support, covering demand planning, purchasing, order processing, inventory, import/export and ERP master-data across APAC/EU/US markets.",
+  "skills": [
+   "Supply Chain & Logistics Operations",
+   "Demand Planning",
+   "Inventory Management",
+   "Import / Export & Trade Documentation",
+   "ERP & Master Data",
+   "Data Analysis (foundational)"
+  ],
+  "skill_marriage": "Combines long supply-chain/logistics and commercial-support experience with new data-science skills — suited to supply-chain-analytics, logistics-data or operations-analyst roles.",
+  "recommended_roles": [
+   "Supply Chain / Logistics Data Analyst",
+   "Operations / Demand Analyst",
+   "Junior Data Analyst"
+  ],
+  "seniority": "Senior IC",
+  "seniority_note": "Senior supply-chain professional; data science is new, so pitch supply-chain-analytics at senior-IC.",
+  "domain": "Supply Chain & Procurement"
+ },
+ {
+  "specialist": "Preetika",
+  "course_code": "PDDS",
+  "course_name": "Professional Diploma in Data Science",
+  "cohort": "DS-0726",
+  "full_name": "Flora Tan Meng Eng",
+  "email": "flora_tme@hotmail.com",
+  "years_experience": "30+",
+  "industry_background": "Digital transformation & IT programme management (banking, aviation)",
+  "prior_experience_summary": "30+ years leading large-scale IT and business transformation programmes across banking and aviation (Singapore Airlines), managing $2M-$10M portfolios, Agile delivery and data-driven transformation.",
+  "skills": [
+   "Digital Transformation",
+   "IT Portfolio & Programme Management",
+   "Agile Delivery",
+   "Data-Driven Decision Making",
+   "Stakeholder Management",
+   "Change Management",
+   "Data Science (foundational)"
+  ],
+  "skill_marriage": "Combines senior IT/business-transformation leadership with new data-science skills — suited to data/analytics programme management, data-product or transformation-analytics leadership roles.",
+  "recommended_roles": [
+   "Data / Analytics Programme Manager",
+   "Digital Transformation (Data) Lead",
+   "Business Analyst (Data Platforms)"
+  ],
+  "seniority": "Senior IC / Managerial upside",
+  "seniority_note": "Very senior transformation leader; best positioned leading data/analytics delivery rather than hands-on data-scientist roles.",
+  "domain": "Project Management"
+ },
+ {
+  "specialist": "Preetika",
+  "course_code": "PDDI",
+  "course_name": "Professional Diploma in Digital Innovation",
+  "cohort": "DI-0726",
+  "full_name": "Jace Hung Chia Fen",
+  "email": "jacehung@gmail.com",
+  "years_experience": "10+",
+  "industry_background": "Sales & business development (cybersecurity, tech)",
+  "prior_experience_summary": "Sales Manager at a cybersecurity firm driving end-to-end sales, pipeline building and consultative selling, with stakeholder engagement, programme coordination and partnership development.",
+  "skills": [
+   "Sales & Business Development",
+   "Consultative Selling",
+   "Stakeholder Engagement",
+   "Partnership Development",
+   "Customer Relationship Management",
+   "Digital Innovation Tools (foundational)"
+  ],
+  "skill_marriage": "Combines sales/business-development and partnership experience with new digital-innovation skills — suited to digital-solutions sales, business-analyst or transformation-support roles in tech.",
+  "recommended_roles": [
+   "Digital Solutions / Business Development Executive",
+   "Business Analyst (Tech / Digital)",
+   "Digital Transformation Support Executive"
+  ],
+  "seniority": "Individual Contributor",
+  "seniority_note": "Sales/BD background; digital-innovation is new, so mid-level digital-BD/BA roles fit.",
+  "domain": "Sales & Business Development"
+ },
+ {
+  "specialist": "Preetika",
+  "course_code": "PDDI",
+  "course_name": "Professional Diploma in Digital Innovation",
+  "cohort": "DI-0726",
+  "full_name": "Cheryl Ng Shu Hui (Huang Shuhui)",
+  "email": "cheryl191080@gmail.com",
+  "years_experience": "10+",
+  "industry_background": "Sports industry events, marketing & customer service",
+  "prior_experience_summary": "Sales/marketing-communications executive with sports-industry experience (SG Basketball Academy) in event coordination, customer service and operations, building digital-marketing and content skills.",
+  "skills": [
+   "Event Coordination",
+   "Marketing Communications",
+   "Customer Service",
+   "Content Creation (learning)",
+   "Stakeholder Management",
+   "Digital Innovation Tools (foundational)"
+  ],
+  "skill_marriage": "Combines event-coordination and marketing-communications experience with new digital-innovation skills — suited to digital-marketing-support, event-tech or community-engagement roles.",
+  "recommended_roles": [
+   "Digital Marketing / Communications Executive",
+   "Event / Community Engagement Executive",
+   "Business Support / Coordination Executive"
+  ],
+  "seniority": "Individual Contributor",
+  "seniority_note": "Events/marketing-comms background; digital skills are newly building, so entry-to-mid roles fit.",
+  "domain": "Marketing & Creative"
+ },
+ {
+  "specialist": "Preetika",
+  "course_code": "PDDI",
+  "course_name": "Professional Diploma in Digital Innovation",
+  "cohort": "DI-0726",
+  "full_name": "Quek Shian Pin (Guo Xianbin)",
+  "email": "shian_pin@hotmail.com",
+  "years_experience": "15+",
+  "industry_background": "Operations & general management (EV automotive, engineering)",
+  "prior_experience_summary": "General Manager of an EV dealership (BYD) overseeing sales, after-sales and operations, using AI tools and CRM automation, with a power-engineering MSc and cross-sector operations/PM background.",
+  "skills": [
+   "Operations & General Management",
+   "Project Management",
+   "CRM & Automation (PepperCloud)",
+   "AI Tools for Analysis",
+   "Stakeholder Management",
+   "Digital Innovation Tools",
+   "Power Engineering"
+  ],
+  "skill_marriage": "Combines operations/general-management and hands-on AI/CRM-automation experience with new digital-innovation skills — suited to operations-digitalisation, business-transformation or business-analyst roles.",
+  "recommended_roles": [
+   "Operations / Business Transformation Analyst",
+   "Digital Innovation / Automation Executive",
+   "Business Analyst (Operations)"
+  ],
+  "seniority": "Senior IC / Managerial upside",
+  "seniority_note": "Senior GM with real AI/automation adoption; digital-innovation complements strongly — pitch transformation/BA at senior level.",
+  "domain": "Operations & Admin"
+ },
+ {
+  "specialist": "Preetika",
+  "course_code": "PDDI",
+  "course_name": "Professional Diploma in Digital Innovation",
+  "cohort": "DI-0726",
+  "full_name": "Seah Hou Liang",
+  "email": "micseahh@gmail.com",
+  "years_experience": "25+",
+  "industry_background": "IT project management & administration (education, computing)",
+  "prior_experience_summary": "Administrative/IT manager with 19 years in computing and 11 in education, leading ERP/IT infrastructure implementation, acting as project manager and functional architect across the IT project lifecycle.",
+  "skills": [
+   "IT Project Management",
+   "ERP Implementation",
+   "Functional Architecture",
+   "Team & Vendor Leadership",
+   "Workflow Optimisation",
+   "Digital Innovation Tools (foundational)"
+  ],
+  "skill_marriage": "Combines IT-project-management and ERP-implementation experience with new digital-innovation skills — a strong fit for digital-project-management, business-analyst or transformation-delivery roles.",
+  "recommended_roles": [
+   "Digital Project Manager",
+   "Business Analyst (IT / ERP)",
+   "Digital Transformation Delivery Analyst"
+  ],
+  "seniority": "Senior IC / Managerial upside",
+  "seniority_note": "Senior IT-PM/architect; genuinely ready for digital-PM or transformation-delivery roles.",
+  "domain": "IT & Infrastructure"
+ },
+ {
+  "specialist": "Preetika",
+  "course_code": "PDDI",
+  "course_name": "Professional Diploma in Digital Innovation",
+  "cohort": "DI-0726",
+  "full_name": "Chan Siew Yin, Amy",
+  "email": "chansy.amy@gmail.com",
+  "years_experience": "30+",
+  "industry_background": "Banking, financial services & administration",
+  "prior_experience_summary": "30+ years across banking, financial services, education and administration, with financial analysis, risk, operations/process improvement, client relationship management and MAS/IBF compliance.",
+  "skills": [
+   "Financial Analysis & Risk",
+   "Operations & Process Improvement",
+   "Client Relationship Management",
+   "Data Analysis & Reporting",
+   "Regulatory Compliance (MAS/IBF)",
+   "Digital Innovation Tools (foundational)"
+  ],
+  "skill_marriage": "Combines long banking/financial-services and process-improvement experience with new digital-innovation skills — suited to finance-digitalisation, operations-transformation or business-analyst roles in financial services.",
+  "recommended_roles": [
+   "Business Analyst (Financial Services)",
+   "Operations / Process Transformation Analyst",
+   "Digital Innovation Executive (Finance)"
+  ],
+  "seniority": "Senior IC",
+  "seniority_note": "Very experienced in banking/ops; digital-innovation is new, so pitch finance-transformation/BA at senior-IC.",
+  "domain": "Banking & Wealth"
+ },
+ {
+  "specialist": "Preetika",
+  "course_code": "PDDI",
+  "course_name": "Professional Diploma in Digital Innovation",
+  "cohort": "DI-0726",
+  "full_name": "Tham Chee Chong, Travis (Tan Zhizhong)",
+  "email": "TRAVIS.THAM@GMAIL.COM",
+  "years_experience": "15+",
+  "industry_background": "Technical/industrial sales & business development (lighting, semiconductor)",
+  "prior_experience_summary": "Sales Manager at Ushio Asia Pacific leading high-pressure-lamp and LED sales across SE Asia, developing new business (Grow Light projects), sales targets/KPIs and production-forecast analysis.",
+  "skills": [
+   "Technical / Industrial B2B Sales",
+   "Business Development",
+   "Sales KPI & Forecast Analysis",
+   "Partner Development",
+   "Negotiation",
+   "Digital Innovation Tools (foundational)"
+  ],
+  "skill_marriage": "Combines industrial B2B sales and business-development experience with new digital-innovation skills — suited to sales-digitalisation, business-development or transformation-support roles in technical sectors.",
+  "recommended_roles": [
+   "Business Development / Digital Solutions Executive",
+   "Sales Operations / Transformation Analyst",
+   "Business Analyst (Technical Sales)"
+  ],
+  "seniority": "Senior IC",
+  "seniority_note": "Senior industrial-sales professional; digital-innovation is new, so pitch digital-BD/transformation at senior-IC.",
+  "domain": "Sales & Business Development"
+ },
+ {
+  "specialist": "Preetika",
+  "course_code": "PDDI",
+  "course_name": "Professional Diploma in Digital Innovation",
+  "cohort": "DI-0726",
+  "full_name": "Teo Wee Kin (Zhang Weiquan)",
+  "email": "teoweekin@gmail.com",
+  "years_experience": "25+",
+  "industry_background": "MRO / advanced manufacturing operations (aerospace)",
+  "prior_experience_summary": "25+ years in MRO digital-factory operations and advanced aerospace manufacturing, leading global teams (420 staff, US$35M output), supply chain, digital transformation and operational excellence (Lean Six Sigma).",
+  "skills": [
+   "MRO / Manufacturing Operations",
+   "Digital Factory / Transformation",
+   "Programme & Supply Chain Management",
+   "Lean Six Sigma",
+   "Team & P&L Leadership",
+   "Digital Innovation Tools",
+   "Process Improvement"
+  ],
+  "skill_marriage": "Combines senior aerospace-manufacturing operations and digital-factory transformation leadership with new digital-innovation skills — strong fit for manufacturing-digitalisation, Industry-4.0 or operations-transformation leadership roles.",
+  "recommended_roles": [
+   "Manufacturing Digital Transformation Lead",
+   "Operations / Process Innovation Manager",
+   "Digital Transformation Consultant"
+  ],
+  "seniority": "Senior IC / Managerial upside",
+  "seniority_note": "Very senior operations/transformation leader; best positioned in transformation-lead roles leveraging manufacturing depth.",
+  "domain": "Engineering & Manufacturing"
+ },
+ {
+  "specialist": "Preetika",
+  "course_code": "PDDI",
+  "course_name": "Professional Diploma in Digital Innovation",
+  "cohort": "DI-0726",
+  "full_name": "Tye Kuo Wei (Dai Guowei)",
+  "email": "kuowei.tye@gmail.com",
+  "years_experience": "20+",
+  "industry_background": "Strategic sourcing & procurement (infrastructure)",
+  "prior_experience_summary": "20+ years in regional strategic sourcing and procurement of electrical infrastructure (switchgears, transformers), with category strategy, supplier management, risk governance and procurement analytics (Power BI).",
+  "skills": [
+   "Strategic Sourcing & Procurement",
+   "Category Strategy",
+   "Supplier / Risk Management",
+   "Procurement Analytics (Power BI)",
+   "Power Automate / GenAI (learning)",
+   "Digital Innovation Tools"
+  ],
+  "skill_marriage": "Combines senior procurement/sourcing and procurement-analytics experience with new digital-innovation skills — suited to procurement-digitalisation, supply-chain-analytics or digital-transformation roles in sourcing.",
+  "recommended_roles": [
+   "Procurement / Supply Chain Digital Transformation Analyst",
+   "Spend Analytics / Sourcing Analyst",
+   "Business Analyst (Procurement)"
+  ],
+  "seniority": "Senior IC",
+  "seniority_note": "Senior procurement leader building digital/analytics skills; pitch procurement-digitalisation/analytics at senior-IC.",
+  "domain": "Supply Chain & Procurement"
+ },
+ {
+  "specialist": "Preetika",
+  "course_code": "PDDI",
+  "course_name": "Professional Diploma in Digital Innovation",
+  "cohort": "DI-0726",
+  "full_name": "Helena Woo Xiu Ying",
+  "email": "",
+  "years_experience": "20+",
+  "industry_background": "Banking operations & vendor management (private/consumer banking)",
+  "prior_experience_summary": "20+ years in banking operations at DBS and Societe Generale, rising to Assistant Vice President in service-delivery and outsource-operations management, sourcing and vendor management in consumer banking.",
+  "skills": [
+   "Banking Operations",
+   "Vendor & Sourcing Management",
+   "Service Delivery Management",
+   "Process Improvement",
+   "Stakeholder Management",
+   "Digital Innovation Tools (foundational)"
+  ],
+  "skill_marriage": "Combines long banking-operations and vendor-management experience with new digital-innovation skills — suited to banking-operations digitalisation, process-transformation or business-analyst roles in financial services.",
+  "recommended_roles": [
+   "Business Analyst (Banking Operations)",
+   "Operations / Process Transformation Analyst",
+   "Digital Innovation Executive (Financial Services)"
+  ],
+  "seniority": "Senior IC / Managerial upside",
+  "seniority_note": "Senior banking-ops (AVP) professional; digital-innovation is new, so pitch operations-transformation/BA at senior level.",
+  "domain": "Banking & Wealth"
  }
 ]
